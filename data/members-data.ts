@@ -59,7 +59,7 @@ export const MEMBERS_DATA: Member[] = [
     avatar: "https://cdn.liteyuki.org/snowykami/avatar.jpg",
     role: "minister",
     joinDate: "2024-02-18",
-    specialties: ["Knowledge Management", "Education", "Cultural Development"],
+    specialties: ["Full stack", "Backend", "CloudNative", "Education", "Cultural Development"],
     achievements: ["Established Empire Library", "Created Learning Pathways", "Mentored 200+ Citizens"],
     contact: {
       email: "a@sfkm.me",
@@ -84,7 +84,7 @@ export const MEMBERS_DATA: Member[] = [
     avatar: "https://github.com/synodriver.png",
     role: "guardian",
     joinDate: "2024-03-15",
-    specialties: ["Security", "Community Protection", "Conflict Resolution"],
+    specialties: ["Cython", "C", "Matlab", "Embedded"],
     achievements: ["Maintained 100% Peace Index", "Resolved 50+ Disputes", "Protected Empire Integrity"],
     contact: {
       email: "synodriver@outlook.com",
