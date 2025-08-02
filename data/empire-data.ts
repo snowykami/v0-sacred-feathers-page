@@ -86,6 +86,8 @@ export interface EmpireData {
         guardian: string
         creator: string
         explorer: string
+        prince: string
+        princess: string
       }
       viewProfile: string
       backToMembers: string
@@ -267,6 +269,8 @@ const EMPIRE_DATA_MULTILANG: Record<Language, EmpireData> = {
           guardian: "守护者",
           creator: "创造者",
           explorer: "探索者",
+          prince: "王子",
+          princess: "公主",
         },
         viewProfile: "查看详情",
         backToMembers: "返回成员列表",
@@ -455,6 +459,8 @@ const EMPIRE_DATA_MULTILANG: Record<Language, EmpireData> = {
           guardian: "Guardian",
           creator: "Creator",
           explorer: "Explorer",
+          prince: "Prince",
+          princess: "Princess",
         },
         viewProfile: "View Profile",
         backToMembers: "Back to Members",
@@ -640,6 +646,8 @@ const EMPIRE_DATA_MULTILANG: Record<Language, EmpireData> = {
           guardian: "守護者",
           creator: "創造者",
           explorer: "探検家",
+          prince: "王子",
+          princess: "王女",
         },
         viewProfile: "プロフィール表示",
         backToMembers: "メンバー一覧に戻る",

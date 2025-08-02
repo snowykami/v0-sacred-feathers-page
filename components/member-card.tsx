@@ -21,6 +21,8 @@ const roleColors = {
   guardian: "from-green-500 to-green-600",
   creator: "from-purple-500 to-purple-600",
   explorer: "from-indigo-500 to-indigo-600",
+  prince: "from-pink-500 to-pink-600",
+  princess: "from-rose-500 to-rose-600",
 }
 
 export function MemberCard({ member, variant = "grid" }: MemberCardProps) {
