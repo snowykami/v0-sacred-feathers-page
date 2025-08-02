@@ -37,3 +37,12 @@ Continue building your app on:
    - `name` 是你的名字
    - `avatar` 是你的头像链接
 3. push到你的分支，然后在GitHub上发起Pull Request
+
+## 添加新的角色词条
+
+1. 在 `data/members-data.ts` 中添加新的角色词条
+   - 在 `Member interface` 的 ` role` 字段中添加新的角色
+   - 在 `roleColors` 中添加对应的颜色
+
+2. 在 `app/members/page.tsx` MembersPage 组件中
+   - 在 `roles` 常量数组中参照现有角色添加新的角色
