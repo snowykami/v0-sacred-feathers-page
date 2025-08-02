@@ -263,7 +263,31 @@ export const MEMBERS_DATA: Member[] = [
     },
     isActive: true,
   },
-
+  {
+    id: "GreatFood404",
+    name: "似梦玄",
+    avatar: "https://github.com/GreatFood404.png",
+    role: "mascot",
+    joinDate: "2024-08-02",
+    specialties: ["Fishing"],
+    achievements: ["Improve TheLuckOf The Empire"],
+    contact:{
+      email: "GreatFood404@outlook.com",
+      github: "https://github.com/GreatFood404",
+      twitter: "https://twitter.com/GreatFood404",
+    },
+    bio:{
+      zh: "一只吉祥物，存在总会莫名其妙提高幸运，但大部分时候都失灵 。",
+      en: "A happy character, which will sometimes increase the luck of the empire, but most of the time will fail. ",
+      ja: "一匹吉祥物で、帝国の運気を向上させることがありますが、大部分の場合、運気が失敗します。",
+    },
+    stats:{
+      projectsLed: 0,
+      contributionsCount: 114,
+      yearsActive: 1,
+    },
+    isActive: true,
+  },
 ]
 
 export function getMemberById(id: string): Member | undefined {
