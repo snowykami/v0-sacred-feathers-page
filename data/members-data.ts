@@ -32,8 +32,7 @@ export const roleColors = {
   prince: "from-pink-500 to-pink-600",
   princess: "from-rose-500 to-rose-600",
   catgirl: "from-teal-500 to-teal-600",
-  mascot: "from-[rgb(239,167,168)] to-[rgb(240,134,138)]",
-
+  mascot: "from-rose-300 to-rose-400",
 }
 
 export const MEMBERS_DATA: Member[] = [
@@ -270,7 +269,7 @@ export const MEMBERS_DATA: Member[] = [
     role: "mascot",
     joinDate: "2024-08-02",
     specialties: ["Fishing"],
-    achievements: ["Improve TheLuckOf The Empire"],
+    achievements: ["Improve The Luck Of The Empire"],
     contact:{
       email: "GreatFood404@outlook.com",
       github: "https://github.com/GreatFood404",
