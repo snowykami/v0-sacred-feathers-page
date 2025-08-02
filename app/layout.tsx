@@ -3,6 +3,7 @@ import type { Metadata } from "next"
 import { GeistSans } from "geist/font/sans"
 import { GeistMono } from "geist/font/mono"
 import { LanguageProvider } from "@/contexts/language-context"
+import { NavigationHeader } from "@/components/navigation-header"
 import "./globals.css"
 
 export const metadata: Metadata = {
@@ -62,7 +63,10 @@ html {
         `}</style>
       </head>
       <body>
-        <LanguageProvider>{children}</LanguageProvider>
+        <LanguageProvider>
+          <NavigationHeader />
+          {children}
+          </LanguageProvider>
       </body>
     </html>
   )

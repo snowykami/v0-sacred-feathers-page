@@ -32,7 +32,7 @@ import {
   getCopyrightYears,
   getRelativeTime,
 } from "@/data/empire-data"
-import { NavigationHeader } from "@/components/navigation-header"
+
 
 // 图标映射
 const iconMap = {
@@ -87,9 +87,6 @@ export default function SacredFeathersEmpire() {
 
       {/* Particle Background */}
       <ParticleBackground />
-
-      {/* Header */}
-      <NavigationHeader currentPath="/" />
 
       {/* Hero Section */}
       <section className="relative py-20 md:py-32 overflow-hidden">
@@ -179,7 +176,7 @@ export default function SacredFeathersEmpire() {
       {/* About Section */}
       <section
         id="about"
-        className="py-20 bg-slate-800/50 dark:bg-slate-800/50 light:bg-white/50 backdrop-blur-sm relative"
+        className="py-20 bg-slate-800/50 dark:bg-slate-800/50 light:bg-white/50 backdrop-blur-sm relative scroll-mt-20"
       >
         <div className="absolute inset-0 bg-gradient-to-r from-transparent via-amber-500/5 to-transparent"></div>
         <div className="container mx-auto px-4 relative z-10">
@@ -224,7 +221,7 @@ export default function SacredFeathersEmpire() {
       </section>
 
       {/* Achievements Section */}
-      <section id="achievements" className="py-20 relative overflow-hidden">
+      <section id="achievements" className="py-20 relative overflow-hidden scroll-mt-20">
         <div className="absolute inset-0">
           <div className="absolute top-0 left-1/4 w-64 h-64 bg-gradient-to-br from-amber-500/10 to-transparent rounded-full blur-3xl animate-pulse"></div>
           <div className="absolute bottom-0 right-1/4 w-64 h-64 bg-gradient-to-tl from-blue-500/10 to-transparent rounded-full blur-3xl animate-ping"></div>
@@ -269,7 +266,7 @@ export default function SacredFeathersEmpire() {
       {/* Enhanced History Timeline */}
       <section
         id="history"
-        className="py-20 bg-slate-800/50 dark:bg-slate-800/50 light:bg-white/50 backdrop-blur-sm relative"
+        className="py-20 bg-slate-800/50 dark:bg-slate-800/50 light:bg-white/50 backdrop-blur-sm relative scroll-mt-20"
       >
         <div className="container mx-auto px-4">
           <ScrollReveal>
@@ -328,7 +325,7 @@ export default function SacredFeathersEmpire() {
       </section>
 
       {/* Enhanced Join Section */}
-      <section id="join" className="py-20 relative overflow-hidden">
+      <section id="join" className="py-20 relative overflow-hidden scroll-mt-20">
         <div className="absolute inset-0">
           <div className="absolute top-1/4 left-0 w-full h-px bg-gradient-to-r from-transparent via-amber-400/50 to-transparent"></div>
           <div className="absolute bottom-1/4 left-0 w-full h-px bg-gradient-to-r from-transparent via-blue-400/50 to-transparent"></div>

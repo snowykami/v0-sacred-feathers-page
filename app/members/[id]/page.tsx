@@ -12,7 +12,6 @@ import { ScrollReveal } from "@/components/scroll-reveal"
 import { useLanguage } from "@/contexts/language-context"
 import { getEmpireData, formatDate } from "@/data/empire-data"
 import { getMemberById } from "@/data/members-data"
-import { NavigationHeader } from "@/components/navigation-header"
 
 const roleColors = {
   emperor: "from-amber-500 to-amber-600",
@@ -20,6 +19,8 @@ const roleColors = {
   guardian: "from-green-500 to-green-600",
   creator: "from-purple-500 to-purple-600",
   explorer: "from-indigo-500 to-indigo-600",
+  prince: "from-pink-500 to-pink-600",
+  princess: "from-rose-500 to-rose-600",
 }
 
 export default function MemberProfilePage() {
@@ -50,9 +51,6 @@ export default function MemberProfilePage() {
   return (
     <div className="min-h-screen bg-gradient-to-b from-slate-900 via-blue-900 to-slate-900 relative overflow-hidden">
       <ParticleBackground />
-
-      {/* Header */}
-      <NavigationHeader currentPath="/members" />
 
       {/* Profile Hero */}
       <section className="relative py-20 overflow-hidden">

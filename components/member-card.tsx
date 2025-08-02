@@ -23,6 +23,7 @@ const roleColors = {
   explorer: "from-indigo-500 to-indigo-600",
   prince: "from-pink-500 to-pink-600",
   princess: "from-rose-500 to-rose-600",
+  catgirl: "from-teal-500 to-teal-600",
 }
 
 export function MemberCard({ member, variant = "grid" }: MemberCardProps) {

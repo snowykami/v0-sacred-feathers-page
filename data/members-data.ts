@@ -4,7 +4,7 @@ export interface Member {
   id: string
   name: string
   avatar: string
-  role: "emperor" | "minister" | "guardian" | "creator" | "explorer" | "prince" | "princess"
+  role: "emperor" | "minister" | "guardian" | "creator" | "explorer" | "prince" | "princess" | "catgirl"
   joinDate: string
   specialties: string[]
   achievements: string[]
@@ -129,6 +129,28 @@ export const MEMBERS_DATA: Member[] = [
     isActive: true,
   },
   {
+    id: "xuan",
+    name: "轩某",
+    avatar: "https://github.com/xuanmou.png",
+    role: "explorer",
+    joinDate: "2024-05-01",
+    specialties: ["Machine Learning", "Data Analysis", "AI Research"],
+    achievements: ["Discovered 20+ New Technologies", "Mapped Virtual Territories", "Led Exploration Missions"],
+    contact: {
+    },
+    bio: {
+      zh: "帝国的Baka王，专门管理帝国的笨蛋，自己也是其中之一。负责探索和创新，为帝国开辟新的技术领域。",
+      en: "The president of the empire's Baka association, responsible for managing the empire's fools, of which he is one. Focused on exploration and innovation, opening up new technological fields for the empire.",
+      ja: "帝国のバカ協会の会長で、帝国のバカを管理する責任を負う。自らもその一員であり、探索と革新に注力し、帝国の新しい技術分野を切り開いている。",
+    },
+    stats: {
+      projectsLed: 10,
+      contributionsCount: 380,
+      yearsActive: 1,
+    },
+    isActive: true,
+  },
+  {
     id: "nanaloveyuki",
     name: "若水宁",
     avatar: "https://github.com/nanaloveyuki.png",
@@ -165,6 +187,31 @@ export const MEMBERS_DATA: Member[] = [
       email: "chenxu233@outlook.com",
       github: "https://github.com/chenxu233",
       twitter: "https://x.com/chenxu233",
+    },
+    bio: {
+      zh: "帝国的猫协会长，负责猫咪福利和社区建设。以其温柔和关怀著称，致力于为帝国的每一位成员创造一个温暖和谐的环境。",
+      en: "The president of the empire's cat association, responsible for cat welfare and community building. Renowned for her gentleness and care, dedicated to creating a warm and harmonious environment for every member of the empire.",
+      ja: "帝国の猫協会の会長で、猫の福祉とコミュニティの構築を担当。優しさと配慮で有名で、帝国のすべてのメンバーに温かく調和のとれた環境を提供することに尽力している。",
+    },
+    stats: {
+      projectsLed: 10,
+      contributionsCount: 380,
+      yearsActive: 1,
+    },
+    isActive: true,
+  },
+  {
+    id: "Twisuki",
+    name: "苏阳",
+    avatar: "https://github.com/Twisuki.png",
+    role: "explorer",
+    joinDate: "2024-05-01",
+    specialties: ["Machine Learning", "Data Analysis", "AI Research"],
+    achievements: ["Discovered 20+ New Technologies", "Mapped Virtual Territories", "Led Exploration Missions"],
+    contact: {
+      email: "Twisuki@outlook.com",
+      github: "https://github.com/Twisuki",
+      twitter: "https://x.com/Twisuki",
     },
     bio: {
       zh: "帝国的猫协会长，负责猫咪福利和社区建设。以其温柔和关怀著称，致力于为帝国的每一位成员创造一个温暖和谐的环境。",

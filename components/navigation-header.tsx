@@ -53,7 +53,6 @@ export function NavigationHeader({ currentPath = "/" }: NavigationHeaderProps) {
                 {NAVIGATION_DATA.items.slice(1).map((item) => {
                   const label = getNavigationLabel(item.id, language)
                   const isActive = currentPath === item.href || (item.href !== "/" && currentPath.startsWith(item.href))
-
                   return (
                     <Link
                       key={item.id}

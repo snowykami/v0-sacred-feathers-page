@@ -41,7 +41,7 @@ export const NAVIGATION_DATA: NavigationData = {
     },
     {
       id: "join",
-      href: "/å#join",
+      href: "/#join",
       icon: "Heart",
     },
   ],
@@ -64,7 +64,7 @@ export const NAVIGATION_DATA: NavigationData = {
     },
     ja: {
       home: "ホーム",
-      about: "帝国について",
+      about: "概要",
       achievements: "成果",
       history: "歴史",
       members: "メンバー",

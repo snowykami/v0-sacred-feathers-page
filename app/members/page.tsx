@@ -12,7 +12,6 @@ import { useLanguage } from "@/contexts/language-context"
 import { getEmpireData } from "@/data/empire-data"
 import { MEMBERS_DATA, getActiveMembersCount } from "@/data/members-data"
 import type { Member } from "@/data/members-data"
-import { NavigationHeader } from "@/components/navigation-header"
 
 export default function MembersPage() {
   const { language } = useLanguage()
@@ -65,9 +64,6 @@ export default function MembersPage() {
   return (
     <div className="min-h-screen bg-gradient-to-b from-slate-900 via-blue-900 to-slate-900 relative overflow-hidden">
       <ParticleBackground />
-
-      {/* Header */}
-      <NavigationHeader currentPath="/members" />
 
       {/* Hero Section */}
       <section className="relative py-20 overflow-hidden">

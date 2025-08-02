@@ -84,6 +84,12 @@
   body {
     @apply bg-background text-foreground transition-colors duration-300;
   }
+  
+  /* 修复锚点滚动时被导航栏遮挡的问题 */
+  html {
+    scroll-padding-top: 88px; /* 导航栏高度约为 80px + 额外8px缓冲 */
+    scroll-behavior: smooth; /* 添加平滑滚动效果 */
+  }
 }
 
 /* 背景渐变 */
