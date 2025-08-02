@@ -253,13 +253,13 @@ const EMPIRE_DATA_MULTILANG: Record<Language, EmpireData> = {
         },
       },
       nav: {
-        about: "关于帝国",
-        achievements: "帝国成就",
+        about: "关于",
+        achievements: "成就",
         history: "历史",
-        join: "加入我们",
+        join: "加入",
       },
       members: {
-        title: "帝国成员",
+        title: "成员",
         subtitle: "认识神圣羽毛帝国的杰出成员们",
         roles: {
           emperor: "皇帝",
@@ -592,7 +592,7 @@ const EMPIRE_DATA_MULTILANG: Record<Language, EmpireData> = {
       },
       join: {
         title: "聖なる羽根帝国に参加",
-        subtitle: "帝国の市民となり、仮想世界で私たちと一緒に無限の可能性を創造しましょう",
+        subtitle: "帝国の市民となり、仮想世界で私たちと一緒に無限の可能性を創造しま��ょう",
         roles: [
           {
             icon: "Feather",

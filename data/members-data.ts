@@ -25,9 +25,9 @@ export interface Member {
 
 export const MEMBERS_DATA: Member[] = [
   {
-    id: "emperor-phoenix",
-    name: "Phoenix Emperor",
-    avatar: "/placeholder.svg?height=200&width=200",
+    id: "chengyza",
+    name: "金日橙",
+    avatar: "https://github.com/chengyza.png",
     role: "emperor",
     joinDate: "2024-02-18",
     specialties: ["Leadership", "Strategic Planning", "Vision Setting"],
@@ -38,7 +38,7 @@ export const MEMBERS_DATA: Member[] = [
     ],
     contact: {
       email: "emperor@sacredfeathers.online",
-      github: "https://github.com/phoenix-emperor",
+      github: "https://github.com/chengyza",
       website: "https://phoenix-emperor.dev",
     },
     bio: {
@@ -54,19 +54,20 @@ export const MEMBERS_DATA: Member[] = [
     isActive: true,
   },
   {
-    id: "minister-sage",
-    name: "Sage Minister",
-    avatar: "/placeholder.svg?height=200&width=200",
+    id: "snowykami",
+    name: "远野 千束",
+    avatar: "https://cdn.liteyuki.org/snowykami/avatar.jpg",
     role: "minister",
-    joinDate: "2024-03-01",
+    joinDate: "2024-02-18",
     specialties: ["Knowledge Management", "Education", "Cultural Development"],
     achievements: ["Established Empire Library", "Created Learning Pathways", "Mentored 200+ Citizens"],
     contact: {
-      email: "sage@sacredfeathers.online",
-      github: "https://github.com/sage-minister",
+      email: "a@sfkm.me",
+      github: "https://github.com/snowykami",
+      website: "https://sfkm.me"
     },
     bio: {
-      zh: "帝国的智慧大臣，负责知识管理和文化发展。拥有深厚的学识和丰富的教学经验，致力于提升帝国公民的整体素质。",
+      zh: "帝国的摄政王，负责知识管理和文化发展。拥有深厚的学识和丰富的教学经验，致力于提升帝国公民的整体素质。",
       en: "The empire's wise minister responsible for knowledge management and cultural development. Possesses profound knowledge and rich teaching experience, dedicated to improving the overall quality of empire citizens.",
       ja: "帝国の賢明な大臣で、知識管理と文化発展を担当。深い学識と豊富な教育経験を持ち、帝国市民の総合的な資質向上に専念している。",
     },
@@ -78,9 +79,9 @@ export const MEMBERS_DATA: Member[] = [
     isActive: true,
   },
   {
-    id: "guardian-steel",
-    name: "Steel Guardian",
-    avatar: "/placeholder.svg?height=200&width=200",
+    id: "synodriver",
+    name: "Synodriver",
+    avatar: "https://github.com/synodriver.png",
     role: "guardian",
     joinDate: "2024-03-15",
     specialties: ["Security", "Community Protection", "Conflict Resolution"],
@@ -90,7 +91,7 @@ export const MEMBERS_DATA: Member[] = [
       github: "https://github.com/steel-guardian",
     },
     bio: {
-      zh: "帝国的钢铁守护者，负责维护社区安全和秩序。以公正和勇气著称，是帝国和平与稳定的坚实保障。",
+      zh: "帝国的钢铁守护者，馒头山大王，负责维护社区安全和秩序。以公正和勇气著称，是帝国和平与稳定的坚实保障。",
       en: "The empire's steel guardian responsible for maintaining community security and order. Known for justice and courage, serving as a solid guarantee for the empire's peace and stability.",
       ja: "帝国の鋼鉄の守護者で、コミュニティの安全と秩序の維持を担当。正義と勇気で知られ、帝国の平和と安定の確固たる保証となっている。",
     },

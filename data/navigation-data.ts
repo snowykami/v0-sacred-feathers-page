@@ -48,11 +48,11 @@ export const NAVIGATION_DATA: NavigationData = {
   labels: {
     zh: {
       home: "首页",
-      about: "关于帝国",
-      achievements: "帝国成就",
+      about: "关于",
+      achievements: "成就",
       history: "历史",
-      members: "帝国成员",
-      join: "加入我们",
+      members: "成员",
+      join: "加入",
     },
     en: {
       home: "Home",
