@@ -538,164 +538,56 @@ button:hover {
 
 /* ===== 下拉菜单动画修复 ===== */
 
-/* 重写 Radix UI 的默认动画 */
-@keyframes dropdown-fade-in {
-  from {
-    opacity: 0;
-    transform: scale(0.95) translateY(-8px);
-  }
-  to {
-    opacity: 1;
-    transform: scale(1) translateY(0);
-  }
-}
-
-@keyframes dropdown-fade-out {
-  from {
-    opacity: 1;
-    transform: scale(1) translateY(0);
-  }
-  to {
-    opacity: 0;
-    transform: scale(0.95) translateY(-8px);
-  }
-}
-
-/* 应用自定义动画到下拉菜单 */
+/* 针对直接使用 Radix UI 的下拉菜单 */
+[data-radix-dropdown-menu-content],
 [data-radix-popper-content-wrapper] {
-  animation-duration: 200ms !important;
-  animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1) !important;
-}
-
-[data-state="open"][data-side="bottom"] {
-  animation: dropdown-fade-in 200ms cubic-bezier(0.16, 1, 0.3, 1) !important;
-  transform-origin: top center !important;
-}
-
-[data-state="closed"][data-side="bottom"] {
-  animation: dropdown-fade-out 150ms cubic-bezier(0.16, 1, 0.3, 1) !important;
-  transform-origin: top center !important;
-}
-
-/* 确保下拉菜单从正确位置展开 */
-[role="menu"] {
-  transform-origin: var(--radix-dropdown-menu-content-transform-origin) !important;
-}
-
-/* 语言选择器特定样式 */
-.language-dropdown-content {
-  animation: dropdown-fade-in 200ms cubic-bezier(0.16, 1, 0.3, 1) !important;
-  transform-origin: top right !important;
-}
-
-/* 移除可能冲突的动画类 */
-.animate-in {
+  /* 完全禁用动画 */
   animation: none !important;
+  transition: none !important;
+  
+  /* 确保正确显示 */
+  opacity: 1 !important;
+  visibility: visible !important;
 }
 
-.animate-out {
-  animation: none !important;
+/* 禁用可能的初始变换 */
+[data-radix-dropdown-menu-content] {
+  transform: none !important;
 }
 
-/* 重新定义需要的动画 */
-[data-state="open"] .animate-in {
-  animation: dropdown-fade-in 200ms cubic-bezier(0.16, 1, 0.3, 1) !important;
-}
-
-[data-state="closed"] .animate-out {
-  animation: dropdown-fade-out 150ms cubic-bezier(0.16, 1, 0.3, 1) !important;
-}
-
-/* ===== 强制修复下拉菜单动画 ===== */
-
-/* 完全禁用 Radix UI 的默认动画 */
-[data-radix-popper-content-wrapper] * {
+/* 确保状态变化时没有动画 */
+[data-radix-dropdown-menu-content][data-state="open"] {
   animation: none !important;
   transition: none !important;
 }
 
-/* 重新定义下拉菜单动画 */
-@keyframes dropdown-slide-down {
-  from {
-    opacity: 0;
-    transform: translateY(-4px) scale(0.98);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0) scale(1);
-  }
-}
-
-@keyframes dropdown-slide-up {
-  from {
-    opacity: 1;
-    transform: translateY(0) scale(1);
-  }
-  to {
-    opacity: 0;
-    transform: translateY(-4px) scale(0.98);
-  }
-}
-
-/* 应用到所有下拉菜单内容 */
-[role="menu"],
-[data-radix-dropdown-menu-content] {
-  animation: dropdown-slide-down 150ms cubic-bezier(0.16, 1, 0.3, 1) !important;
-  transform-origin: top !important;
-}
-
-/* 语言选择器特定样式 */
-.language-dropdown-content {
-  animation: dropdown-slide-down 150ms cubic-bezier(0.16, 1, 0.3, 1) !important;
-  transform-origin: top right !important;
-}
-
-/* 强制覆盖所有可能的动画类 */
-.animate-in,
-.animate-out,
-.fade-in-0,
-.fade-out-0,
-.zoom-in-95,
-.zoom-out-95,
-.slide-in-from-top-2,
-.slide-in-from-bottom-2,
-.slide-in-from-left-2,
-.slide-in-from-right-2 {
+[data-radix-dropdown-menu-content][data-state="closed"] {
   animation: none !important;
+  transition: none !important;
 }
 
-/* 确保下拉菜单从正确位置出现 */
-[data-side="bottom"] {
-  animation: dropdown-slide-down 150ms cubic-bezier(0.16, 1, 0.3, 1) !important;
-  transform-origin: top center !important;
-}
-
-[data-side="top"] {
-  animation: dropdown-slide-up 150ms cubic-bezier(0.16, 1, 0.3, 1) !important;
-  transform-origin: bottom center !important;
-}
-
-[data-side="left"] {
-  animation: dropdown-slide-down 150ms cubic-bezier(0.16, 1, 0.3, 1) !important;
-  transform-origin: right center !important;
-}
-
-[data-side="right"] {
-  animation: dropdown-slide-down 150ms cubic-bezier(0.16, 1, 0.3, 1) !important;
-  transform-origin: left center !important;
-}
-
-/* 禁用所有 data-state 相关的动画 */
-[data-state="open"],
-[data-state="closed"] {
+/* 禁用所有可能的 Tailwind 动画类 */
+[data-radix-dropdown-menu-content].animate-in,
+[data-radix-dropdown-menu-content].animate-out,
+[data-radix-dropdown-menu-content].fade-in-0,
+[data-radix-dropdown-menu-content].fade-out-0,
+[data-radix-dropdown-menu-content].zoom-in-95,
+[data-radix-dropdown-menu-content].zoom-out-95,
+[data-radix-dropdown-menu-content].slide-in-from-top-2,
+[data-radix-dropdown-menu-content].slide-in-from-bottom-2,
+[data-radix-dropdown-menu-content].slide-in-from-left-2,
+[data-radix-dropdown-menu-content].slide-in-from-right-2 {
   animation: none !important;
+  transition: none !important;
+  transform: none !important;
 }
 
-/* 重新启用我们想要的动画 */
-[data-state="open"][role="menu"] {
-  animation: dropdown-slide-down 150ms cubic-bezier(0.16, 1, 0.3, 1) !important;
-}
-
-[data-state="closed"][role="menu"] {
-  animation: dropdown-slide-up 100ms cubic-bezier(0.16, 1, 0.3, 1) !important;
+/* 禁用任何与 data-side 相关的动画 */
+[data-radix-dropdown-menu-content][data-side="top"],
+[data-radix-dropdown-menu-content][data-side="bottom"],
+[data-radix-dropdown-menu-content][data-side="left"],
+[data-radix-dropdown-menu-content][data-side="right"] {
+  animation: none !important;
+  transition: none !important;
+  transform: none !important;
 }

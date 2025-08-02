@@ -1,7 +1,7 @@
 "use client"
 
 import { Button } from "@/components/ui/button"
-import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu"
+import * as DropdownMenu from "@radix-ui/react-dropdown-menu"
 import { Languages, ChevronDown } from "lucide-react"
 import { useLanguage } from "@/contexts/language-context"
 import { SUPPORTED_LANGUAGES } from "@/data/empire-data"
@@ -13,8 +13,8 @@ export function LanguageSelector() {
   const currentLanguage = SUPPORTED_LANGUAGES.find((lang) => lang.code === language)
 
   return (
-    <DropdownMenu onOpenChange={setIsOpen}>
-      <DropdownMenuTrigger asChild>
+    <DropdownMenu.Root onOpenChange={setIsOpen}>
+      <DropdownMenu.Trigger asChild>
         <Button
           variant="ghost"
           size="sm"
@@ -30,31 +30,31 @@ export function LanguageSelector() {
           </div>
           <div className="absolute inset-0 rounded-lg scale-0 group-hover:scale-100 transition-transform duration-300 bg-amber-400/10"></div>
         </Button>
-      </DropdownMenuTrigger>
-      <DropdownMenuContent
-        align="end"
-        className="backdrop-blur-sm min-w-[160px] bg-slate-900/95 border-amber-500/20 language-dropdown-content"
-        sideOffset={8}
-        style={{
-          animation: "dropdown-slide-down 150ms cubic-bezier(0.16, 1, 0.3, 1)"
-        }}
-      >
-        {SUPPORTED_LANGUAGES.map((lang) => (
-          <DropdownMenuItem
-            key={lang.code}
-            onClick={() => setLanguage(lang.code)}
-            className={`flex items-center space-x-3 px-3 py-2 cursor-pointer transition-all duration-200 ${
-              language === lang.code
-                ? "bg-amber-500/20 text-amber-400"
-                : "text-gray-300 hover:bg-amber-500/10 hover:text-amber-400"
-            }`}
-          >
-            <span className="text-lg">{lang.flag}</span>
-            <span className="font-medium">{lang.name}</span>
-            {language === lang.code && <div className="ml-auto w-2 h-2 rounded-full bg-amber-400"></div>}
-          </DropdownMenuItem>
-        ))}
-      </DropdownMenuContent>
-    </DropdownMenu>
+      </DropdownMenu.Trigger>
+      
+      <DropdownMenu.Portal>
+        <DropdownMenu.Content
+          align="end"
+          sideOffset={8}
+          className="backdrop-blur-sm min-w-[160px] bg-slate-900/95 border border-amber-500/20 rounded-md shadow-lg p-1 z-50"
+        >
+          {SUPPORTED_LANGUAGES.map((lang) => (
+            <DropdownMenu.Item
+              key={lang.code}
+              onSelect={() => setLanguage(lang.code)}
+              className={`flex items-center space-x-3 px-3 py-2 cursor-pointer transition-all duration-200 rounded-sm outline-none ${
+                language === lang.code
+                  ? "bg-amber-500/20 text-amber-400"
+                  : "text-gray-300 hover:bg-amber-500/10 hover:text-amber-400 focus:bg-amber-500/10 focus:text-amber-400"
+              }`}
+            >
+              <span className="text-lg">{lang.flag}</span>
+              <span className="font-medium">{lang.name}</span>
+              {language === lang.code && <div className="ml-auto w-2 h-2 rounded-full bg-amber-400"></div>}
+            </DropdownMenu.Item>
+          ))}
+        </DropdownMenu.Content>
+      </DropdownMenu.Portal>
+    </DropdownMenu.Root>
   )
 }
