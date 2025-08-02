@@ -568,44 +568,6 @@ canvas {
   }
 }
 
-/* 下拉菜单动画优化 */
-@keyframes dropdown-in {
-  from {
-    opacity: 0;
-    transform: scale(0.95) translateY(-10px);
-  }
-  to {
-    opacity: 1;
-    transform: scale(1) translateY(0);
-  }
-}
-
-@keyframes dropdown-out {
-  from {
-    opacity: 1;
-    transform: scale(1) translateY(0);
-  }
-  to {
-    opacity: 0;
-    transform: scale(0.95) translateY(-10px);
-  }
-}
-
-/* 确保下拉菜单从正确位置展开 */
-[data-radix-dropdown-menu-content] {
-  transform-origin: var(--radix-dropdown-menu-content-transform-origin);
-  animation-duration: 200ms;
-  animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-[data-radix-dropdown-menu-content][data-state="open"] {
-  animation-name: dropdown-in;
-}
-
-[data-radix-dropdown-menu-content][data-state="closed"] {
-  animation-name: dropdown-out;
-}
-
 /* 浅色模式下的按钮文字对比度增强 */
 .light .text-slate-700 {
   color: rgb(51 65 85);
@@ -622,4 +584,27 @@ canvas {
 
 .light .hover\:border-amber-200\/50:hover {
   border-color: rgb(254 215 170 / 0.5);
+}
+
+/* 平滑的图标旋转动画 */
+.rotate-0 {
+  transform: rotate(0deg);
+}
+
+.rotate-180 {
+  transform: rotate(180deg);
+}
+
+/* 确保旋转动画平滑 */
+.transition-transform {
+  transition-property: transform;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.duration-200 {
+  transition-duration: 200ms;
+}
+
+.ease-in-out {
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }

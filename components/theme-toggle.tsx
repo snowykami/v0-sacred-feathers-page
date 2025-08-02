@@ -5,10 +5,12 @@ import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigge
 import { Sun, Moon, Monitor, ChevronDown } from "lucide-react"
 import { useTheme } from "@/contexts/theme-context"
 import { useLanguage } from "@/contexts/language-context"
+import { useState } from "react"
 
 export function ThemeToggle() {
   const { theme, setTheme, resolvedTheme } = useTheme()
   const { language } = useLanguage()
+  const [isOpen, setIsOpen] = useState(false)
 
   const themes = [
     {
@@ -32,7 +34,7 @@ export function ThemeToggle() {
   const CurrentIcon = currentTheme?.icon || Monitor
 
   return (
-    <DropdownMenu>
+    <DropdownMenu onOpenChange={setIsOpen}>
       <DropdownMenuTrigger asChild>
         <Button
           variant="ghost"
@@ -46,7 +48,9 @@ export function ThemeToggle() {
           <div className="flex items-center space-x-2">
             <CurrentIcon className="h-4 w-4" />
             <span className="hidden sm:inline font-medium">{currentTheme?.label}</span>
-            <ChevronDown className="h-3 w-3" />
+            <ChevronDown
+              className={`h-3 w-3 transition-transform duration-200 ease-in-out ${isOpen ? "rotate-180" : "rotate-0"}`}
+            />
           </div>
           <div
             className={`absolute inset-0 rounded-lg scale-0 group-hover:scale-100 transition-transform duration-300 ${
