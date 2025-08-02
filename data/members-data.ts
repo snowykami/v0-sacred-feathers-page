@@ -4,7 +4,7 @@ export interface Member {
   id: string
   name: string
   avatar: string
-  role: "emperor" | "minister" | "guardian" | "creator" | "explorer"
+  role: "emperor" | "minister" | "guardian" | "creator" | "explorer" | "prince" | "princess"
   joinDate: string
   specialties: string[]
   achievements: string[]
@@ -106,9 +106,9 @@ export const MEMBERS_DATA: Member[] = [
     id: "redish101",
     name: "数据库姐姐",
     avatar: "https://github.com/redish101.png",
-    role: "creator",
+    role: "princess",
     joinDate: "2024-04-01",
-    specialties: ["Digital Art", "UI/UX Design", "Creative Direction"],
+    specialties: ["CloudNative", "Design", "Creative Projects"],
     achievements: ["Designed Empire Visual Identity", "Created 100+ Digital Artworks", "Led Creative Workshops"],
     contact: {
       email: "redish101@outlook.com",
