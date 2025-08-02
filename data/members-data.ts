@@ -64,6 +64,7 @@ export const MEMBERS_DATA: Member[] = [
     contact: {
       email: "a@sfkm.me",
       github: "https://github.com/snowykami",
+      twitter: "https://x.com/snowykami1145",
       website: "https://sfkm.me"
     },
     bio: {
@@ -163,7 +164,7 @@ export const MEMBERS_DATA: Member[] = [
     contact: {
       email: "chenxu233@outlook.com",
       github: "https://github.com/chenxu233",
-      twitter: "https://twitter.com/chenxu233",
+      twitter: "https://x.com/chenxu233",
     },
     bio: {
       zh: "帝国的猫协会长，负责猫咪福利和社区建设。以其温柔和关怀著称，致力于为帝国的每一位成员创造一个温暖和谐的环境。",
