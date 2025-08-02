@@ -113,7 +113,9 @@ export function MemberCard({ member, variant = "grid" }: MemberCardProps) {
           {member.name}
         </h3>
 
-        <Badge className={`bg-gradient-to-r ${roleColor} text-white mb-3`}>{roleName}</Badge>
+        <div className="flex justify-center">
+          <Badge className={`bg-gradient-to-r ${roleColor} text-white mb-3`}>{roleName}</Badge>
+        </div>
       </CardHeader>
 
       <CardContent className="relative z-10">
