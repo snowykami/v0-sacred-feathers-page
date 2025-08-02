@@ -7,23 +7,23 @@
 :root {
   /* Light theme colors */
   --background: oklch(0.99 0 0);
-  --foreground: oklch(0.15 0 0);
+  --foreground: oklch(0.09 0 0);
   --card: oklch(0.98 0 0);
-  --card-foreground: oklch(0.15 0 0);
+  --card-foreground: oklch(0.09 0 0);
   --popover: oklch(0.99 0 0);
-  --popover-foreground: oklch(0.15 0 0);
+  --popover-foreground: oklch(0.09 0 0);
   --primary: oklch(0.24 0.095 83.66);
   --primary-foreground: oklch(0.99 0 0);
   --secondary: oklch(0.96 0 0);
   --secondary-foreground: oklch(0.24 0 0);
-  --muted: oklch(0.96 0 0);
-  --muted-foreground: oklch(0.45 0 0);
-  --accent: oklch(0.94 0 0);
+  --muted: oklch(0.94 0 0);
+  --muted-foreground: oklch(0.35 0 0);
+  --accent: oklch(0.92 0 0);
   --accent-foreground: oklch(0.24 0 0);
   --destructive: oklch(0.577 0.245 27.325);
   --destructive-foreground: oklch(0.99 0 0);
-  --border: oklch(0.9 0 0);
-  --input: oklch(0.9 0 0);
+  --border: oklch(0.88 0 0);
+  --input: oklch(0.88 0 0);
   --ring: oklch(0.24 0.095 83.66);
   --chart-1: oklch(0.646 0.222 41.116);
   --chart-2: oklch(0.6 0.118 184.704);
@@ -32,12 +32,12 @@
   --chart-5: oklch(0.769 0.188 70.08);
   --radius: 0.625rem;
   --sidebar: oklch(0.98 0 0);
-  --sidebar-foreground: oklch(0.15 0 0);
+  --sidebar-foreground: oklch(0.09 0 0);
   --sidebar-primary: oklch(0.24 0.095 83.66);
   --sidebar-primary-foreground: oklch(0.99 0 0);
-  --sidebar-accent: oklch(0.94 0 0);
+  --sidebar-accent: oklch(0.92 0 0);
   --sidebar-accent-foreground: oklch(0.24 0 0);
-  --sidebar-border: oklch(0.9 0 0);
+  --sidebar-border: oklch(0.88 0 0);
   --sidebar-ring: oklch(0.24 0.095 83.66);
 }
 
@@ -125,9 +125,12 @@
   }
 }
 
-/* Theme-aware background gradients */
+/* 主题感知的背景渐变 */
 .bg-empire-gradient {
   @apply bg-gradient-to-b;
+}
+
+.dark .bg-empire-gradient {
   background-image: linear-gradient(
     to bottom,
     theme("colors.slate.900"),
@@ -137,64 +140,260 @@
 }
 
 .light .bg-empire-gradient {
-  background-image: linear-gradient(
-    to bottom,
-    theme("colors.amber.50"),
-    theme("colors.blue.50"),
-    theme("colors.amber.50")
-  );
+  background-image: linear-gradient(to bottom, #fefefe, #f8fafc, #f1f5f9, #f8fafc, #fefefe);
 }
 
-/* Theme-aware card backgrounds */
+/* 卡片背景 */
 .bg-empire-card {
+  @apply transition-all duration-300;
+}
+
+.dark .bg-empire-card {
   @apply bg-slate-900/50 border-amber-500/20;
 }
 
 .light .bg-empire-card {
-  @apply bg-white/80 border-amber-500/30 shadow-lg;
+  @apply bg-white/95 border-amber-600/25 shadow-lg shadow-amber-500/5;
 }
 
-/* Theme-aware text colors */
+/* 文字颜色 - 使用纯色，不使用渐变 */
 .text-empire-primary {
+  @apply transition-colors duration-300;
+}
+
+.dark .text-empire-primary {
   @apply text-white;
 }
 
 .light .text-empire-primary {
-  @apply text-slate-900;
+  @apply text-slate-800;
 }
 
 .text-empire-secondary {
+  @apply transition-colors duration-300;
+}
+
+.dark .text-empire-secondary {
   @apply text-gray-300;
 }
 
 .light .text-empire-secondary {
-  @apply text-gray-600;
+  @apply text-slate-600;
 }
 
 .text-empire-muted {
+  @apply transition-colors duration-300;
+}
+
+.dark .text-empire-muted {
   @apply text-gray-400;
 }
 
 .light .text-empire-muted {
-  @apply text-gray-500;
+  @apply text-slate-500;
 }
 
-/* Theme-aware hover effects */
+/* 专门为标题设计的渐变色类 */
+.text-empire-title-gradient {
+  @apply bg-clip-text text-transparent transition-all duration-300;
+}
+
+.dark .text-empire-title-gradient {
+  background-image: linear-gradient(to right, theme("colors.white"), theme("colors.amber.200"), theme("colors.white"));
+}
+
+.light .text-empire-title-gradient {
+  background-image: linear-gradient(
+    to right,
+    theme("colors.slate.800"),
+    theme("colors.amber.600"),
+    theme("colors.slate.800")
+  );
+}
+
+/* 副标题渐变 */
+.text-empire-subtitle-gradient {
+  @apply bg-clip-text text-transparent transition-all duration-300;
+}
+
+.dark .text-empire-subtitle-gradient {
+  background-image: linear-gradient(
+    to right,
+    theme("colors.amber.400"),
+    theme("colors.amber.300"),
+    theme("colors.amber.400")
+  );
+}
+
+.light .text-empire-subtitle-gradient {
+  background-image: linear-gradient(
+    to right,
+    theme("colors.amber.600"),
+    theme("colors.amber.500"),
+    theme("colors.amber.600")
+  );
+}
+
+/* 章节标题渐变 */
+.text-empire-section-gradient {
+  @apply bg-clip-text text-transparent transition-all duration-300;
+}
+
+.dark .text-empire-section-gradient {
+  background-image: linear-gradient(to right, theme("colors.white"), theme("colors.amber.200"));
+}
+
+.light .text-empire-section-gradient {
+  background-image: linear-gradient(to right, theme("colors.slate.800"), theme("colors.amber.600"));
+}
+
+/* 悬停效果 */
 .hover-empire-card {
+  @apply transition-all duration-500;
+}
+
+.dark .hover-empire-card {
   @apply hover:border-amber-500/40 hover:shadow-2xl hover:shadow-amber-500/10;
 }
 
 .light .hover-empire-card {
-  @apply hover:border-amber-500/50 hover:shadow-2xl hover:shadow-amber-500/20;
+  @apply hover:border-amber-600/40 hover:shadow-2xl hover:shadow-amber-600/15;
 }
 
-/* Theme-aware backdrop effects */
+/* 背景效果 */
 .backdrop-empire {
+  @apply transition-all duration-300;
+}
+
+.dark .backdrop-empire {
   @apply bg-slate-900/80 backdrop-blur-sm;
 }
 
 .light .backdrop-empire {
-  @apply bg-white/90 backdrop-blur-sm;
+  @apply bg-white/85 backdrop-blur-sm border-b border-amber-500/10;
+}
+
+/* 移除正文区域的渐变色，使用纯色 */
+.light .bg-gradient-to-br.from-slate-900\/80.to-slate-800\/80 {
+  @apply from-white/95 to-gray-50/95 border border-amber-500/15;
+}
+
+/* 导航链接颜色 */
+.nav-link-primary {
+  @apply transition-colors duration-300;
+}
+
+.dark .nav-link-primary {
+  @apply text-white hover:text-amber-400;
+}
+
+.light .nav-link-primary {
+  @apply text-slate-700 hover:text-amber-700;
+}
+
+/* 按钮文字颜色 */
+.button-text-primary {
+  @apply transition-colors duration-300;
+}
+
+.dark .button-text-primary {
+  @apply text-amber-400;
+}
+
+.light .button-text-primary {
+  @apply text-amber-700;
+}
+
+/* 时间轴线条 */
+.timeline-gradient {
+  @apply transition-all duration-300;
+}
+
+.dark .timeline-gradient {
+  background-image: linear-gradient(
+    to bottom,
+    theme("colors.amber.400"),
+    theme("colors.blue.400"),
+    theme("colors.purple.400")
+  );
+}
+
+.light .timeline-gradient {
+  background-image: linear-gradient(
+    to bottom,
+    theme("colors.amber.500"),
+    theme("colors.blue.500"),
+    theme("colors.purple.500")
+  );
+}
+
+/* 粒子和发光效果 */
+.light {
+  --particle-color: rgba(217, 119, 6, 0.4);
+  --glow-color: rgba(217, 119, 6, 0.3);
+}
+
+.dark {
+  --particle-color: rgba(251, 191, 36, 0.5);
+  --glow-color: rgba(251, 191, 36, 0.3);
+}
+
+/* 动画优化 */
+.light .animate-shimmer {
+  background: linear-gradient(90deg, transparent, rgba(217, 119, 6, 0.15), transparent);
+}
+
+.dark .animate-shimmer {
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+}
+
+/* 滚动条 */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(15, 23, 42, 0.5);
+}
+
+.light ::-webkit-scrollbar-track {
+  background: rgba(248, 250, 252, 0.8);
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(to bottom, #f59e0b, #d97706);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(to bottom, #d97706, #b45309);
+}
+
+.light ::-webkit-scrollbar-thumb {
+  background: linear-gradient(to bottom, #d97706, #b45309);
+}
+
+.light ::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(to bottom, #b45309, #92400e);
+}
+
+/* 免责声明区域 */
+.light .bg-slate-800\/30 {
+  @apply bg-amber-50/80 border-amber-200/50;
+}
+
+/* 输入框优化 */
+.light .bg-slate-900\/50.border-amber-500\/20 {
+  @apply bg-white/90 border-amber-500/30;
+}
+
+.light .placeholder-gray-400 {
+  @apply placeholder-slate-400;
+}
+
+/* 下拉菜单优化 */
+.light .bg-background\/95 {
+  @apply bg-white/95;
 }
 
 /* Custom animations */
@@ -255,13 +454,8 @@
 }
 
 .animate-shimmer {
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
   background-size: 200% 100%;
   animation: shimmer 2s infinite;
-}
-
-.light .animate-shimmer {
-  background: linear-gradient(90deg, transparent, rgba(0, 0, 0, 0.1), transparent);
 }
 
 .animate-glow {
@@ -278,28 +472,6 @@
 .scroll-reveal.revealed {
   opacity: 1;
   transform: translateY(0);
-}
-
-/* Custom scrollbar - theme aware */
-::-webkit-scrollbar {
-  width: 8px;
-}
-
-::-webkit-scrollbar-track {
-  background: rgba(15, 23, 42, 0.5);
-}
-
-.light ::-webkit-scrollbar-track {
-  background: rgba(248, 250, 252, 0.8);
-}
-
-::-webkit-scrollbar-thumb {
-  background: linear-gradient(to bottom, #f59e0b, #d97706);
-  border-radius: 4px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: linear-gradient(to bottom, #d97706, #b45309);
 }
 
 /* Particle canvas styling */
@@ -327,31 +499,6 @@ canvas {
   overflow: hidden;
 }
 
-/* Mobile menu button animation improvements */
-@keyframes hamburgerTop {
-  0% {
-    transform: translateY(0) rotate(0);
-  }
-  50% {
-    transform: translateY(6px) rotate(0);
-  }
-  100% {
-    transform: translateY(6px) rotate(45deg);
-  }
-}
-
-@keyframes hamburgerBottom {
-  0% {
-    transform: translateY(0) rotate(0);
-  }
-  50% {
-    transform: translateY(-6px) rotate(0);
-  }
-  100% {
-    transform: translateY(-6px) rotate(-45deg);
-  }
-}
-
 /* Smooth backdrop blur */
 .backdrop-blur-sm {
   backdrop-filter: blur(4px);
@@ -371,19 +518,6 @@ canvas {
   transition-duration: 300ms;
 }
 
-/* Light theme specific adjustments */
-.light {
-  /* Light theme particle effects */
-  --particle-color: rgba(245, 158, 11, 0.3);
-  --glow-color: rgba(245, 158, 11, 0.2);
-}
-
-.dark {
-  /* Dark theme particle effects */
-  --particle-color: rgba(251, 191, 36, 0.5);
-  --glow-color: rgba(251, 191, 36, 0.3);
-}
-
 /* Mobile responsive improvements */
 @media (max-width: 768px) {
   .container {
@@ -397,7 +531,6 @@ canvas {
   .group:hover .group-hover\:scale-110 {
     transform: scale(1.05);
   }
-
   .group:hover .group-hover\:translate-x-1 {
     transform: translateX(0.125rem);
   }
@@ -408,11 +541,9 @@ canvas {
   .text-empire-primary {
     @apply text-black;
   }
-
   .dark .text-empire-primary {
     @apply text-white;
   }
-
   .bg-empire-card {
     @apply border-2;
   }
@@ -430,10 +561,65 @@ canvas {
   .animate-spin {
     animation: none;
   }
-
   * {
     transition-duration: 0.01ms !important;
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
   }
+}
+
+/* 下拉菜单动画优化 */
+@keyframes dropdown-in {
+  from {
+    opacity: 0;
+    transform: scale(0.95) translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+@keyframes dropdown-out {
+  from {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: scale(0.95) translateY(-10px);
+  }
+}
+
+/* 确保下拉菜单从正确位置展开 */
+[data-radix-dropdown-menu-content] {
+  transform-origin: var(--radix-dropdown-menu-content-transform-origin);
+  animation-duration: 200ms;
+  animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+[data-radix-dropdown-menu-content][data-state="open"] {
+  animation-name: dropdown-in;
+}
+
+[data-radix-dropdown-menu-content][data-state="closed"] {
+  animation-name: dropdown-out;
+}
+
+/* 浅色模式下的按钮文字对比度增强 */
+.light .text-slate-700 {
+  color: rgb(51 65 85);
+}
+
+.light .hover\:text-amber-700:hover {
+  color: rgb(180 83 9);
+}
+
+/* 浅色模式下的边框增强 */
+.light .border-transparent {
+  border-color: transparent;
+}
+
+.light .hover\:border-amber-200\/50:hover {
+  border-color: rgb(254 215 170 / 0.5);
 }

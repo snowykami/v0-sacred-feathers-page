@@ -1,6 +1,7 @@
 "use client"
 
 import { useEffect, useRef } from "react"
+import { useTheme } from "@/contexts/theme-context"
 
 interface Particle {
   x: number
@@ -16,6 +17,7 @@ export function ParticleBackground() {
   const canvasRef = useRef<HTMLCanvasElement>(null)
   const particlesRef = useRef<Particle[]>([])
   const animationRef = useRef<number>()
+  const { resolvedTheme } = useTheme()
 
   useEffect(() => {
     const canvas = canvasRef.current
@@ -33,6 +35,9 @@ export function ParticleBackground() {
       const particles: Particle[] = []
       const particleCount = Math.min(50, Math.floor(window.innerWidth / 30))
 
+      // 根据主题调整粒子颜色
+      const colors = resolvedTheme === "dark" ? ["#fbbf24", "#ffffff", "#f59e0b"] : ["#d97706", "#b45309", "#92400e"]
+
       for (let i = 0; i < particleCount; i++) {
         particles.push({
           x: Math.random() * canvas.width,
@@ -40,8 +45,8 @@ export function ParticleBackground() {
           vx: (Math.random() - 0.5) * 0.5,
           vy: (Math.random() - 0.5) * 0.5,
           size: Math.random() * 3 + 1,
-          opacity: Math.random() * 0.5 + 0.1,
-          color: Math.random() > 0.5 ? "#fbbf24" : "#ffffff",
+          opacity: resolvedTheme === "dark" ? Math.random() * 0.5 + 0.1 : Math.random() * 0.3 + 0.1,
+          color: colors[Math.floor(Math.random() * colors.length)],
         })
       }
       particlesRef.current = particles
@@ -77,7 +82,15 @@ export function ParticleBackground() {
             ctx.beginPath()
             ctx.moveTo(particle.x, particle.y)
             ctx.lineTo(otherParticle.x, otherParticle.y)
-            ctx.strokeStyle = `rgba(251, 191, 36, ${0.1 * (1 - distance / 100)})`
+
+            // 根据主题调整连接线颜色
+            const connectionOpacity = 0.1 * (1 - distance / 100)
+            const connectionColor =
+              resolvedTheme === "dark"
+                ? `rgba(251, 191, 36, ${connectionOpacity})`
+                : `rgba(217, 119, 6, ${connectionOpacity * 0.8})`
+
+            ctx.strokeStyle = connectionColor
             ctx.lineWidth = 1
             ctx.stroke()
           }
@@ -91,18 +104,20 @@ export function ParticleBackground() {
     createParticles()
     animate()
 
-    window.addEventListener("resize", () => {
+    const handleResize = () => {
       resizeCanvas()
       createParticles()
-    })
+    }
+
+    window.addEventListener("resize", handleResize)
 
     return () => {
       if (animationRef.current) {
         cancelAnimationFrame(animationRef.current)
       }
-      window.removeEventListener("resize", resizeCanvas)
+      window.removeEventListener("resize", handleResize)
     }
-  }, [])
+  }, [resolvedTheme]) // 依赖主题变化重新创建粒子
 
   return <canvas ref={canvasRef} className="absolute inset-0 pointer-events-none" style={{ zIndex: 1 }} />
 }

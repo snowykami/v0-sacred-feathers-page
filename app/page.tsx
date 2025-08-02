@@ -118,13 +118,13 @@ export default function SacredFeathersEmpire() {
             </ScrollReveal>
 
             <ScrollReveal delay={200}>
-              <h1 className="text-6xl md:text-8xl font-bold text-transparent bg-gradient-to-r from-empire-primary via-amber-200 to-empire-primary bg-clip-text mb-4 tracking-tight animate-gradient">
+              <h1 className="text-6xl md:text-8xl font-bold text-empire-title-gradient mb-4 tracking-tight animate-gradient">
                 {empireData.name.english}
               </h1>
             </ScrollReveal>
 
             <ScrollReveal delay={400}>
-              <h2 className="text-3xl md:text-4xl text-transparent bg-gradient-to-r from-amber-400 via-amber-300 to-amber-400 bg-clip-text mb-8 font-light animate-gradient">
+              <h2 className="text-3xl md:text-4xl text-empire-subtitle-gradient mb-8 font-light animate-gradient">
                 {empireData.content.hero.subtitle}
               </h2>
             </ScrollReveal>
@@ -132,7 +132,7 @@ export default function SacredFeathersEmpire() {
             <ScrollReveal delay={500}>
               <div className="flex items-center justify-center space-x-2 mb-8">
                 <Calendar className="h-5 w-5 text-amber-400" />
-                <span className="text-amber-300 text-lg">
+                <span className="text-amber-400 text-lg">
                   {empireData.content.hero.foundedOn} {formatDate(empireData.foundingDate, language)}
                 </span>
                 <span className="text-empire-muted text-sm">
@@ -162,7 +162,7 @@ export default function SacredFeathersEmpire() {
                 <Button
                   size="lg"
                   variant="outline"
-                  className="border-2 border-amber-400 text-amber-400 hover:bg-amber-400 hover:text-slate-900 px-10 py-4 text-lg bg-transparent backdrop-blur-sm transform transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-amber-500/25 group relative overflow-hidden"
+                  className="border-2 border-amber-400 button-text-primary hover:bg-amber-400 hover:text-slate-900 px-10 py-4 text-lg bg-transparent backdrop-blur-sm transform transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-amber-500/25 group relative overflow-hidden"
                   onClick={() => (window.location.href = `mailto:${empireData.contact.email}`)}
                 >
                   <div className="absolute inset-0 bg-gradient-to-r from-transparent via-amber-400/20 to-transparent -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-700"></div>
@@ -185,9 +185,7 @@ export default function SacredFeathersEmpire() {
         <div className="container mx-auto px-4 relative z-10">
           <ScrollReveal>
             <div className="text-center mb-16">
-              <h2 className="text-5xl font-bold text-transparent bg-gradient-to-r from-empire-primary to-amber-200 bg-clip-text mb-6">
-                {empireData.content.about.title}
-              </h2>
+              <h2 className="text-5xl font-bold text-empire-section-gradient mb-6">{empireData.content.about.title}</h2>
               <div className="w-24 h-1 bg-gradient-to-r from-amber-400 to-amber-600 mx-auto mb-6 rounded-full"></div>
               <p className="text-empire-muted text-xl max-w-3xl mx-auto leading-relaxed">
                 {empireData.content.about.subtitle}
@@ -208,7 +206,7 @@ export default function SacredFeathersEmpire() {
                       >
                         <IconComponent className="h-8 w-8 text-white" />
                       </div>
-                      <CardTitle className="text-empire-primary text-xl group-hover:text-amber-200 transition-colors duration-300">
+                      <CardTitle className="text-empire-primary text-xl group-hover:text-amber-400 transition-colors duration-300">
                         {item.title}
                       </CardTitle>
                     </CardHeader>
@@ -235,7 +233,7 @@ export default function SacredFeathersEmpire() {
         <div className="container mx-auto px-4 relative z-10">
           <ScrollReveal>
             <div className="text-center mb-16">
-              <h2 className="text-5xl font-bold text-transparent bg-gradient-to-r from-empire-primary to-amber-200 bg-clip-text mb-6">
+              <h2 className="text-5xl font-bold text-empire-section-gradient mb-6">
                 {empireData.content.achievements.title}
               </h2>
               <div className="w-24 h-1 bg-gradient-to-r from-amber-400 to-amber-600 mx-auto mb-6 rounded-full"></div>
@@ -256,9 +254,7 @@ export default function SacredFeathersEmpire() {
                       <IconComponent className="h-10 w-10 text-white" />
                       <div className="absolute inset-0 bg-white/20 rounded-full blur-xl animate-pulse"></div>
                     </div>
-                    <h3 className="text-4xl font-bold text-transparent bg-gradient-to-r from-empire-primary to-amber-200 bg-clip-text mb-3 relative z-10">
-                      {item.number}
-                    </h3>
+                    <h3 className="text-4xl font-bold text-empire-primary mb-3 relative z-10">{item.number}</h3>
                     <p className="text-empire-muted group-hover:text-empire-secondary transition-colors duration-300 relative z-10">
                       {item.label}
                     </p>
@@ -278,7 +274,7 @@ export default function SacredFeathersEmpire() {
         <div className="container mx-auto px-4">
           <ScrollReveal>
             <div className="text-center mb-16">
-              <h2 className="text-5xl font-bold text-transparent bg-gradient-to-r from-empire-primary to-amber-200 bg-clip-text mb-6">
+              <h2 className="text-5xl font-bold text-empire-section-gradient mb-6">
                 {empireData.content.history.title}
               </h2>
               <div className="w-24 h-1 bg-gradient-to-r from-amber-400 to-amber-600 mx-auto mb-6 rounded-full"></div>
@@ -288,7 +284,7 @@ export default function SacredFeathersEmpire() {
 
           <div className="max-w-4xl mx-auto relative">
             {/* Timeline line */}
-            <div className="absolute left-6 top-0 bottom-0 w-0.5 bg-gradient-to-b from-amber-400 via-blue-400 to-purple-400"></div>
+            <div className="absolute left-6 top-0 bottom-0 w-0.5 timeline-gradient"></div>
 
             <div className="space-y-12">
               {empireData.content.history.items.map((item, index) => {
@@ -315,7 +311,7 @@ export default function SacredFeathersEmpire() {
                             <span className="text-empire-muted">({getRelativeTime(item.date, language)})</span>
                           </div>
                         </div>
-                        <h3 className="text-2xl font-bold text-empire-primary mb-3 group-hover:text-amber-200 transition-colors duration-300">
+                        <h3 className="text-2xl font-bold text-empire-primary mb-3 group-hover:text-amber-400 transition-colors duration-300">
                           {item.title}
                         </h3>
                         <p className="text-empire-muted group-hover:text-empire-secondary transition-colors duration-300 leading-relaxed">
@@ -347,7 +343,7 @@ export default function SacredFeathersEmpire() {
                   <div className="absolute inset-0 bg-white/20 rounded-full blur-xl animate-pulse"></div>
                   <Sparkles className="absolute -top-2 -right-2 h-8 w-8 text-amber-300 animate-spin" />
                 </div>
-                <h2 className="text-5xl font-bold text-transparent bg-gradient-to-r from-empire-primary to-amber-200 bg-clip-text mb-6">
+                <h2 className="text-5xl font-bold text-empire-section-gradient mb-6">
                   {empireData.content.join.title}
                 </h2>
                 <p className="text-2xl text-empire-muted mb-12 leading-relaxed">{empireData.content.join.subtitle}</p>
@@ -367,7 +363,7 @@ export default function SacredFeathersEmpire() {
                         <IconComponent className="h-8 w-8 text-white" />
                         <div className="absolute inset-0 bg-white/20 rounded-full blur-lg animate-pulse"></div>
                       </div>
-                      <h3 className="text-xl font-semibold text-empire-primary mb-4 group-hover:text-amber-200 transition-colors duration-300 relative z-10">
+                      <h3 className="text-xl font-semibold text-empire-primary mb-4 group-hover:text-amber-400 transition-colors duration-300 relative z-10">
                         {role.title}
                       </h3>
                       <p className="text-empire-muted group-hover:text-empire-secondary transition-colors duration-300 leading-relaxed relative z-10">
@@ -408,9 +404,7 @@ export default function SacredFeathersEmpire() {
                   <Feather className="h-4 w-4 text-amber-200 absolute -top-1 -right-1 animate-bounce" />
                 </div>
                 <div className="transform transition-all duration-300 group-hover:translate-x-1">
-                  <h3 className="text-xl font-bold text-transparent bg-gradient-to-r from-empire-primary to-amber-200 bg-clip-text">
-                    {empireData.name.english}
-                  </h3>
+                  <h3 className="text-xl font-bold text-empire-primary">{empireData.name.english}</h3>
                   <p className="text-sm text-amber-400 animate-pulse">{empireData.name.chinese}</p>
                 </div>
               </div>
@@ -418,9 +412,7 @@ export default function SacredFeathersEmpire() {
 
             <ScrollReveal delay={200}>
               <div className="text-center md:text-right">
-                <p className="text-empire-muted text-lg mb-3 bg-gradient-to-r from-current to-amber-400 bg-clip-text text-transparent">
-                  {empireData.content.footer.tagline}
-                </p>
+                <p className="text-empire-muted text-lg mb-3">{empireData.content.footer.tagline}</p>
                 <p className="text-empire-muted text-sm">
                   © {copyrightYears} Sacred Feathers Empire. All rights reserved.
                 </p>

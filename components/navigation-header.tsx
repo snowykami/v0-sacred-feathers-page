@@ -43,9 +43,7 @@ export function NavigationHeader({ currentPath = "/" }: NavigationHeaderProps) {
                 <Feather className="h-3 w-3 text-amber-200 absolute -top-1 -right-1 animate-bounce" />
               </div>
               <div className="transform transition-all duration-300 group-hover:translate-x-1">
-                <h1 className="text-xl font-bold text-empire-primary bg-gradient-to-r from-current to-amber-200 bg-clip-text text-transparent">
-                  {empireData.name.english}
-                </h1>
+                <h1 className="text-xl font-bold text-empire-primary">{empireData.name.english}</h1>
                 <p className="text-xs text-amber-400 animate-pulse">{empireData.name.chinese}</p>
               </div>
             </Link>
@@ -62,7 +60,7 @@ export function NavigationHeader({ currentPath = "/" }: NavigationHeaderProps) {
                       key={item.id}
                       href={item.href}
                       className={`transition-all duration-300 relative group px-2 py-1 ${
-                        isActive ? "text-amber-400" : "text-empire-primary hover:text-amber-400"
+                        isActive ? "text-amber-400" : "nav-link-primary"
                       }`}
                     >
                       <span className="relative z-10">{label}</span>
