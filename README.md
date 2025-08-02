@@ -28,3 +28,12 @@ Continue building your app on:
 2. Deploy your chats from the v0 interface
 3. Changes are automatically pushed to this repository
 4. Vercel deploys the latest version from this repository
+
+## 添加和更新个人信息
+
+1. 先fork本仓库
+2. 克隆fork的仓库，在 `data/members-data.ts` 中添加个人信息
+   - 确保 `id` 是唯一的
+   - `name` 是你的名字
+   - `avatar` 是你的头像链接
+3. push到你的分支，然后在GitHub上发起Pull Request

@@ -214,9 +214,9 @@ export const MEMBERS_DATA: Member[] = [
       twitter: "https://x.com/Twisuki",
     },
     bio: {
-      zh: "帝国的猫协会长，负责猫咪福利和社区建设。以其温柔和关怀著称，致力于为帝国的每一位成员创造一个温暖和谐的环境。",
-      en: "The president of the empire's cat association, responsible for cat welfare and community building. Renowned for her gentleness and care, dedicated to creating a warm and harmonious environment for every member of the empire.",
-      ja: "帝国の猫協会の会長で、猫の福祉とコミュニティの構築を担当。優しさと配慮で有名で、帝国のすべてのメンバーに温かく調和のとれた環境を提供することに尽力している。",
+      zh: "帝国的猫娘，负责探索和创新，为帝国开辟新的技术领域。以其可爱的外表和强大的技术实力著称，是帝国数字文明的重要一员。",
+      en: "The empire's catgirl, responsible for exploration and innovation, opening up new technological fields for the empire. Renowned for her cute appearance and powerful technical strength, she is an important member of the empire's digital civilization.",
+      ja: "帝国の猫娘で、探索と革新を担当し、帝国の新しい技術分野を切り開いている。可愛らしい外見と強力な技術力で有名で、帝国のデジタル文明の重要な一員となっている。",
     },
     stats: {
       projectsLed: 10,
