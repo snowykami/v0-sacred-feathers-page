@@ -55,17 +55,17 @@ export default function SacredFeathersEmpire() {
   const empireData = getEmpireData(language)
 
   useEffect(() => {
-    const handleMouseMove = (e) => {
-      setMousePosition({ x: e.clientX, y: e.clientY })
-    }
-
     // 计算建国天数和版权年份
     setDaysSinceFounding(calculateDaysSinceFounding())
     setCopyrightYears(getCopyrightYears())
 
+    const handleMouseMove = (e: MouseEvent) => {
+      setMousePosition({ x: e.clientX, y: e.clientY })
+    }
+
     window.addEventListener("mousemove", handleMouseMove)
     return () => window.removeEventListener("mousemove", handleMouseMove)
-  }, [])
+  }, []) // Empty dependency array to run only once
 
   // 更新成就数据中的建国天数
   const updatedAchievements = empireData.content.achievements.items.map((achievement) =>
@@ -162,7 +162,7 @@ export default function SacredFeathersEmpire() {
                 <Button
                   size="lg"
                   variant="outline"
-                  className="border-2 border-amber-400 button-text-primary hover:bg-amber-400 hover:text-slate-900 px-10 py-4 text-lg bg-transparent backdrop-blur-sm transform transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-amber-500/25 group relative overflow-hidden"
+                  className="border-2 button-text-primary hover:bg-amber-400 hover:text-slate-900 px-10 py-4 text-lg bg-transparent backdrop-blur-sm transform transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-amber-500/25 group relative overflow-hidden border-amber-400"
                   onClick={() => (window.location.href = `mailto:${empireData.contact.email}`)}
                 >
                   <div className="absolute inset-0 bg-gradient-to-r from-transparent via-amber-400/20 to-transparent -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-700"></div>

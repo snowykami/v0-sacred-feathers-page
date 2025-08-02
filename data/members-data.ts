@@ -80,7 +80,7 @@ export const MEMBERS_DATA: Member[] = [
   },
   {
     id: "synodriver",
-    name: "Synodriver",
+    name: "帝国皇家鸽子近卫军",
     avatar: "https://github.com/synodriver.png",
     role: "guardian",
     joinDate: "2024-03-15",
