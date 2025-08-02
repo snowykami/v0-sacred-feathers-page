@@ -87,8 +87,8 @@ export const MEMBERS_DATA: Member[] = [
     specialties: ["Security", "Community Protection", "Conflict Resolution"],
     achievements: ["Maintained 100% Peace Index", "Resolved 50+ Disputes", "Protected Empire Integrity"],
     contact: {
-      email: "guardian@sacredfeathers.online",
-      github: "https://github.com/steel-guardian",
+      email: "synodriver@outlook.com",
+      github: "https://github.com/synodriver",
     },
     bio: {
       zh: "帝国的钢铁守护者，馒头山大王，负责维护社区安全和秩序。以公正和勇气著称，是帝国和平与稳定的坚实保障。",
@@ -103,17 +103,17 @@ export const MEMBERS_DATA: Member[] = [
     isActive: true,
   },
   {
-    id: "creator-nova",
-    name: "Nova Creator",
-    avatar: "/placeholder.svg?height=200&width=200",
+    id: "redish101",
+    name: "数据库姐姐",
+    avatar: "https://github.com/redish101.png",
     role: "creator",
     joinDate: "2024-04-01",
     specialties: ["Digital Art", "UI/UX Design", "Creative Direction"],
     achievements: ["Designed Empire Visual Identity", "Created 100+ Digital Artworks", "Led Creative Workshops"],
     contact: {
-      email: "nova@sacredfeathers.online",
-      github: "https://github.com/nova-creator",
-      website: "https://nova-art.studio",
+      email: "redish101@outlook.com",
+      github: "https://github.com/redish101",
+      website: "https://redish101.top",
     },
     bio: {
       zh: "帝国的首席创造者，拥有无限的创意和艺术天赋。负责帝国的视觉设计和创意项目，为帝国注入了独特的艺术气息。",
