@@ -68,8 +68,8 @@ export const MEMBERS_DATA: Member[] = [
     },
     bio: {
       zh: "帝国的摄政王，负责知识管理和文化发展。拥有深厚的学识和丰富的教学经验，致力于提升帝国公民的整体素质。",
-      en: "The empire's wise minister responsible for knowledge management and cultural development. Possesses profound knowledge and rich teaching experience, dedicated to improving the overall quality of empire citizens.",
-      ja: "帝国の賢明な大臣で、知識管理と文化発展を担当。深い学識と豊富な教育経験を持ち、帝国市民の総合的な資質向上に専念している。",
+      en: "Regent of the empire responsible for knowledge management and cultural development. Possesses profound knowledge and extensive teaching experience, dedicated to enhancing the overall quality of the empire's citizens.",
+      ja: "帝国の摂政で、知識管理と文化発展を担当。深い知識と豊富な教育経験を持ち、帝国市民の全体的な素質向上に尽力している。",
     },
     stats: {
       projectsLed: 8,
@@ -92,8 +92,8 @@ export const MEMBERS_DATA: Member[] = [
     },
     bio: {
       zh: "帝国的钢铁守护者，馒头山大王，负责维护社区安全和秩序。以公正和勇气著称，是帝国和平与稳定的坚实保障。",
-      en: "The empire's steel guardian responsible for maintaining community security and order. Known for justice and courage, serving as a solid guarantee for the empire's peace and stability.",
-      ja: "帝国の鋼鉄の守護者で、コミュニティの安全と秩序の維持を担当。正義と勇気で知られ、帝国の平和と安定の確固たる保証となっている。",
+      en: "The empire's steel guardian, known as the Bread Mountain King, responsible for maintaining community safety and order. Renowned for justice and courage, serving as a solid guarantee of peace and stability in the empire.",
+      ja: "帝国の鋼鉄の守護者、パン山の王として知られ、コミュニティの安全と秩序を維持する責任を負う。正義と勇気で有名で、帝国の平和と安定の確固たる保証となっている。",
     },
     stats: {
       projectsLed: 5,
@@ -116,9 +116,9 @@ export const MEMBERS_DATA: Member[] = [
       website: "https://redish101.top",
     },
     bio: {
-      zh: "帝国的首席创造者，拥有无限的创意和艺术天赋。负责帝国的视觉设计和创意项目，为帝国注入了独特的艺术气息。",
-      en: "The empire's chief creator with unlimited creativity and artistic talent. Responsible for the empire's visual design and creative projects, infusing the empire with unique artistic atmosphere.",
-      ja: "帝国の主任創造者で、無限の創造性と芸術的才能を持つ。帝国のビジュアルデザインと創造的プロジェクトを担当し、帝国に独特の芸術的雰囲気を注入している。",
+      zh: "帝国的年龄最小的公主，拥有无限的创造力和技术力，可爱的外表下隐藏着强大的技术实力。负责帝国的视觉设计和创意项目，为帝国注入独特的艺术氛围。",
+      en: "The youngest princess of the empire, possessing boundless creativity and technical prowess. Beneath her cute appearance lies powerful technical strength. Responsible for the empire's visual design and creative projects, injecting a unique artistic atmosphere into the empire.",
+      ja: "帝国で最も若い姫君で、無限の創造力と技術力を持つ。可愛らしい外見の下には強力な技術力が隠されている。帝国のビジュアルデザインとクリエイティブプロジェクトを担当し、帝国に独自の芸術的雰囲気を注入している。",
     },
     stats: {
       projectsLed: 12,
@@ -128,22 +128,22 @@ export const MEMBERS_DATA: Member[] = [
     isActive: true,
   },
   {
-    id: "explorer-cosmos",
-    name: "Cosmos Explorer",
-    avatar: "/placeholder.svg?height=200&width=200",
+    id: "nanaloveyuki",
+    name: "若水宁",
+    avatar: "https://github.com/nanaloveyuki.png",
     role: "explorer",
     joinDate: "2024-05-01",
     specialties: ["Research", "Innovation", "Technology Scouting"],
     achievements: ["Discovered 20+ New Technologies", "Mapped Virtual Territories", "Led Exploration Missions"],
     contact: {
-      email: "cosmos@sacredfeathers.online",
-      github: "https://github.com/cosmos-explorer",
-      twitter: "https://twitter.com/cosmos_explorer",
+      email: "nanaloveyuki@outlook.com",
+      github: "https://github.com/nanaloveyuki",
+      twitter: "https://twitter.com/nanaloveyuki",
     },
     bio: {
-      zh: "帝国的宇宙探索者，永远在寻找新的可能性和机遇。负责技术研究和创新探索，为帝国的发展开辟新的道路。",
-      en: "The empire's cosmos explorer, always seeking new possibilities and opportunities. Responsible for technology research and innovation exploration, opening new paths for the empire's development.",
-      ja: "帝国の宇宙探検家で、常に新しい可能性と機会を求めている。技術研究と革新的探索を担当し、帝国の発展のための新しい道を切り開いている。",
+      zh: "帝国的大猫娘，宇宙探索者，永远在寻找新的可能性和机会。负责技术研究和创新探索，为帝国的发展开辟新的道路。",
+      en: "The empire's cosmic explorer, always seeking new possibilities and opportunities. Responsible for technology research and innovative exploration, paving new paths for the empire's development.",
+      ja: "帝国の宇宙探検者で、常に新しい可能性と機会を求めている。技術研究と革新探索を担当し、帝国の発展のために新しい道を切り開いている。",
     },
     stats: {
       projectsLed: 10,
