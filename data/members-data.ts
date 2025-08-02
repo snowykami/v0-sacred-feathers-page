@@ -80,7 +80,7 @@ export const MEMBERS_DATA: Member[] = [
   },
   {
     id: "synodriver",
-    name: "帝国皇家鸽子近卫军",
+    name: "帝国皇家近卫军",
     avatar: "https://github.com/synodriver.png",
     role: "guardian",
     joinDate: "2024-03-15",
@@ -144,6 +144,31 @@ export const MEMBERS_DATA: Member[] = [
       zh: "帝国的大猫娘，宇宙探索者，永远在寻找新的可能性和机会。负责技术研究和创新探索，为帝国的发展开辟新的道路。",
       en: "The empire's cosmic explorer, always seeking new possibilities and opportunities. Responsible for technology research and innovative exploration, paving new paths for the empire's development.",
       ja: "帝国の宇宙探検者で、常に新しい可能性と機会を求めている。技術研究と革新探索を担当し、帝国の発展のために新しい道を切り開いている。",
+    },
+    stats: {
+      projectsLed: 10,
+      contributionsCount: 380,
+      yearsActive: 1,
+    },
+    isActive: true,
+  },
+  {
+    id: "chenxu233",
+    name: "沐浴晨煦",
+    avatar: "https://github.com/chenxu233.png",
+    role: "explorer",
+    joinDate: "2024-05-01",
+    specialties: ["Machine Learning", "Data Analysis", "AI Research"],
+    achievements: ["Discovered 20+ New Technologies", "Mapped Virtual Territories", "Led Exploration Missions"],
+    contact: {
+      email: "chenxu233@outlook.com",
+      github: "https://github.com/chenxu233",
+      twitter: "https://twitter.com/chenxu233",
+    },
+    bio: {
+      zh: "帝国的猫协会长，负责猫咪福利和社区建设。以其温柔和关怀著称，致力于为帝国的每一位成员创造一个温暖和谐的环境。",
+      en: "The president of the empire's cat association, responsible for cat welfare and community building. Renowned for her gentleness and care, dedicated to creating a warm and harmonious environment for every member of the empire.",
+      ja: "帝国の猫協会の会長で、猫の福祉とコミュニティの構築を担当。優しさと配慮で有名で、帝国のすべてのメンバーに温かく調和のとれた環境を提供することに尽力している。",
     },
     stats: {
       projectsLed: 10,
