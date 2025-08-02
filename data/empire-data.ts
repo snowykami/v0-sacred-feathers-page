@@ -77,6 +77,23 @@ export interface EmpireData {
       history: string
       join: string
     }
+    members: {
+      title: string
+      subtitle: string
+      roles: {
+        emperor: string
+        minister: string
+        guardian: string
+        creator: string
+        explorer: string
+      }
+      viewProfile: string
+      backToMembers: string
+      joinDate: string
+      specialties: string
+      achievements: string
+      contact: string
+    }
   }
 }
 
@@ -240,6 +257,23 @@ const EMPIRE_DATA_MULTILANG: Record<Language, EmpireData> = {
         achievements: "帝国成就",
         history: "历史",
         join: "加入我们",
+      },
+      members: {
+        title: "帝国成员",
+        subtitle: "认识神圣羽毛帝国的杰出成员们",
+        roles: {
+          emperor: "皇帝",
+          minister: "大臣",
+          guardian: "守护者",
+          creator: "创造者",
+          explorer: "探索者",
+        },
+        viewProfile: "查看详情",
+        backToMembers: "返回成员列表",
+        joinDate: "加入日期",
+        specialties: "专长领域",
+        achievements: "主要成就",
+        contact: "联系方式",
       },
     },
   },
@@ -412,6 +446,23 @@ const EMPIRE_DATA_MULTILANG: Record<Language, EmpireData> = {
         history: "History",
         join: "Join Us",
       },
+      members: {
+        title: "Empire Members",
+        subtitle: "Meet the outstanding members of Sacred Feathers Empire",
+        roles: {
+          emperor: "Emperor",
+          minister: "Minister",
+          guardian: "Guardian",
+          creator: "Creator",
+          explorer: "Explorer",
+        },
+        viewProfile: "View Profile",
+        backToMembers: "Back to Members",
+        joinDate: "Join Date",
+        specialties: "Specialties",
+        achievements: "Achievements",
+        contact: "Contact",
+      },
     },
   },
   ja: {
@@ -579,6 +630,23 @@ const EMPIRE_DATA_MULTILANG: Record<Language, EmpireData> = {
         achievements: "成果",
         history: "歴史",
         join: "参加",
+      },
+      members: {
+        title: "帝国メンバー",
+        subtitle: "聖なる羽根帝国の優秀なメンバーたちをご紹介",
+        roles: {
+          emperor: "皇帝",
+          minister: "大臣",
+          guardian: "守護者",
+          creator: "創造者",
+          explorer: "探検家",
+        },
+        viewProfile: "プロフィール表示",
+        backToMembers: "メンバー一覧に戻る",
+        joinDate: "参加日",
+        specialties: "専門分野",
+        achievements: "主な成果",
+        contact: "連絡先",
       },
     },
   },

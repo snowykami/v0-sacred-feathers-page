@@ -110,17 +110,18 @@ export default function SacredFeathersEmpire() {
             <div className="flex items-center space-x-6">
               <nav className="hidden md:flex items-center space-x-6">
                 {[
-                  empireData.content.nav.about,
-                  empireData.content.nav.achievements,
-                  empireData.content.nav.history,
-                  empireData.content.nav.join,
-                ].map((item, index) => (
+                  { href: "#about", label: empireData.content.nav.about },
+                  { href: "#achievements", label: empireData.content.nav.achievements },
+                  { href: "#history", label: empireData.content.nav.history },
+                  { href: "/members", label: empireData.content.members.title },
+                  { href: "#join", label: empireData.content.nav.join },
+                ].map((item) => (
                   <Link
-                    key={item}
-                    href={`#${["about", "achievements", "history", "join"][index]}`}
+                    key={item.href}
+                    href={item.href}
                     className="text-white hover:text-amber-400 transition-all duration-300 relative group px-2 py-1"
                   >
-                    <span className="relative z-10">{item}</span>
+                    <span className="relative z-10">{item.label}</span>
                     <div className="absolute inset-0 bg-amber-400/10 rounded-lg scale-0 group-hover:scale-100 transition-transform duration-300"></div>
                   </Link>
                 ))}
