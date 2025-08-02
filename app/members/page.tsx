@@ -74,6 +74,11 @@ export default function MembersPage() {
       label: empireData.content.members.roles.catgirl,
       count: MEMBERS_DATA.filter((m) => m.role === "catgirl" && m.isActive).length,
     },
+      {
+      key: "mascot",
+      label: empireData.content.members.roles.mascot,
+      count: MEMBERS_DATA.filter((m) => m.role === "mascot" && m.isActive).length,
+    },
   ]
 
   return (
