@@ -4,7 +4,7 @@ export interface Member {
   id: string
   name: string
   avatar: string
-  role: "emperor" | "minister" | "guardian" | "creator" | "explorer" | "prince" | "princess" | "catgirl"
+  role: "emperor" | "minister" | "guardian" | "creator" | "explorer" | "prince" | "princess" | "catgirl" | "mascot"
   joinDate: string
   specialties: string[]
   achievements: string[]
@@ -32,6 +32,8 @@ export const roleColors = {
   prince: "from-pink-500 to-pink-600",
   princess: "from-rose-500 to-rose-600",
   catgirl: "from-teal-500 to-teal-600",
+  mascot: "from-[rgb(239,167,168)] to-[rgb(240,134,138)]",
+
 }
 
 export const MEMBERS_DATA: Member[] = [
@@ -261,6 +263,7 @@ export const MEMBERS_DATA: Member[] = [
     },
     isActive: true,
   },
+
 ]
 
 export function getMemberById(id: string): Member | undefined {

@@ -89,6 +89,7 @@ export interface EmpireData {
         prince: string
         princess: string
         catgirl: string
+        mascot: string
       }
       viewProfile: string
       backToMembers: string
@@ -273,6 +274,7 @@ const EMPIRE_DATA_MULTILANG: Record<Language, EmpireData> = {
           prince: "王子",
           princess: "公主",
           catgirl: "猫娘",
+          mascot: " 吉祥物",
         },
         viewProfile: "查看详情",
         backToMembers: "返回成员列表",
@@ -464,6 +466,7 @@ const EMPIRE_DATA_MULTILANG: Record<Language, EmpireData> = {
           prince: "Prince",
           princess: "Princess",
           catgirl: "Catgirl",
+          mascot: "Mascot",
         },
         viewProfile: "View Profile",
         backToMembers: "Back to Members",
@@ -652,6 +655,7 @@ const EMPIRE_DATA_MULTILANG: Record<Language, EmpireData> = {
           prince: "王子",
           princess: "王女",
           catgirl: "猫娘",
+          mascot: "マスコット",
         },
         viewProfile: "プロフィール表示",
         backToMembers: "メンバー一覧に戻る",
