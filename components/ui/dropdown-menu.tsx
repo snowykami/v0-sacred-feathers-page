@@ -64,15 +64,7 @@ const DropdownMenuContent = React.forwardRef<
       sideOffset={sideOffset}
       className={cn(
         "z-50 min-w-[8rem] overflow-hidden rounded-md border bg-popover p-1 text-popover-foreground shadow-md",
-        // 简化动画 - 只使用淡入淡出和轻微缩放
-        "data-[state=open]:animate-in data-[state=closed]:animate-out",
-        "data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0",
-        "data-[state=closed]:zoom-out-98 data-[state=open]:zoom-in-98",
-        // 移除滑动动画，只保留从上方的轻微位移
-        "data-[side=bottom]:slide-in-from-top-1",
-        "data-[side=top]:slide-in-from-bottom-1",
-        "data-[side=left]:slide-in-from-right-1",
-        "data-[side=right]:slide-in-from-left-1",
+        // 完全移除所有动画类，使用自定义CSS动画
         className,
       )}
       {...props}

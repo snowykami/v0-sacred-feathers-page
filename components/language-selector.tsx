@@ -33,8 +33,11 @@ export function LanguageSelector() {
       </DropdownMenuTrigger>
       <DropdownMenuContent
         align="end"
-        className="backdrop-blur-sm min-w-[160px] bg-slate-900/95 border-amber-500/20"
+        className="backdrop-blur-sm min-w-[160px] bg-slate-900/95 border-amber-500/20 language-dropdown-content"
         sideOffset={8}
+        style={{
+          animation: "dropdown-slide-down 150ms cubic-bezier(0.16, 1, 0.3, 1)"
+        }}
       >
         {SUPPORTED_LANGUAGES.map((lang) => (
           <DropdownMenuItem
