@@ -21,17 +21,17 @@ export const NAVIGATION_DATA: NavigationData = {
     },
     {
       id: "about",
-      href: "#about",
+      href: "/#about",
       icon: "Shield",
     },
     {
       id: "achievements",
-      href: "#achievements",
+      href: "/#achievements",
       icon: "Trophy",
     },
     {
       id: "history",
-      href: "#history",
+      href: "/#history",
       icon: "Scroll",
     },
     {
@@ -41,7 +41,7 @@ export const NAVIGATION_DATA: NavigationData = {
     },
     {
       id: "join",
-      href: "#join",
+      href: "/å#join",
       icon: "Heart",
     },
   ],
