@@ -3,17 +3,16 @@
 import { useState } from "react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
-import { Crown, Feather, Search, Users, Grid, List } from "lucide-react"
-import Link from "next/link"
+import { Search, Users, Grid, List } from "lucide-react"
 import { ParticleBackground } from "@/components/particle-background"
 import { ScrollReveal } from "@/components/scroll-reveal"
 import { GlowingOrb } from "@/components/glowing-orb"
-import { LanguageSelector } from "@/components/language-selector"
 import { MemberCard } from "@/components/member-card"
 import { useLanguage } from "@/contexts/language-context"
 import { getEmpireData } from "@/data/empire-data"
 import { MEMBERS_DATA, getActiveMembersCount } from "@/data/members-data"
 import type { Member } from "@/data/members-data"
+import { NavigationHeader } from "@/components/navigation-header"
 
 export default function MembersPage() {
   const { language } = useLanguage()
@@ -68,44 +67,7 @@ export default function MembersPage() {
       <ParticleBackground />
 
       {/* Header */}
-      <header className="border-b border-amber-500/20 bg-slate-900/80 backdrop-blur-sm sticky top-0 z-50 relative">
-        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-amber-500/5 to-transparent"></div>
-        <div className="container mx-auto px-4 py-4 relative z-10">
-          <div className="flex items-center justify-between">
-            <Link href="/" className="flex items-center space-x-3 group">
-              <div className="relative transform transition-all duration-300 group-hover:scale-110">
-                <GlowingOrb className="w-10 h-10" />
-                <Crown className="absolute inset-0 m-auto h-6 w-6 text-white z-10" />
-                <Feather className="h-3 w-3 text-amber-200 absolute -top-1 -right-1 animate-bounce" />
-              </div>
-              <div className="transform transition-all duration-300 group-hover:translate-x-1">
-                <h1 className="text-xl font-bold text-white bg-gradient-to-r from-white to-amber-200 bg-clip-text text-transparent">
-                  {empireData.name.english}
-                </h1>
-                <p className="text-xs text-amber-400 animate-pulse">{empireData.name.chinese}</p>
-              </div>
-            </Link>
-            <div className="flex items-center space-x-6">
-              <nav className="hidden md:flex items-center space-x-6">
-                <Link
-                  href="/"
-                  className="text-white hover:text-amber-400 transition-all duration-300 relative group px-2 py-1"
-                >
-                  <span className="relative z-10">
-                    {language === "zh" ? "首页" : language === "ja" ? "ホーム" : "Home"}
-                  </span>
-                  <div className="absolute inset-0 bg-amber-400/10 rounded-lg scale-0 group-hover:scale-100 transition-transform duration-300"></div>
-                </Link>
-                <Link href="/members" className="text-amber-400 relative group px-2 py-1">
-                  <span className="relative z-10">{empireData.content.members.title}</span>
-                  <div className="absolute inset-0 bg-amber-400/20 rounded-lg"></div>
-                </Link>
-              </nav>
-              <LanguageSelector />
-            </div>
-          </div>
-        </div>
-      </header>
+      <NavigationHeader currentPath="/members" />
 
       {/* Hero Section */}
       <section className="relative py-20 overflow-hidden">

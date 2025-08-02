@@ -5,29 +5,14 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
-import {
-  Crown,
-  Feather,
-  ArrowLeft,
-  Calendar,
-  Mail,
-  Github,
-  ExternalLink,
-  Twitter,
-  Star,
-  Trophy,
-  Code,
-  Target,
-  Award,
-} from "lucide-react"
+import { Calendar, Mail, Github, ExternalLink, Twitter, Star, Trophy, Code, Target, Award } from "lucide-react"
 import Link from "next/link"
 import { ParticleBackground } from "@/components/particle-background"
 import { ScrollReveal } from "@/components/scroll-reveal"
-import { GlowingOrb } from "@/components/glowing-orb"
-import { LanguageSelector } from "@/components/language-selector"
 import { useLanguage } from "@/contexts/language-context"
 import { getEmpireData, formatDate } from "@/data/empire-data"
 import { getMemberById } from "@/data/members-data"
+import { NavigationHeader } from "@/components/navigation-header"
 
 const roleColors = {
   emperor: "from-amber-500 to-amber-600",
@@ -67,38 +52,7 @@ export default function MemberProfilePage() {
       <ParticleBackground />
 
       {/* Header */}
-      <header className="border-b border-amber-500/20 bg-slate-900/80 backdrop-blur-sm sticky top-0 z-50 relative">
-        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-amber-500/5 to-transparent"></div>
-        <div className="container mx-auto px-4 py-4 relative z-10">
-          <div className="flex items-center justify-between">
-            <Link href="/" className="flex items-center space-x-3 group">
-              <div className="relative transform transition-all duration-300 group-hover:scale-110">
-                <GlowingOrb className="w-10 h-10" />
-                <Crown className="absolute inset-0 m-auto h-6 w-6 text-white z-10" />
-                <Feather className="h-3 w-3 text-amber-200 absolute -top-1 -right-1 animate-bounce" />
-              </div>
-              <div className="transform transition-all duration-300 group-hover:translate-x-1">
-                <h1 className="text-xl font-bold text-white bg-gradient-to-r from-white to-amber-200 bg-clip-text text-transparent">
-                  {empireData.name.english}
-                </h1>
-                <p className="text-xs text-amber-400 animate-pulse">{empireData.name.chinese}</p>
-              </div>
-            </Link>
-            <div className="flex items-center space-x-6">
-              <Link href="/members">
-                <Button
-                  variant="outline"
-                  className="border-amber-400 text-amber-400 hover:bg-amber-400 hover:text-slate-900 bg-transparent"
-                >
-                  <ArrowLeft className="h-4 w-4 mr-2" />
-                  {empireData.content.members.backToMembers}
-                </Button>
-              </Link>
-              <LanguageSelector />
-            </div>
-          </div>
-        </div>
-      </header>
+      <NavigationHeader currentPath="/members" />
 
       {/* Profile Hero */}
       <section className="relative py-20 overflow-hidden">
