@@ -2,44 +2,47 @@
 @import "tw-animate-css";
 
 @custom-variant dark (&:is(.dark *));
+@custom-variant light (&:is(.light *));
 
 :root {
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.145 0 0);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.145 0 0);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.145 0 0);
-  --primary: oklch(0.205 0 0);
-  --primary-foreground: oklch(0.985 0 0);
-  --secondary: oklch(0.97 0 0);
-  --secondary-foreground: oklch(0.205 0 0);
-  --muted: oklch(0.97 0 0);
-  --muted-foreground: oklch(0.556 0 0);
-  --accent: oklch(0.97 0 0);
-  --accent-foreground: oklch(0.205 0 0);
+  /* Light theme colors */
+  --background: oklch(0.99 0 0);
+  --foreground: oklch(0.15 0 0);
+  --card: oklch(0.98 0 0);
+  --card-foreground: oklch(0.15 0 0);
+  --popover: oklch(0.99 0 0);
+  --popover-foreground: oklch(0.15 0 0);
+  --primary: oklch(0.24 0.095 83.66);
+  --primary-foreground: oklch(0.99 0 0);
+  --secondary: oklch(0.96 0 0);
+  --secondary-foreground: oklch(0.24 0 0);
+  --muted: oklch(0.96 0 0);
+  --muted-foreground: oklch(0.45 0 0);
+  --accent: oklch(0.94 0 0);
+  --accent-foreground: oklch(0.24 0 0);
   --destructive: oklch(0.577 0.245 27.325);
-  --destructive-foreground: oklch(0.577 0.245 27.325);
-  --border: oklch(0.922 0 0);
-  --input: oklch(0.922 0 0);
-  --ring: oklch(0.708 0 0);
+  --destructive-foreground: oklch(0.99 0 0);
+  --border: oklch(0.9 0 0);
+  --input: oklch(0.9 0 0);
+  --ring: oklch(0.24 0.095 83.66);
   --chart-1: oklch(0.646 0.222 41.116);
   --chart-2: oklch(0.6 0.118 184.704);
   --chart-3: oklch(0.398 0.07 227.392);
   --chart-4: oklch(0.828 0.189 84.429);
   --chart-5: oklch(0.769 0.188 70.08);
   --radius: 0.625rem;
-  --sidebar: oklch(0.985 0 0);
-  --sidebar-foreground: oklch(0.145 0 0);
-  --sidebar-primary: oklch(0.205 0 0);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.97 0 0);
-  --sidebar-accent-foreground: oklch(0.205 0 0);
-  --sidebar-border: oklch(0.922 0 0);
-  --sidebar-ring: oklch(0.708 0 0);
+  --sidebar: oklch(0.98 0 0);
+  --sidebar-foreground: oklch(0.15 0 0);
+  --sidebar-primary: oklch(0.24 0.095 83.66);
+  --sidebar-primary-foreground: oklch(0.99 0 0);
+  --sidebar-accent: oklch(0.94 0 0);
+  --sidebar-accent-foreground: oklch(0.24 0 0);
+  --sidebar-border: oklch(0.9 0 0);
+  --sidebar-ring: oklch(0.24 0.095 83.66);
 }
 
 .dark {
+  /* Dark theme colors */
   --background: oklch(0.145 0 0);
   --foreground: oklch(0.985 0 0);
   --card: oklch(0.145 0 0);
@@ -118,8 +121,80 @@
     @apply border-border outline-ring/50;
   }
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground transition-colors duration-300;
   }
+}
+
+/* Theme-aware background gradients */
+.bg-empire-gradient {
+  @apply bg-gradient-to-b;
+  background-image: linear-gradient(
+    to bottom,
+    theme("colors.slate.900"),
+    theme("colors.blue.900"),
+    theme("colors.slate.900")
+  );
+}
+
+.light .bg-empire-gradient {
+  background-image: linear-gradient(
+    to bottom,
+    theme("colors.amber.50"),
+    theme("colors.blue.50"),
+    theme("colors.amber.50")
+  );
+}
+
+/* Theme-aware card backgrounds */
+.bg-empire-card {
+  @apply bg-slate-900/50 border-amber-500/20;
+}
+
+.light .bg-empire-card {
+  @apply bg-white/80 border-amber-500/30 shadow-lg;
+}
+
+/* Theme-aware text colors */
+.text-empire-primary {
+  @apply text-white;
+}
+
+.light .text-empire-primary {
+  @apply text-slate-900;
+}
+
+.text-empire-secondary {
+  @apply text-gray-300;
+}
+
+.light .text-empire-secondary {
+  @apply text-gray-600;
+}
+
+.text-empire-muted {
+  @apply text-gray-400;
+}
+
+.light .text-empire-muted {
+  @apply text-gray-500;
+}
+
+/* Theme-aware hover effects */
+.hover-empire-card {
+  @apply hover:border-amber-500/40 hover:shadow-2xl hover:shadow-amber-500/10;
+}
+
+.light .hover-empire-card {
+  @apply hover:border-amber-500/50 hover:shadow-2xl hover:shadow-amber-500/20;
+}
+
+/* Theme-aware backdrop effects */
+.backdrop-empire {
+  @apply bg-slate-900/80 backdrop-blur-sm;
+}
+
+.light .backdrop-empire {
+  @apply bg-white/90 backdrop-blur-sm;
 }
 
 /* Custom animations */
@@ -185,6 +260,10 @@
   animation: shimmer 2s infinite;
 }
 
+.light .animate-shimmer {
+  background: linear-gradient(90deg, transparent, rgba(0, 0, 0, 0.1), transparent);
+}
+
 .animate-glow {
   animation: glow 2s ease-in-out infinite alternate;
 }
@@ -201,13 +280,17 @@
   transform: translateY(0);
 }
 
-/* Custom scrollbar */
+/* Custom scrollbar - theme aware */
 ::-webkit-scrollbar {
   width: 8px;
 }
 
 ::-webkit-scrollbar-track {
   background: rgba(15, 23, 42, 0.5);
+}
+
+.light ::-webkit-scrollbar-track {
+  background: rgba(248, 250, 252, 0.8);
 }
 
 ::-webkit-scrollbar-thumb {
@@ -280,6 +363,27 @@ canvas {
   -webkit-backdrop-filter: blur(12px);
 }
 
+/* Theme transition for smooth switching */
+* {
+  transition-property: background-color, border-color, color, fill, stroke, opacity, box-shadow, transform, filter,
+    backdrop-filter;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 300ms;
+}
+
+/* Light theme specific adjustments */
+.light {
+  /* Light theme particle effects */
+  --particle-color: rgba(245, 158, 11, 0.3);
+  --glow-color: rgba(245, 158, 11, 0.2);
+}
+
+.dark {
+  /* Dark theme particle effects */
+  --particle-color: rgba(251, 191, 36, 0.5);
+  --glow-color: rgba(251, 191, 36, 0.3);
+}
+
 /* Mobile responsive improvements */
 @media (max-width: 768px) {
   .container {
@@ -296,5 +400,40 @@ canvas {
 
   .group:hover .group-hover\:translate-x-1 {
     transform: translateX(0.125rem);
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .text-empire-primary {
+    @apply text-black;
+  }
+
+  .dark .text-empire-primary {
+    @apply text-white;
+  }
+
+  .bg-empire-card {
+    @apply border-2;
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .animate-float,
+  .animate-gradient,
+  .animate-shimmer,
+  .animate-glow,
+  .animate-bounce,
+  .animate-pulse,
+  .animate-ping,
+  .animate-spin {
+    animation: none;
+  }
+
+  * {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
   }
 }

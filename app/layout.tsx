@@ -3,6 +3,7 @@ import type { Metadata } from "next"
 import { GeistSans } from "geist/font/sans"
 import { GeistMono } from "geist/font/mono"
 import { LanguageProvider } from "@/contexts/language-context"
+import { ThemeProvider } from "@/contexts/theme-context"
 import "./globals.css"
 
 export const metadata: Metadata = {
@@ -50,8 +51,9 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <head>
+        <meta name="theme-color" content="#0f172a" />
         <style>{`
 html {
   font-family: ${GeistSans.style.fontFamily};
@@ -61,7 +63,9 @@ html {
         `}</style>
       </head>
       <body>
-        <LanguageProvider>{children}</LanguageProvider>
+        <ThemeProvider>
+          <LanguageProvider>{children}</LanguageProvider>
+        </ThemeProvider>
       </body>
     </html>
   )
