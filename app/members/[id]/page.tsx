@@ -11,17 +11,7 @@ import { ParticleBackground } from "@/components/particle-background"
 import { ScrollReveal } from "@/components/scroll-reveal"
 import { useLanguage } from "@/contexts/language-context"
 import { getEmpireData, formatDate } from "@/data/empire-data"
-import { getMemberById } from "@/data/members-data"
-
-const roleColors = {
-  emperor: "from-amber-500 to-amber-600",
-  minister: "from-blue-500 to-blue-600",
-  guardian: "from-green-500 to-green-600",
-  creator: "from-purple-500 to-purple-600",
-  explorer: "from-indigo-500 to-indigo-600",
-  prince: "from-pink-500 to-pink-600",
-  princess: "from-rose-500 to-rose-600",
-}
+import { getMemberById, roleColors } from "@/data/members-data"
 
 export default function MemberProfilePage() {
   const params = useParams()

@@ -23,6 +23,17 @@ export interface Member {
   isActive: boolean
 }
 
+export const roleColors = {
+  emperor: "from-amber-500 to-amber-600",
+  minister: "from-blue-500 to-blue-600",
+  guardian: "from-green-500 to-green-600",
+  creator: "from-purple-500 to-purple-600",
+  explorer: "from-indigo-500 to-indigo-600",
+  prince: "from-pink-500 to-pink-600",
+  princess: "from-rose-500 to-rose-600",
+  catgirl: "from-teal-500 to-teal-600",
+}
+
 export const MEMBERS_DATA: Member[] = [
   {
     id: "chengyza",
