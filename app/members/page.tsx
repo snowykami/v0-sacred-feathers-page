@@ -59,6 +59,21 @@ export default function MembersPage() {
       label: empireData.content.members.roles.explorer,
       count: MEMBERS_DATA.filter((m) => m.role === "explorer" && m.isActive).length,
     },
+    {
+      key: "prince",
+      label: empireData.content.members.roles.prince,
+      count: MEMBERS_DATA.filter((m) => m.role === "prince" && m.isActive).length,
+    },
+    {
+      key: "princess",
+      label: empireData.content.members.roles.princess,
+      count: MEMBERS_DATA.filter((m) => m.role === "princess" && m.isActive).length,
+    },
+    {
+      key: "catgirl",
+      label: empireData.content.members.roles.catgirl,
+      count: MEMBERS_DATA.filter((m) => m.role === "catgirl" && m.isActive).length,
+    },
   ]
 
   return (
