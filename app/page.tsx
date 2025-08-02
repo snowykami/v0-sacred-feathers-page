@@ -24,9 +24,11 @@ import { ParticleBackground } from "@/components/particle-background"
 import { FloatingElements } from "@/components/floating-elements"
 import { ScrollReveal } from "@/components/scroll-reveal"
 import { GlowingOrb } from "@/components/glowing-orb"
+import { LanguageSelector } from "@/components/language-selector"
+import { useLanguage } from "@/contexts/language-context"
 import { useEffect, useState } from "react"
 import {
-  EMPIRE_DATA,
+  getEmpireData,
   calculateDaysSinceFounding,
   formatDate,
   getCopyrightYears,
@@ -46,9 +48,12 @@ const iconMap = {
 } as const
 
 export default function SacredFeathersEmpire() {
+  const { language } = useLanguage()
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
   const [daysSinceFounding, setDaysSinceFounding] = useState(0)
   const [copyrightYears, setCopyrightYears] = useState("2024")
+
+  const empireData = getEmpireData(language)
 
   useEffect(() => {
     const handleMouseMove = (e) => {
@@ -64,8 +69,10 @@ export default function SacredFeathersEmpire() {
   }, [])
 
   // 更新成就数据中的建国天数
-  const updatedAchievements = EMPIRE_DATA.achievements.map((achievement) =>
-    achievement.label === "建国天数" ? { ...achievement, number: daysSinceFounding.toString() } : achievement,
+  const updatedAchievements = empireData.content.achievements.items.map((achievement) =>
+    achievement.label.includes("Days") || achievement.label.includes("天数") || achievement.label.includes("日数")
+      ? { ...achievement, number: daysSinceFounding.toString() }
+      : achievement,
   )
 
   return (
@@ -95,23 +102,31 @@ export default function SacredFeathersEmpire() {
               </div>
               <div className="transform transition-all duration-300 group-hover:translate-x-1">
                 <h1 className="text-xl font-bold text-white bg-gradient-to-r from-white to-amber-200 bg-clip-text text-transparent">
-                  {EMPIRE_DATA.name.english}
+                  {empireData.name.english}
                 </h1>
-                <p className="text-xs text-amber-400 animate-pulse">{EMPIRE_DATA.name.chinese}</p>
+                <p className="text-xs text-amber-400 animate-pulse">{empireData.name.chinese}</p>
               </div>
             </div>
-            <nav className="hidden md:flex items-center space-x-6">
-              {["关于帝国", "帝国成就", "历史", "加入我们"].map((item, index) => (
-                <Link
-                  key={item}
-                  href={`#${["about", "achievements", "history", "join"][index]}`}
-                  className="text-white hover:text-amber-400 transition-all duration-300 relative group px-2 py-1"
-                >
-                  <span className="relative z-10">{item}</span>
-                  <div className="absolute inset-0 bg-amber-400/10 rounded-lg scale-0 group-hover:scale-100 transition-transform duration-300"></div>
-                </Link>
-              ))}
-            </nav>
+            <div className="flex items-center space-x-6">
+              <nav className="hidden md:flex items-center space-x-6">
+                {[
+                  empireData.content.nav.about,
+                  empireData.content.nav.achievements,
+                  empireData.content.nav.history,
+                  empireData.content.nav.join,
+                ].map((item, index) => (
+                  <Link
+                    key={item}
+                    href={`#${["about", "achievements", "history", "join"][index]}`}
+                    className="text-white hover:text-amber-400 transition-all duration-300 relative group px-2 py-1"
+                  >
+                    <span className="relative z-10">{item}</span>
+                    <div className="absolute inset-0 bg-amber-400/10 rounded-lg scale-0 group-hover:scale-100 transition-transform duration-300"></div>
+                  </Link>
+                ))}
+              </nav>
+              <LanguageSelector />
+            </div>
           </div>
         </div>
       </header>
@@ -144,29 +159,29 @@ export default function SacredFeathersEmpire() {
 
             <ScrollReveal delay={200}>
               <h1 className="text-6xl md:text-8xl font-bold text-transparent bg-gradient-to-r from-white via-amber-200 to-white bg-clip-text mb-4 tracking-tight animate-gradient">
-                {EMPIRE_DATA.name.english}
+                {empireData.name.english}
               </h1>
             </ScrollReveal>
 
             <ScrollReveal delay={400}>
               <h2 className="text-3xl md:text-4xl text-transparent bg-gradient-to-r from-amber-400 via-amber-300 to-amber-400 bg-clip-text mb-8 font-light animate-gradient">
-                {EMPIRE_DATA.name.chinese}
+                {empireData.content.hero.subtitle}
               </h2>
             </ScrollReveal>
 
             <ScrollReveal delay={500}>
               <div className="flex items-center justify-center space-x-2 mb-8">
                 <Calendar className="h-5 w-5 text-amber-400" />
-                <span className="text-amber-300 text-lg">建立于 {formatDate(EMPIRE_DATA.foundingDate)}</span>
-                <span className="text-gray-400 text-sm">({getRelativeTime(EMPIRE_DATA.foundingDate)})</span>
+                <span className="text-amber-300 text-lg">
+                  {empireData.content.hero.foundedOn} {formatDate(empireData.foundingDate, language)}
+                </span>
+                <span className="text-gray-400 text-sm">({getRelativeTime(empireData.foundingDate, language)})</span>
               </div>
             </ScrollReveal>
 
             <ScrollReveal delay={600}>
               <p className="text-xl md:text-2xl text-gray-300 mb-12 leading-relaxed max-w-3xl mx-auto">
-                在虚拟世界中崛起的神圣帝国，以智慧与荣耀为基石，
-                <br />
-                用羽毛般轻盈的梦想承载着无限的可能
+                {empireData.content.hero.description}
               </p>
             </ScrollReveal>
 
@@ -175,22 +190,22 @@ export default function SacredFeathersEmpire() {
                 <Button
                   size="lg"
                   className="bg-gradient-to-r from-amber-600 to-amber-700 hover:from-amber-700 hover:to-amber-800 text-white px-10 py-4 text-lg transform transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-amber-500/25 group relative overflow-hidden"
-                  onClick={() => window.open(EMPIRE_DATA.contact.github, "_blank")}
+                  onClick={() => window.open(empireData.contact.github, "_blank")}
                 >
                   <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-700"></div>
                   <Crown className="mr-3 h-6 w-6 group-hover:animate-bounce" />
-                  探索帝国
+                  {empireData.content.hero.exploreButton}
                   <ExternalLink className="ml-2 h-5 w-5 group-hover:animate-pulse" />
                 </Button>
                 <Button
                   size="lg"
                   variant="outline"
                   className="border-2 border-amber-400 text-amber-400 hover:bg-amber-400 hover:text-slate-900 px-10 py-4 text-lg bg-transparent backdrop-blur-sm transform transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-amber-500/25 group relative overflow-hidden"
-                  onClick={() => (window.location.href = `mailto:${EMPIRE_DATA.contact.email}`)}
+                  onClick={() => (window.location.href = `mailto:${empireData.contact.email}`)}
                 >
                   <div className="absolute inset-0 bg-gradient-to-r from-transparent via-amber-400/20 to-transparent -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-700"></div>
                   <Mail className="mr-3 h-6 w-6 group-hover:animate-pulse" />
-                  加入帝国
+                  {empireData.content.hero.joinButton}
                   <Heart className="ml-2 h-5 w-5 group-hover:animate-ping" />
                 </Button>
               </div>
@@ -206,17 +221,17 @@ export default function SacredFeathersEmpire() {
           <ScrollReveal>
             <div className="text-center mb-16">
               <h2 className="text-5xl font-bold text-transparent bg-gradient-to-r from-white to-amber-200 bg-clip-text mb-6">
-                帝国简介
+                {empireData.content.about.title}
               </h2>
               <div className="w-24 h-1 bg-gradient-to-r from-amber-400 to-amber-600 mx-auto mb-6 rounded-full"></div>
               <p className="text-gray-400 text-xl max-w-3xl mx-auto leading-relaxed">
-                神圣羽毛帝国是一个充满创意与梦想的虚拟王国，致力于构建和谐、智慧、繁荣的数字文明
+                {empireData.content.about.subtitle}
               </p>
             </div>
           </ScrollReveal>
 
           <div className="grid md:grid-cols-3 gap-8">
-            {EMPIRE_DATA.about.map((item, index) => {
+            {empireData.content.about.items.map((item, index) => {
               const IconComponent = iconMap[item.icon as keyof typeof iconMap]
               return (
                 <ScrollReveal key={index} delay={index * 200}>
@@ -256,10 +271,10 @@ export default function SacredFeathersEmpire() {
           <ScrollReveal>
             <div className="text-center mb-16">
               <h2 className="text-5xl font-bold text-transparent bg-gradient-to-r from-white to-amber-200 bg-clip-text mb-6">
-                帝国成就
+                {empireData.content.achievements.title}
               </h2>
               <div className="w-24 h-1 bg-gradient-to-r from-amber-400 to-amber-600 mx-auto mb-6 rounded-full"></div>
-              <p className="text-gray-400 text-xl">见证神圣羽毛帝国的辉煌历程</p>
+              <p className="text-gray-400 text-xl">{empireData.content.achievements.subtitle}</p>
             </div>
           </ScrollReveal>
 
@@ -296,10 +311,10 @@ export default function SacredFeathersEmpire() {
           <ScrollReveal>
             <div className="text-center mb-16">
               <h2 className="text-5xl font-bold text-transparent bg-gradient-to-r from-white to-amber-200 bg-clip-text mb-6">
-                帝国历史
+                {empireData.content.history.title}
               </h2>
               <div className="w-24 h-1 bg-gradient-to-r from-amber-400 to-amber-600 mx-auto mb-6 rounded-full"></div>
-              <p className="text-gray-400 text-xl">追溯神圣羽毛帝国的光辉足迹</p>
+              <p className="text-gray-400 text-xl">{empireData.content.history.subtitle}</p>
             </div>
           </ScrollReveal>
 
@@ -308,7 +323,7 @@ export default function SacredFeathersEmpire() {
             <div className="absolute left-6 top-0 bottom-0 w-0.5 bg-gradient-to-b from-amber-400 via-blue-400 to-purple-400"></div>
 
             <div className="space-y-12">
-              {EMPIRE_DATA.history.map((item, index) => {
+              {empireData.content.history.items.map((item, index) => {
                 const IconComponent = iconMap[item.icon as keyof typeof iconMap]
                 return (
                   <ScrollReveal key={index} delay={index * 200}>
@@ -328,8 +343,8 @@ export default function SacredFeathersEmpire() {
                           </Badge>
                           <div className="flex items-center space-x-2 text-amber-400 text-sm">
                             <Calendar className="h-4 w-4" />
-                            <span>{formatDate(item.date)}</span>
-                            <span className="text-gray-500">({getRelativeTime(item.date)})</span>
+                            <span>{formatDate(item.date, language)}</span>
+                            <span className="text-gray-500">({getRelativeTime(item.date, language)})</span>
                           </div>
                         </div>
                         <h3 className="text-2xl font-bold text-white mb-3 group-hover:text-amber-200 transition-colors duration-300">
@@ -365,16 +380,14 @@ export default function SacredFeathersEmpire() {
                   <Sparkles className="absolute -top-2 -right-2 h-8 w-8 text-amber-300 animate-spin" />
                 </div>
                 <h2 className="text-5xl font-bold text-transparent bg-gradient-to-r from-white to-amber-200 bg-clip-text mb-6">
-                  加入神圣羽毛帝国
+                  {empireData.content.join.title}
                 </h2>
-                <p className="text-2xl text-gray-400 mb-12 leading-relaxed">
-                  成为帝国公民，与我们一起在虚拟世界中创造无限可能
-                </p>
+                <p className="text-2xl text-gray-400 mb-12 leading-relaxed">{empireData.content.join.subtitle}</p>
               </div>
             </ScrollReveal>
 
             <div className="grid md:grid-cols-3 gap-8 mb-16">
-              {EMPIRE_DATA.citizenRoles.map((role, index) => {
+              {empireData.content.join.roles.map((role, index) => {
                 const IconComponent = iconMap[role.icon as keyof typeof iconMap]
                 return (
                   <ScrollReveal key={index} delay={index * 100}>
@@ -402,11 +415,11 @@ export default function SacredFeathersEmpire() {
               <Button
                 size="lg"
                 className="bg-gradient-to-r from-amber-600 via-amber-500 to-amber-600 hover:from-amber-700 hover:via-amber-600 hover:to-amber-700 text-white px-16 py-6 text-xl transform transition-all duration-500 hover:scale-110 hover:shadow-2xl hover:shadow-amber-500/25 group relative overflow-hidden animate-gradient"
-                onClick={() => (window.location.href = `mailto:${EMPIRE_DATA.contact.email}`)}
+                onClick={() => (window.location.href = `mailto:${empireData.contact.email}`)}
               >
                 <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></div>
                 <Mail className="mr-3 h-8 w-8 group-hover:animate-bounce" />
-                立即加入帝国
+                {empireData.content.join.button}
                 <Zap className="ml-3 h-6 w-6 group-hover:animate-ping" />
               </Button>
             </ScrollReveal>
@@ -428,9 +441,9 @@ export default function SacredFeathersEmpire() {
                 </div>
                 <div className="transform transition-all duration-300 group-hover:translate-x-1">
                   <h3 className="text-xl font-bold text-transparent bg-gradient-to-r from-white to-amber-200 bg-clip-text">
-                    {EMPIRE_DATA.name.english}
+                    {empireData.name.english}
                   </h3>
-                  <p className="text-sm text-amber-400 animate-pulse">{EMPIRE_DATA.name.chinese}</p>
+                  <p className="text-sm text-amber-400 animate-pulse">{empireData.name.chinese}</p>
                 </div>
               </div>
             </ScrollReveal>
@@ -438,7 +451,7 @@ export default function SacredFeathersEmpire() {
             <ScrollReveal delay={200}>
               <div className="text-center md:text-right">
                 <p className="text-gray-400 text-lg mb-3 bg-gradient-to-r from-gray-400 to-amber-400 bg-clip-text text-transparent">
-                  在虚拟世界中创造无限可能
+                  {empireData.content.footer.tagline}
                 </p>
                 <p className="text-gray-500 text-sm">© {copyrightYears} Sacred Feathers Empire. All rights reserved.</p>
               </div>
@@ -453,15 +466,18 @@ export default function SacredFeathersEmpire() {
                     <div className="w-8 h-8 bg-gradient-to-r from-amber-400/20 to-amber-600/20 rounded-full flex items-center justify-center mr-3">
                       <span className="text-amber-400 text-sm">⚠️</span>
                     </div>
-                    <h4 className="text-amber-400 font-semibold text-lg">免责声明</h4>
+                    <h4 className="text-amber-400 font-semibold text-lg">
+                      {empireData.content.footer.disclaimer.title}
+                    </h4>
                   </div>
-                  <p className="text-gray-400 text-sm leading-relaxed mb-2">
-                    本"神圣羽毛帝国"(Sacred Feathers Empire) 为纯虚拟组织和创意项目， 仅用于娱乐、学习和创作目的。
-                  </p>
-                  <p className="text-gray-500 text-xs leading-relaxed">
-                    本项目与现实世界的任何政治组织、政府机构或政治活动无关，
-                    不涉及任何真实的政治主张、领土声明或政治立场。 所有内容均为虚构，请勿与现实政治混淆。
-                  </p>
+                  {empireData.content.footer.disclaimer.content.map((text, index) => (
+                    <p
+                      key={index}
+                      className={`${index === 0 ? "text-gray-400 text-sm" : "text-gray-500 text-xs"} leading-relaxed ${index < empireData.content.footer.disclaimer.content.length - 1 ? "mb-2" : ""}`}
+                    >
+                      {text}
+                    </p>
+                  ))}
                 </div>
               </div>
             </div>
