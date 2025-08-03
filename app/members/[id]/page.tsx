@@ -1,6 +1,7 @@
 "use client"
 
 import { useParams } from "next/navigation"
+import { useState } from "react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
@@ -9,6 +10,7 @@ import { Calendar, Mail, Github, ExternalLink, Twitter, Star, Trophy, Code, Targ
 import Link from "next/link"
 import { ParticleBackground } from "@/components/particle-background"
 import { ScrollReveal } from "@/components/scroll-reveal"
+import { ImageViewer } from "@/components/image-viewer"
 import { useLanguage } from "@/contexts/language-context"
 import { getEmpireData, formatDate } from "@/data/empire-data"
 import { getMemberById, roleColors, type Member } from "@/data/members-data"
@@ -22,7 +24,7 @@ function ProfileHeroSection({ member, roleName, roleColor, language }: {
   language: Language
 }) {
   return (
-    <section className="relative pt-10 overflow-hidden">
+    <section className="relative pt-20 overflow-hidden">
       <div className="container mx-auto px-4 relative z-10">
         <div className="max-w-4xl mx-auto">
           <ScrollReveal>
@@ -102,38 +104,65 @@ function MemberGallerySection({ member, empireData, language }: {
   empireData: any
   language: Language
 }) {
+  const [isViewerOpen, setIsViewerOpen] = useState(false)
+  const [selectedImageIndex, setSelectedImageIndex] = useState(0)
+
   if (!member.pictures || member.pictures.length === 0) {
     return null
   }
 
+  const handleImageClick = (index: number) => {
+    setSelectedImageIndex(index)
+    setIsViewerOpen(true)
+  }
+
   return (
-    <section className="pb-10">
-      <div className="container mx-auto px-4">
-        <ScrollReveal>
-          <Card className="bg-slate-900/50 border-amber-500/20 max-w-4xl mx-auto">
-            <CardHeader>
-              <CardTitle className="flex items-center space-x-2 text-white">
-                <span>{empireData.content.members.gallery || (language === "zh" ? "画廊" : language === "ja" ? "ギャラリー" : "Gallery")}</span>
-              </CardTitle>
-            </CardHeader>
-            <CardContent>
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-                {member.pictures.map((url, idx) => (
-                  <div key={idx} className="rounded-lg overflow-hidden border border-amber-400/20 bg-slate-800/40">
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img
-                      src={url}
-                      alt={`Gallery image ${idx + 1}`}
-                      className="w-full h-60 object-cover transition-transform duration-200 hover:scale-105"
-                    />
-                  </div>
-                ))}
-              </div>
-            </CardContent>
-          </Card>
-        </ScrollReveal>
-      </div>
-    </section>
+    <>
+      <section className="pb-10">
+        <div className="container mx-auto px-4">
+          <ScrollReveal>
+            <Card className="bg-slate-900/50 border-amber-500/20 max-w-4xl mx-auto">
+              <CardHeader>
+                <CardTitle className="flex items-center space-x-2 text-white">
+                  <span>{empireData.content.members.gallery || (language === "zh" ? "画廊" : language === "ja" ? "ギャラリー" : "Gallery")}</span>
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                  {member.pictures.map((url, idx) => (
+                    <div 
+                      key={idx} 
+                      className="rounded-lg overflow-hidden border border-amber-400/20 bg-slate-800/40 cursor-pointer group relative"
+                      onClick={() => handleImageClick(idx)}
+                    >
+                      {/* eslint-disable-next-line @next/next/no-img-element */}
+                      <img
+                        src={url}
+                        alt={`Gallery image ${idx + 1}`}
+                        className="w-full h-60 object-cover transition-transform duration-200 group-hover:scale-105"
+                      />
+                      {/* Hover overlay */}
+                      <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-200 flex items-center justify-center">
+                        <div className="text-white text-sm bg-black/50 px-2 py-1 rounded">
+                          {language === "zh" ? "点击查看" : language === "ja" ? "クリックして表示" : "Click to view"}
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </CardContent>
+            </Card>
+          </ScrollReveal>
+        </div>
+      </section>
+
+      <ImageViewer
+        images={member.pictures}
+        initialIndex={selectedImageIndex}
+        isOpen={isViewerOpen}
+        onClose={() => setIsViewerOpen(false)}
+      />
+    </>
   )
 }
 
