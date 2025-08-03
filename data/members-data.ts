@@ -33,6 +33,7 @@ export const roleColors = {
   princess: "from-rose-500 to-rose-600",
   catgirl: "from-teal-500 to-teal-600",
   mascot: "from-rose-300 to-rose-400",
+  medic_agent: "from-teal-500 to-cyan-400"
 }
 
 export const MEMBERS_DATA: Member[] = [
@@ -291,7 +292,7 @@ export const MEMBERS_DATA: Member[] = [
     id: "starset",
     name: "川崎星夕",
     avatar: "https://starset.top/images/StarsetICON.webp",
-    role: "medic agent",
+    role: "medic_agent",
     joinDate: "2024-02-18",
     specialties: ["Planning", "Organization Management", "Communicating"],
     achievements: [
