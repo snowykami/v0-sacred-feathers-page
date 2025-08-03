@@ -4,7 +4,7 @@ export interface Member {
   id: string
   name: string
   avatar: string
-  role: "emperor" | "minister" | "guardian" | "creator" | "explorer" | "prince" | "princess" | "catgirl"
+  role: "emperor" | "minister" | "guardian" | "creator" | "explorer" | "prince" | "princess" | "catgirl" | "mascot"
   joinDate: string
   specialties: string[]
   achievements: string[]
@@ -32,6 +32,7 @@ export const roleColors = {
   prince: "from-pink-500 to-pink-600",
   princess: "from-rose-500 to-rose-600",
   catgirl: "from-teal-500 to-teal-600",
+  mascot: "from-rose-300 to-rose-400",
 }
 
 export const MEMBERS_DATA: Member[] = [
@@ -258,6 +259,31 @@ export const MEMBERS_DATA: Member[] = [
       projectsLed: 0,
       contributionsCount: 0,
       yearsActive: 0,
+    },
+    isActive: true,
+  },
+  {
+    id: "GreatFood404",
+    name: "似梦玄",
+    avatar: "https://github.com/GreatFood404.png",
+    role: "mascot",
+    joinDate: "2024-08-02",
+    specialties: ["Fishing"],
+    achievements: ["Improve The Luck Of The Empire"],
+    contact:{
+      email: "GreatFood404@outlook.com",
+      github: "https://github.com/GreatFood404",
+      twitter: "https://twitter.com/GreatFood404",
+    },
+    bio:{
+      zh: "一只吉祥物，存在总会莫名其妙提高幸运，但大部分时候都失灵 。",
+      en: "A happy character, which will sometimes increase the luck of the empire, but most of the time will fail. ",
+      ja: "一匹吉祥物で、帝国の運気を向上させることがありますが、大部分の場合、運気が失敗します。",
+    },
+    stats:{
+      projectsLed: 0,
+      contributionsCount: 114,
+      yearsActive: 1,
     },
     isActive: true,
   },
