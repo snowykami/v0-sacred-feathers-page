@@ -32,10 +32,11 @@ Continue building your app on:
 ## 添加和更新个人信息
 
 1. 先fork本仓库
-2. 克隆fork的仓库，在 `data/members-data.ts` 中添加个人信息
+2. 克隆fork的仓库，在 `data/members-data.json` 中添加个人信息
    - 确保 `id` 是唯一的
    - `name` 是你的名字
    - `avatar` 是你的头像链接
+   - 其他字段可以参考现有数据
 3. push到你的分支，然后在GitHub上发起Pull Request
 
 ## 添加新的角色词条
@@ -65,21 +66,3 @@ Continue building your app on:
 - 静态页面：在页面组件中导出 `metadata` 对象
 - 动态页面：使用 `generateMetadata` 函数
 - 客户端组件：使用 `next/head` 的 `Head` 组件
-
-### 示例
-```typescript
-// 静态 metadata
-export const metadata: Metadata = {
-  title: 'Members - Empire Citizens',
-  description: '神圣羽毛帝国的优秀成员们...',
-}
-
-// 动态 metadata
-export async function generateMetadata({ params }): Promise<Metadata> {
-  const member = getMemberById(params.id)
-  return {
-    title: `${member.name} - Empire Member Profile`,
-    description: member.bio.en,
-  }
-}
-```
