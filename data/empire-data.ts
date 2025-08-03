@@ -20,6 +20,7 @@ export interface EmpireData {
       description: string
       exploreButton: string
       joinButton: string
+      labButton: string
     }
     about: {
       title: string
@@ -119,6 +120,7 @@ const EMPIRE_DATA_MULTILANG: Record<Language, EmpireData> = {
         description: "在虚拟世界中崛起的神圣帝国，以智慧与荣耀为基石，用羽毛般轻盈的梦想承载着无限的可能",
         exploreButton: "探索帝国",
         joinButton: "加入帝国",
+        labButton: "轻雪社区",
       },
       about: {
         title: "帝国简介",
@@ -303,6 +305,7 @@ const EMPIRE_DATA_MULTILANG: Record<Language, EmpireData> = {
           "A sacred empire rising in the virtual world, built on the foundation of wisdom and glory, carrying infinite possibilities with dreams as light as feathers",
         exploreButton: "Explore Empire",
         joinButton: "Join Empire",
+        labButton: "Liteyuki Lab",
       },
       about: {
         title: "About Empire",
@@ -495,6 +498,7 @@ const EMPIRE_DATA_MULTILANG: Record<Language, EmpireData> = {
           "仮想世界に立ち上がった神聖な帝国。知恵と栄光を基盤とし、羽根のように軽やかな夢で無限の可能性を担う",
         exploreButton: "帝国を探索",
         joinButton: "帝国に参加",
+        labButton: "Liteyuki Lab",
       },
       about: {
         title: "帝国について",

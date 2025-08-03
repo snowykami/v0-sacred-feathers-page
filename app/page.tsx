@@ -164,6 +164,17 @@ export default function SacredFeathersEmpire() {
                   {empireData.content.hero.joinButton}
                   <Heart className="ml-2 h-5 w-5 group-hover:animate-ping" />
                 </Button>
+                <Button
+                  size="lg"
+                  variant="outline"
+                  className="border-2 button-text-primary hover:bg-blue-400 hover:text-slate-900 px-10 py-4 text-lg bg-transparent backdrop-blur-sm transform transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-blue-500/25 group relative overflow-hidden border-blue-400"
+                  onClick={() => window.open("https://lab.liteyuki.org/@sf_empire", "_blank")}
+                >
+                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-blue-400/20 to-transparent -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-700"></div>
+                  <ExternalLink className="mr-3 h-6 w-6 group-hover:animate-pulse" />
+                  {empireData.content.hero.labButton}
+                  <Star className="ml-2 h-5 w-5 group-hover:animate-spin" />
+                </Button>
               </div>
             </ScrollReveal>
           </div>
