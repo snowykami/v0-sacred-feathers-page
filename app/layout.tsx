@@ -9,7 +9,7 @@ import "./globals.css"
 export const metadata: Metadata = {
   title: {
     default: "Sacred Feathers | 神圣羽毛帝国",
-    template: "%s | Sacred Feathers",
+    template: "%s - Sacred Feathers | 神圣羽毛帝国",
   },
   description:
     "神圣羽毛帝国 - 在虚拟世界中崛起的神圣帝国，以智慧与荣耀为基石，用羽毛般轻盈的梦想承载着无限的可能。加入我们，在数字文明中创造属于你的传奇。",

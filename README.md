@@ -41,8 +41,45 @@ Continue building your app on:
 ## 添加新的角色词条
 
 1. 在 `data/members-data.ts` 中添加新的角色词条
-   - 在 `Member interface` 的 ` role` 字段中添加新的角色
-   - 在 `roleColors` 中添加对应的颜色
+   - 在 `ROLES` 常量数组中添加新的角色字符串
+   - 在 `roleColors` 对象中添加对应的颜色样式
+   - 类型系统会自动推导出新的 `Role` 类型
 
-2. 在 `app/members/page.tsx` MembersPage 组件中
-   - 在 `roles` 常量数组中参照现有角色添加新的角色
+2. 在帝国数据文件中添加多语言支持
+   - 在 `data/empire-data.ts` 的各语言角色翻译中添加新角色的翻译
+
+3. 角色相关功能会自动支持新角色
+   - 成员筛选功能
+   - 角色统计计算
+   - 角色颜色主题
+
+## 页面标题和 SEO 优化
+
+项目使用 Next.js App Router 的 Metadata API 来管理页面标题和 SEO：
+
+### 全局设置
+- `app/layout.tsx` 包含全局 metadata 和标题模板
+- 模板格式：`页面标题 | Sacred Feathers`
+
+### 页面级设置
+- 静态页面：在页面组件中导出 `metadata` 对象
+- 动态页面：使用 `generateMetadata` 函数
+- 客户端组件：使用 `next/head` 的 `Head` 组件
+
+### 示例
+```typescript
+// 静态 metadata
+export const metadata: Metadata = {
+  title: 'Members - Empire Citizens',
+  description: '神圣羽毛帝国的优秀成员们...',
+}
+
+// 动态 metadata
+export async function generateMetadata({ params }): Promise<Metadata> {
+  const member = getMemberById(params.id)
+  return {
+    title: `${member.name} - Empire Member Profile`,
+    description: member.bio.en,
+  }
+}
+```

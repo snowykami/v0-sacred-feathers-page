@@ -13,6 +13,7 @@ import { getEmpireData } from "@/data/empire-data"
 import { MEMBERS_DATA, getActiveMembersCount } from "@/data/members-data"
 import type { Member } from "@/data/members-data"
 
+
 export default function MembersPage() {
   const { language } = useLanguage()
   const empireData = getEmpireData(language)
