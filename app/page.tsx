@@ -75,7 +75,7 @@ export default function SacredFeathersEmpire() {
     <div className="min-h-screen bg-empire-gradient relative overflow-hidden">
       {/* Cursor glow effect */}
       <div
-        className="fixed w-96 h-96 bg-amber-400/5 rounded-full blur-3xl pointer-events-none transition-all duration-300 ease-out z-0"
+        className="fixed w-96 h-96 bg-amber-400/5 rounded-full blur-3xl pointer-events-none z-0"
         style={{
           left: mousePosition.x - 192,
           top: mousePosition.y - 192,
