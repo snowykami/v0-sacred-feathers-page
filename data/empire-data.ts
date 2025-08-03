@@ -92,6 +92,7 @@ export interface EmpireData {
         catgirl: string
         mascot: string
       }
+      gallery: string
       viewProfile: string
       backToMembers: string
       joinDate: string
@@ -278,6 +279,7 @@ const EMPIRE_DATA_MULTILANG: Record<Language, EmpireData> = {
           catgirl: "猫娘",
           mascot: " 吉祥物",
         },
+        gallery: "画廊",
         viewProfile: "查看详情",
         backToMembers: "返回成员列表",
         joinDate: "加入日期",
@@ -471,6 +473,7 @@ const EMPIRE_DATA_MULTILANG: Record<Language, EmpireData> = {
           catgirl: "Catgirl",
           mascot: "Mascot",
         },
+        gallery: "Gallery",
         viewProfile: "View Profile",
         backToMembers: "Back to Members",
         joinDate: "Join Date",
@@ -661,6 +664,7 @@ const EMPIRE_DATA_MULTILANG: Record<Language, EmpireData> = {
           catgirl: "猫娘",
           mascot: "マスコット",
         },
+        gallery: "ギャラリー",
         viewProfile: "プロフィール表示",
         backToMembers: "メンバー一覧に戻る",
         joinDate: "参加日",

@@ -25,6 +25,7 @@ export interface Member {
     yearsActive: number
   }
   isActive: boolean
+  pictures: string[]
 }
 
 export const roleColors = {

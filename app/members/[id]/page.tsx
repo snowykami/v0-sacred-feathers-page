@@ -105,7 +105,36 @@ export default function MemberProfilePage() {
           </div>
         </div>
       </section>
-
+      {/* Gallery Section */}
+      {member.pictures && member.pictures.length > 0 && (
+        <section className="py-10">
+          <div className="container mx-auto px-4">
+            <ScrollReveal>
+              <Card className="bg-slate-900/50 border-amber-500/20 max-w-4xl mx-auto">
+                <CardHeader>
+                  <CardTitle className="flex items-center space-x-2 text-white">
+                    <span>{empireData.content.members.gallery || (language === "zh" ? "画廊" : language === "ja" ? "ギャラリー" : "Gallery")}</span>
+                  </CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+                    {member.pictures.map((url, idx) => (
+                      <div key={idx} className="rounded-lg overflow-hidden border border-amber-400/20 bg-slate-800/40">
+                        {/* eslint-disable-next-line @next/next/no-img-element */}
+                        <img
+                          src={url}
+                          alt={`Gallery image ${idx + 1}`}
+                          className="w-full h-40 object-cover transition-transform duration-200 hover:scale-105"
+                        />
+                      </div>
+                    ))}
+                  </div>
+                </CardContent>
+              </Card>
+            </ScrollReveal>
+          </div>
+        </section>
+      )}
       {/* Details Section */}
       <section className="py-20 bg-slate-800/50 backdrop-blur-sm">
         <div className="container mx-auto px-4">
