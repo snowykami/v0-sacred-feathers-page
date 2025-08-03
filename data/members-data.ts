@@ -287,6 +287,36 @@ export const MEMBERS_DATA: Member[] = [
     },
     isActive: true,
   },
+  {
+    id: "starset",
+    name: "川崎星夕",
+    avatar: "https://starset.top/images/StarsetICON.webp",
+    role: "medic agent",
+    joinDate: "2024-02-18",
+    specialties: ["Planning", "Organization Management", "Communicating"],
+    achievements: [
+      "Made Uncountable Citizens Alive",
+      "Won the Hearts of Every Citizens",
+      "Helped to Organize the Council",
+    ],
+    contact: {
+      email: "starsetnight@outlook.com",
+      github: "https://github.com/StarsetNight",
+      website: "https://starset.top",
+    },
+    bio: {
+      zh: "神圣羽毛帝国医疗干员，通常负责心理医学工作，不参与其他医学工作，力求保证帝国人民的心理健康。",
+      en: "Medic agent of the Sacred Feather Empire are usually responsible for psychological medicine and do not participate in other medical work, striving to ensure the mental health of the empire's people.",
+      ja: "聖なる羽根帝国医療スタッフで、通常は心理医学を担当し、他の医学には関与せず、帝国の人々の心の健康を追求しています。",
+    },
+    stats: {
+      projectsLed: 23,
+      contributionsCount: 621,
+      yearsActive: 1,
+    },
+    isActive: true,
+  },
+]
 ]
 
 export function getMemberById(id: string): Member | undefined {
