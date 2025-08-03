@@ -4,6 +4,7 @@ import { GeistSans } from "geist/font/sans"
 import { GeistMono } from "geist/font/mono"
 import { LanguageProvider } from "@/contexts/language-context"
 import { NavigationHeader } from "@/components/navigation-header"
+import { Footer } from "@/components/footer"
 import "./globals.css"
 
 export const metadata: Metadata = {
@@ -66,7 +67,8 @@ html {
         <LanguageProvider>
           <NavigationHeader />
           {children}
-          </LanguageProvider>
+          <Footer />
+        </LanguageProvider>
       </body>
     </html>
   )

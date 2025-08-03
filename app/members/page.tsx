@@ -215,13 +215,6 @@ export default function MembersPage() {
           )}
         </div>
       </section>
-
-      {/* Footer */}
-      <footer className="border-t border-amber-500/20 bg-slate-900/90 backdrop-blur-sm py-8 relative overflow-hidden">
-        <div className="container mx-auto px-4 text-center">
-          <p className="text-gray-400">© 2024 Sacred Feathers Empire. All rights reserved.</p>
-        </div>
-      </footer>
     </div>
   )
 }
