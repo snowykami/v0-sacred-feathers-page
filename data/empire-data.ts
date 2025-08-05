@@ -64,6 +64,7 @@ export interface EmpireData {
         color: string
       }>
       button: string
+      qrDescription?: string // 可选的二维码描述
     }
     footer: {
       tagline: string

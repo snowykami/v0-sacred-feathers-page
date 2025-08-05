@@ -23,6 +23,7 @@ import { ParticleBackground } from "@/components/particle-background"
 import { FloatingElements } from "@/components/floating-elements"
 import { ScrollReveal } from "@/components/scroll-reveal"
 import { GlowingOrb } from "@/components/glowing-orb"
+import { QRCodeModal } from "@/components/qr-code-modal"
 import { useLanguage } from "@/contexts/language-context"
 import { useEffect, useState } from "react"
 import {
@@ -49,6 +50,7 @@ export default function SacredFeathersEmpire() {
   const { language } = useLanguage()
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
   const [daysSinceFounding, setDaysSinceFounding] = useState(0)
+  const [isQRModalOpen, setIsQRModalOpen] = useState(false)
 
   const empireData = getEmpireData(language)
 
@@ -157,7 +159,7 @@ export default function SacredFeathersEmpire() {
                   size="lg"
                   variant="outline"
                   className="border-2 button-text-primary hover:bg-amber-400 hover:text-slate-900 px-10 py-4 text-lg bg-transparent backdrop-blur-sm transform transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-amber-500/25 group relative overflow-hidden border-amber-400"
-                  onClick={() => (window.location.href = `mailto:${empireData.contact.email}`)}
+                  onClick={() => setIsQRModalOpen(true)}
                 >
                   <div className="absolute inset-0 bg-gradient-to-r from-transparent via-amber-400/20 to-transparent -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-700"></div>
                   <Mail className="mr-3 h-6 w-6 group-hover:animate-pulse" />
@@ -384,7 +386,7 @@ export default function SacredFeathersEmpire() {
               <Button
                 size="lg"
                 className="bg-gradient-to-r from-amber-600 via-amber-500 to-amber-600 hover:from-amber-700 hover:via-amber-600 hover:to-amber-700 text-white px-16 py-6 text-xl transform transition-all duration-500 hover:scale-110 hover:shadow-2xl hover:shadow-amber-500/25 group relative overflow-hidden animate-gradient"
-                onClick={() => (window.location.href = `mailto:${empireData.contact.email}`)}
+                onClick={() => setIsQRModalOpen(true)}
               >
                 <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></div>
                 <Mail className="mr-3 h-8 w-8 group-hover:animate-bounce" />
@@ -395,6 +397,15 @@ export default function SacredFeathersEmpire() {
           </div>
         </div>
       </section>
+
+      {/* QR Code Modal */}
+      <QRCodeModal
+        isOpen={isQRModalOpen}
+        onClose={() => setIsQRModalOpen(false)}
+        title={empireData.content.join.title} // Use the title from the empire data
+        qrCodeUrl="/qrcode.jpg"
+        description={empireData.content.join.qrDescription} // Use the description from the empire data
+      />
     </div>
   )
 }
