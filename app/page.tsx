@@ -403,7 +403,7 @@ export default function SacredFeathersEmpire() {
         isOpen={isQRModalOpen}
         onClose={() => setIsQRModalOpen(false)}
         title={empireData.content.join.title} // Use the title from the empire data
-        qrCodeUrl="/qrcode.jpg"
+        qrCodeUrl="/qqgroup-qrcode.png"
         description={empireData.content.join.qrDescription} // Use the description from the empire data
       />
     </div>
