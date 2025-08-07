@@ -15,6 +15,7 @@ export function ImageViewer({ images, initialIndex, isOpen, onClose }: ImageView
   const [currentIndex, setCurrentIndex] = useState(initialIndex)
   const [touchStart, setTouchStart] = useState<number | null>(null)
   const [touchEnd, setTouchEnd] = useState<number | null>(null)
+  const [failedImages, setFailedImages] = useState<Set<number>>(new Set())
   const imageRef = useRef<HTMLImageElement>(null)
 
   // Minimum distance required to trigger swipe
@@ -63,6 +64,10 @@ export function ImageViewer({ images, initialIndex, isOpen, onClose }: ImageView
 
   const goToPrevious = () => {
     setCurrentIndex((prev) => (prev - 1 + images.length) % images.length)
+  }
+
+  const handleImageError = (index: number) => {
+    setFailedImages(prev => new Set(prev).add(index))
   }
 
   const onTouchStart = (e: React.TouchEvent) => {
@@ -144,11 +149,12 @@ export function ImageViewer({ images, initialIndex, isOpen, onClose }: ImageView
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           ref={imageRef}
-          src={images[currentIndex]}
+          src={failedImages.has(currentIndex) ? "/placeholder.svg" : images[currentIndex]}
           alt={`Gallery image ${currentIndex + 1}`}
           className="max-w-full max-h-full w-auto h-auto object-contain rounded-lg shadow-2xl"
           onClick={(e) => e.stopPropagation()}
           draggable={false}
+          onError={() => handleImageError(currentIndex)}
           style={{ 
             maxWidth: 'calc(100vw - 2rem)', 
             maxHeight: 'calc(100vh - 8rem)' 
@@ -172,10 +178,11 @@ export function ImageViewer({ images, initialIndex, isOpen, onClose }: ImageView
             >
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
-                src={image}
+                src={failedImages.has(index) ? "/placeholder.svg" : image}
                 alt={`Thumbnail ${index + 1}`}
                 className="w-full h-full object-cover"
                 draggable={false}
+                onError={() => handleImageError(index)}
               />
             </button>
           ))}

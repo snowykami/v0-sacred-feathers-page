@@ -106,6 +106,7 @@ function MemberGallerySection({ member, empireData, language }: {
 }) {
   const [isViewerOpen, setIsViewerOpen] = useState(false)
   const [selectedImageIndex, setSelectedImageIndex] = useState(0)
+  const [failedImages, setFailedImages] = useState<Set<number>>(new Set())
 
   if (!member.pictures || member.pictures.length === 0) {
     return null
@@ -114,6 +115,10 @@ function MemberGallerySection({ member, empireData, language }: {
   const handleImageClick = (index: number) => {
     setSelectedImageIndex(index)
     setIsViewerOpen(true)
+  }
+
+  const handleImageError = (index: number) => {
+    setFailedImages(prev => new Set(prev).add(index))
   }
 
   return (
@@ -137,9 +142,10 @@ function MemberGallerySection({ member, empireData, language }: {
                     >
                       {/* eslint-disable-next-line @next/next/no-img-element */}
                       <img
-                        src={url}
+                        src={failedImages.has(idx) ? "/placeholder.svg" : url}
                         alt={`Gallery image ${idx + 1}`}
                         className="w-full h-60 object-cover transition-transform duration-200 group-hover:scale-105"
+                        onError={() => handleImageError(idx)}
                       />
                       {/* Hover overlay */}
                       <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-200 flex items-center justify-center">
