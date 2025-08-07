@@ -132,6 +132,34 @@
     "isActive": true
   },
   {
+    "id": "3890p",
+    "name": "3890p",
+    "avatar": "https://github.com/3890p.png",
+    "role": "minister",
+    "joinDate": "2025-08-01",
+    "specialties": ["外交", "移民局", "硬件开发", "3D打印"],
+    "achievements": [
+      "建立了帝国的移民局",
+      "促进了与其他虚拟国家的外交关系",
+      "推动了帝国的硬件开发和3D打印技术"
+    ],
+    "contact": {
+      "email": "3890p@sacredfeathers.online",
+      "github": "https://github.com/3890p"
+    },
+    "bio": {
+      "zh": "帝国的外交部长，负责与其他虚拟国家的交流和合作。以其出色的外交技巧和对技术的热情著称，致力于推动帝国在全球范围内的发展。",
+      "en": "The empire's Minister of Foreign Affairs, responsible for communication and cooperation with other virtual nations. Renowned for his excellent diplomatic skills and passion for technology, dedicated to promoting the empire's development on a global scale.",
+      "ja": "帝国の外交大臣で、他の仮想国家との交流と協力を担当。優れた外交スキルと技術への情熱で有名で、帝国のグローバルな発展を推進することに尽力している。"
+    },
+    "stats": {
+      "projectsLed": 0,
+      "contributionsCount": 0,
+      "yearsActive": 0
+    },
+    "isActive": true
+  },
+  {
     "id": "nanaloveyuki",
     "name": "若水宁",
     "avatar": "https://github.com/nanaloveyuki.png",
