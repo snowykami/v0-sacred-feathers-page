@@ -99,7 +99,7 @@ export function QRCodeModal({ isOpen, onClose, title, qrCodeUrl, description, im
 
                     {/* Instructions */}
                     <p className="text-gray-400 text-sm">
-                        扫描二维码加入我们的社区
+                        扫描二维码加入我们的社区，若需要在成员页面添加展示信息，请fork本项目仓库，查看README进行添加
                     </p>
                 </div>
 
