@@ -579,7 +579,7 @@
     {
         "id": "floating-point",
         "name": "游离挂载点",
-        "avatar": "/placeholder.jpg",
+        "avatar": "https://cdn.liteyuki.org/logos/kubernetes.png",
         "labels": [
             "management"
         ],
