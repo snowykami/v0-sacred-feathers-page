@@ -44,7 +44,7 @@
         "labels": [
             "management",
             "liteyuki",
-            "crazy-thursdio"
+            "crazy-thursdio", "nonebot"
         ],
         "joinDate": "2024-02-18",
         "specialties": [
@@ -84,7 +84,7 @@
         "role": "guardian",
         "labels": [
             "management",
-            "liteyuki"
+            "liteyuki", "nonebot"
         ],
         "joinDate": "2024-03-15",
         "specialties": [
@@ -167,7 +167,7 @@
         "role": "explorer",
         "labels": [
             "management",
-            "crazy-thursdio"
+            "crazy-thursdio", "nonebot"
         ],
         "joinDate": "2024-05-01",
         "specialties": [
@@ -283,7 +283,7 @@
         "labels": [
             "belongToSnowykami",
             "liteyuki",
-            "crazy-thursdio"
+            "crazy-thursdio", "nonebot"
         ],
         "joinDate": "2024-05-01",
         "specialties": [
@@ -481,6 +481,22 @@
         "isActive": true
     },
     {
+        "id": "asankilp",
+        "name": "Asankilp(undefined羽)",
+        "labels": ["liteyuki", "nonebot"],
+        "avatar": "https://q.qlogo.cn/headimg_dl?dst_uin=3384816498&spec=640",
+        "joinDate": "2024-08-02",
+        "isActive": true
+    },
+    {
+        "id": "horncopper",
+        "name": "HornCopper(铜羽)",
+        "labels": ["liteyuki", "nonebot"],
+        "avatar": "https://q.qlogo.cn/headimg_dl?dst_uin=3349104868&spec=640",
+        "joinDate": "2024-08-02",
+        "isActive": true
+    },
+    {
         "id": "yuxindidetudi",
         "name": "羽新帝の徒弔",
         "labels": ["management"],
@@ -498,7 +514,7 @@
     {
         "id": "shiran",
         "name": "释然(~羽)",
-        "labels": ["liteyuki"],
+        "labels": ["liteyuki", "nonebot"],
         "avatar": "https://q.qlogo.cn/headimg_dl?dst_uin=2488252513&spec=640",
         "joinDate": "2024-08-02",
         "isActive": true

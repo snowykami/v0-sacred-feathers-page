@@ -84,7 +84,7 @@ const expandRelationships = (relationships: RelationshipData[], members: Member[
     });
 };
 
-const colorDepartment = '#5cff43ff'
+const colorDepartment = 'rgba(242, 103, 255, 1)'
 
 // 关系定义
 export const relationships: RelationshipData[] = [
@@ -136,14 +136,14 @@ export const relationships: RelationshipData[] = [
         target: idEqualTo('3890p'),
         type: 'unidirectional',
         label: '外交府小女儿',
-        color: '#ce2fffff'
+        color: '#2fff6dff'
     },
     {
         source: idEqualTo('yunyu'),
         target: idEqualTo('3890p'),
         type: 'unidirectional',
         label: '外交府明珠',
-        color: '#ce2fffff'
+        color: '#2fff55ff'
     },
     {
         source: idEqualTo('daiyu'),
@@ -194,6 +194,13 @@ export const relationships: RelationshipData[] = [
         label: '馒头山部',
         color: colorDepartment
     },
+    {
+        source: idEqualTo('asankilp'),
+        target: idEqualTo('chengyza'),
+        type: 'unidirectional',
+        label: '猫咖馆长',
+        color: colorDepartment
+    },
     // 小型团队
     {
         source: filterAnd(hasLabels('liteyuki')),
@@ -217,7 +224,7 @@ export const relationships: RelationshipData[] = [
         color: '#ffc7feff'
     },
     {
-        source: filterOr(idEqualTo('snowykami'), idEqualTo('xuanrikka'), idEqualTo('chenxu233')),
+        source: filterAnd(hasLabels('nonebot'), filterNot(idEqualTo('synodriver'))),
         target: idEqualTo('synodriver'),
         type: 'unidirectional',
         label: 'NoneBot',
