@@ -3,10 +3,9 @@
 import { useState, useEffect } from "react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
-import { Search, Users, Grid, List } from "lucide-react"
+import { Search, Users, Grid, List, Waypoints } from "lucide-react"
 import { ParticleBackground } from "@/components/particle-background"
 import { ScrollReveal } from "@/components/scroll-reveal"
-import { GlowingOrb } from "@/components/glowing-orb"
 import { MemberCard } from "@/components/member-card"
 import { useLanguage } from "@/contexts/language-context"
 import { getEmpireData } from "@/data/empire-data"
@@ -106,34 +105,6 @@ export default function MembersPage() {
     <div className="min-h-screen bg-gradient-to-b from-slate-900 via-blue-900 to-slate-900 relative overflow-hidden">
       <ParticleBackground />
 
-      {/* Hero Section */}
-      {/* <section className="relative py-20 overflow-hidden">
-        <div className="container mx-auto px-4 relative z-10">
-          <div className="text-center max-w-4xl mx-auto">
-            <ScrollReveal>
-              <div className="flex justify-center mb-8">
-                <div className="relative group">
-                  <GlowingOrb className="w-24 h-24" />
-                  <Users className="absolute inset-0 m-auto h-12 w-12 text-white z-10 transform transition-all duration-500 group-hover:scale-110" />
-                </div>
-              </div>
-            </ScrollReveal>
-
-            <ScrollReveal delay={200}>
-              <h1 className="text-5xl md:text-7xl font-bold text-transparent bg-gradient-to-r from-white via-amber-200 to-white bg-clip-text mb-6 tracking-tight">
-                {empireData.content.members.title}
-              </h1>
-            </ScrollReveal>
-
-            <ScrollReveal delay={400}>
-              <p className="text-xl md:text-2xl text-gray-300 mb-12 leading-relaxed">
-                {empireData.content.members.subtitle}
-              </p>
-            </ScrollReveal>
-          </div>
-        </div>
-      </section> */}
-
       {/* Filters and Search */}
       <section className="py-8 bg-slate-800/50 backdrop-blur-sm">
         <div className="container mx-auto px-4">
@@ -206,9 +177,7 @@ export default function MembersPage() {
                     : "border-amber-400/30 text-amber-400 hover:bg-amber-400/10"
                 }
               >
-                <svg className="h-4 w-4" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm4-8c0 2.21-1.79 4-4 4s-4-1.79-4-4 1.79-4 4-4 4 1.79 4 4z" />
-                </svg>
+                <Waypoints className="h-4 w-4" />
               </Button>
             </div>
           </div>
@@ -281,7 +250,7 @@ export default function MembersPage() {
               </p>
             </div>
           ) : viewMode === "relationship" ? (
-            <div className="w-full h-[900px]">
+            <div className="w-full h-[900px] bg-slate-900/70 border-2 border-amber-400/30 rounded-xl shadow-lg">
               <RelationshipGraph
                 width={window.innerWidth * 0.9}
                 height={900}
@@ -291,6 +260,13 @@ export default function MembersPage() {
                   window.location.href = `/members/${id}`;
                 }}
               />
+              <div className="mt-4 text-center text-sm text-gray-400">
+                {language === "zh"
+                  ? "提示：在关系图中，单向关系通常是由源指向所属者"
+                  : language === "ja"
+                    ? "ヒント：関係図では、単方向の関係は通常、発信元から所有者に向かいます"
+                    : "Tip: In the relationship graph, one-way relationships usually point from the source to the owner"}
+              </div>
             </div>
           ) : (
             <div

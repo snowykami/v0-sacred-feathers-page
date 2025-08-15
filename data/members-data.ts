@@ -13,7 +13,7 @@ export interface Member {
   joinDate?: string
   specialties?: string[]
   achievements?: string[]
-  contact: {
+  contact?: {
     email?: string
     github?: string
     website?: string
@@ -39,6 +39,7 @@ export const roleColors = {
   princess: "from-rose-500 to-rose-600",
   catgirl: "from-teal-500 to-teal-600",
   mascot: "from-rose-300 to-rose-400",
+  member: "from-gray-500 to-gray-600"
 }
 
 

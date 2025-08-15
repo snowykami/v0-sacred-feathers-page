@@ -20,11 +20,11 @@ export async function generateMetadata({ params }: { params: Promise<{ id: strin
 
     return {
         title: `${member.name} - Citizen archive | 公民档案`,
-        description: `${member.name} - ${member.bio.en}`,
-        keywords: [member.name, member.role, ...member.specialties],
+        description: `${member.name} - ${member.bio?.en ?? ''}`,
+        keywords: [member.name, member.role, ...(member.specialties ?? [])],
         openGraph: {
             title: `${member.name} - Sacred Feathers Empire`,
-            description: member.bio.en,
+            description: member.bio?.en,
             images: [
                 {
                     url: member.avatar || '/placeholder.svg',
@@ -38,7 +38,7 @@ export async function generateMetadata({ params }: { params: Promise<{ id: strin
         twitter: {
             card: 'summary',
             title: `${member.name} - Sacred Feathers Empire`,
-            description: member.bio.en,
+            description: member.bio?.en,
             images: [member.avatar || '/placeholder.svg'],
         },
     }

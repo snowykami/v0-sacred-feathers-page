@@ -14,6 +14,7 @@ import { ImageViewer } from "@/components/image-viewer"
 import { useLanguage } from "@/contexts/language-context"
 import { getEmpireData, formatDate } from "@/data/empire-data"
 import { getMemberById, roleColors, type Member } from "@/data/members-data"
+// Ensure roleColors includes "member" key in "@/data/members-data"
 import type { Language } from "@/data/empire-data"
 
 // Profile Hero Section Component
@@ -45,7 +46,7 @@ function ProfileHeroSection({ member, roleName, roleColor, language }: {
 
               <Badge className={`bg-gradient-to-r ${roleColor} text-white text-lg px-4 py-2 mb-6`}>{roleName}</Badge>
 
-              <p className="text-xl text-gray-300 leading-relaxed max-w-2xl mx-auto">{member.bio[language]}</p>
+              <p className="text-xl text-gray-300 leading-relaxed max-w-2xl mx-auto">{member.bio?.[language]}</p>
             </div>
           </ScrollReveal>
 
@@ -67,7 +68,7 @@ function MemberStatsSection({ member, language }: {
         <Card className="bg-slate-900/50 border-amber-500/20 text-center">
           <CardContent className="p-6">
             <Trophy className="h-8 w-8 text-amber-400 mx-auto mb-3" />
-            <div className="text-3xl font-bold text-white mb-2">{member.stats.projectsLed}</div>
+            <div className="text-3xl font-bold text-white mb-2">{member?.stats?.projectsLed}</div>
             <div className="text-gray-400">
               {language === "zh" ? "领导项目" : language === "ja" ? "リードプロジェクト" : "Projects Led"}
             </div>
@@ -77,7 +78,7 @@ function MemberStatsSection({ member, language }: {
         <Card className="bg-slate-900/50 border-amber-500/20 text-center">
           <CardContent className="p-6">
             <Code className="h-8 w-8 text-blue-400 mx-auto mb-3" />
-            <div className="text-3xl font-bold text-white mb-2">{member.stats.contributionsCount}</div>
+            <div className="text-3xl font-bold text-white mb-2">{member?.stats?.contributionsCount}</div>
             <div className="text-gray-400">
               {language === "zh" ? "总贡献" : language === "ja" ? "総貢献" : "Contributions"}
             </div>
@@ -87,7 +88,7 @@ function MemberStatsSection({ member, language }: {
         <Card className="bg-slate-900/50 border-amber-500/20 text-center">
           <CardContent className="p-6">
             <Star className="h-8 w-8 text-green-400 mx-auto mb-3" />
-            <div className="text-3xl font-bold text-white mb-2">{member.stats.yearsActive}</div>
+            <div className="text-3xl font-bold text-white mb-2">{member?.stats?.yearsActive}</div>
             <div className="text-gray-400">
               {language === "zh" ? "活跃年数" : language === "ja" ? "活動年数" : "Years Active"}
             </div>
@@ -135,8 +136,8 @@ function MemberGallerySection({ member, empireData, language }: {
               <CardContent>
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                   {member.pictures.map((url, idx) => (
-                    <div 
-                      key={idx} 
+                    <div
+                      key={idx}
                       className="rounded-lg overflow-hidden border border-amber-400/20 bg-slate-800/40 cursor-pointer group relative"
                       onClick={() => handleImageClick(idx)}
                     >
@@ -188,7 +189,7 @@ function SpecialtiesCard({ member, empireData }: {
         </CardHeader>
         <CardContent>
           <div className="flex flex-wrap gap-2">
-            {member.specialties.map((specialty, index) => (
+            {member.specialties?.map((specialty, index) => (
               <Badge key={index} variant="outline" className="border-amber-400/30 text-amber-400">
                 {specialty}
               </Badge>
@@ -216,7 +217,7 @@ function JoinDateCard({ member, empireData, language }: {
           </CardTitle>
         </CardHeader>
         <CardContent>
-          <p className="text-gray-300 text-lg">{formatDate(member.joinDate, language)}</p>
+          <p className="text-gray-300 text-lg">{formatDate(member?.joinDate || "", language)}</p>
         </CardContent>
       </Card>
     </ScrollReveal>
@@ -239,7 +240,7 @@ function AchievementsCard({ member, empireData }: {
         </CardHeader>
         <CardContent>
           <ul className="space-y-3">
-            {member.achievements.map((achievement, index) => (
+            {member?.achievements?.map((achievement, index) => (
               <li key={index} className="flex items-start space-x-3">
                 <Star className="h-5 w-5 text-amber-400 mt-0.5 flex-shrink-0" />
                 <span className="text-gray-300">{achievement}</span>
@@ -268,7 +269,7 @@ function ContactCard({ member, empireData }: {
         </CardHeader>
         <CardContent>
           <div className="flex flex-wrap gap-4">
-            {member.contact.email && (
+            {member.contact?.email && (
               <Button
                 variant="outline"
                 className="border-amber-400/30 text-amber-400 hover:bg-amber-400/10 bg-transparent"
@@ -280,7 +281,7 @@ function ContactCard({ member, empireData }: {
                 </a>
               </Button>
             )}
-            {member.contact.github && (
+            {member.contact?.github && (
               <Button
                 variant="outline"
                 className="border-amber-400/30 text-amber-400 hover:bg-amber-400/10 bg-transparent"
@@ -292,7 +293,7 @@ function ContactCard({ member, empireData }: {
                 </a>
               </Button>
             )}
-            {member.contact.website && (
+            {member.contact?.website && (
               <Button
                 variant="outline"
                 className="border-amber-400/30 text-amber-400 hover:bg-amber-400/10 bg-transparent"
@@ -304,7 +305,7 @@ function ContactCard({ member, empireData }: {
                 </a>
               </Button>
             )}
-            {member.contact.twitter && (
+            {member.contact?.twitter && (
               <Button
                 variant="outline"
                 className="border-amber-400/30 text-amber-400 hover:bg-amber-400/10 bg-transparent"
@@ -373,30 +374,30 @@ export default function MemberProfilePage() {
     return <MemberNotFound empireData={empireData} language={language} />
   }
 
-  const roleColor = roleColors[member.role]
-  const roleName = empireData.content.members.roles[member.role]
+  const roleColor = roleColors[member.role] ?? "bg-gray-500"
+  const roleName = empireData.content.members.roles[member.role] ?? member.role
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-slate-900 via-blue-900 to-slate-900 relative overflow-hidden">
       <ParticleBackground />
-      
-      <ProfileHeroSection 
-        member={member} 
-        roleName={roleName} 
-        roleColor={roleColor} 
-        language={language} 
+
+      <ProfileHeroSection
+        member={member}
+        roleName={roleName}
+        roleColor={roleColor}
+        language={language}
       />
-      
-      <MemberGallerySection 
-        member={member} 
-        empireData={empireData} 
-        language={language} 
+
+      <MemberGallerySection
+        member={member}
+        empireData={empireData}
+        language={language}
       />
-      
-      <MemberDetailsSection 
-        member={member} 
-        empireData={empireData} 
-        language={language} 
+
+      <MemberDetailsSection
+        member={member}
+        empireData={empireData}
+        language={language}
       />
     </div>
   )
