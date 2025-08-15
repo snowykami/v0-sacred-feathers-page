@@ -9,6 +9,7 @@ export interface Member {
   name: string
   avatar: string
   role: "emperor" | "minister" | "guardian" | "creator" | "explorer" | "prince" | "princess" | "catgirl" | "mascot"
+  labels: string[]
   joinDate: string
   specialties: string[]
   achievements: string[]

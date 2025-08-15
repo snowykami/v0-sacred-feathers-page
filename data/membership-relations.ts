@@ -1,75 +1,126 @@
 import { Member } from './members-data';
 
-export interface RelationshipData {
-  source: string;
-  target: string;
-  type: 'unidirectional' | 'bidirectional';
-  label: string;
-  color?: string;
-}
+// Define RelationshipData type
+export type RelationshipData = {
+    source: (member: Member) => boolean;
+    target: (member: Member) => boolean;
+    sourceType?: string;
+    targetType?: string;
+    type: 'unidirectional' | 'bidirectional';
+    label: string;
+    color: string;
+    excludeSelfReference?: boolean;
+};
 
+export const idIs = (id: string) => (member: Member) => member.id === id;
+
+export const roleIs = (role: string) => (member: Member) => member.role === role;
+
+export const hasLabels = (...labels: string[]) => (member: Member) =>
+    labels.every(label => member.labels?.includes(label));
+
+export const specialtyIs = (specialty: string) => (member: Member) =>
+    member.specialties?.includes(specialty);
+
+export const joinDateIs = (date: string) => (member: Member) =>
+    member.joinDate === date;
+
+export const isActive = (active: boolean) => (member: Member) =>
+    member.isActive === active;
+
+export const statCompare = (stat: keyof Member['stats'], operator: 'gt' | 'lt' | 'eq' | 'gte' | 'lte', value: number) => (member: Member) => {
+    const memberValue = member.stats?.[stat];
+    if (typeof memberValue !== 'number') return false;
+    switch (operator) {
+        case 'gt': return memberValue > value;
+        case 'lt': return memberValue < value;
+        case 'eq': return memberValue === value;
+        case 'gte': return memberValue >= value;
+        case 'lte': return memberValue <= value;
+        default: return false;
+    }
+};
+
+export const isManagement = (member: Member) => (
+    ['redish101', 'synodriver', '3890p', 'chengyza', 'xuanrikka'].includes(member.id)
+);
+
+const getMembersByField = (
+    predicate: (member: Member) => boolean,
+    members: Member[]
+): string[] => members.filter(predicate).map(member => member.id);
+
+// 展开关系
+const expandRelationships = (relationships: RelationshipData[], members: Member[]): RelationshipData[] => {
+    return relationships.flatMap(rel => {
+        const sourceIds = getMembersByField(rel.source, members);
+        const targetIds = getMembersByField(rel.target, members);
+
+        return sourceIds.flatMap(sourceId =>
+            targetIds
+                .filter(targetId => !rel.excludeSelfReference || sourceId !== targetId)
+                .map(targetId => ({
+                    ...rel,
+                    source: idIs(sourceId),
+                    target: idIs(targetId),
+                    sourceType: 'id' as const,
+                    targetType: 'id' as const
+                }))
+        );
+    });
+};
+
+// 关系定义
 export const relationships: RelationshipData[] = [
-  {
-    source: 'chengyza',
-    target: 'snowykami',
-    type: 'bidirectional',
-    label: '帝国核心成员',
-    color: '#FF69B4' // 粉色
-  },
-  {
-    source: 'chengyza',
-    target: 'synodriver',
-    type: 'unidirectional',
-    label: '皇家近卫军总管',
-    color: '#4169E1' // 皇家蓝
-  },
-  {
-    source: 'chengyza',
-    target: 'redish101',
-    type: 'bidirectional',
-    label: '帝国公主',
-    color: '#FFB6C1' // 浅粉色
-  },
-  {
-    source: 'snowykami',
-    target: 'XuanRikka',
-    type: 'unidirectional',
-    label: '摄政管理',
-    color: '#32CD32' // 绿色
-  },
-  {
-    source: 'snowykami',
-    target: '3890p',
-    type: 'bidirectional',
-    label: '部长关系',
-    color: '#FFD700' // 金色
-  },
-  {
-    source: 'nanaloveyuki',
-    target: 'chenxu233',
-    type: 'bidirectional',
-    label: '猫娘姐妹',
-    color: '#FF69B4' // 粉色
-  },
-  {
-    source: 'chenxu233',
-    target: 'Twisuki',
-    type: 'bidirectional',
-    label: '猫娘姐妹',
-    color: '#FF69B4' // 粉色
-  },
-  {
-    source: 'chengyza',
-    target: 'ChuranNeko',
-    type: 'unidirectional',
-    label: '帝国猫娘',
-    color: '#DDA0DD' // 梅红色
-  },
-  {
-    source: 'chengyza',
-    target: 'GreatFood404',
-    type: 'unidirectional',
-    label: '帝国吉祥物',
-    color: '#FFA500' // 橙色
-  }
+    {
+        source: idIs('chenxu233'),
+        target: roleIs('catgirl'),
+        targetType: 'role',
+        type: 'unidirectional',
+        label: '管理',
+        color: '#69ebffff'
+    },
+    {
+        source: idIs('chenxu233'),
+        target: idIs('snowykami'),
+        type: 'bidirectional',
+        label: '小情侣',
+        color: '#FF69B4'
+    },
+    {
+        source: idIs('nanaloveyuki'),
+        target: idIs('snowykami'),
+        type: 'unidirectional',
+        label: '主人',
+        color: '#FF69B4'
+    },
+    {
+        source: idIs('redish101'),
+        target: idIs('snowykami'),
+        type: 'unidirectional',
+        label: '主人',
+        color: '#FF69B4'
+    },
+    {
+        source: idIs('synodriver'),
+        target: idIs('snowykami'),
+        type: 'unidirectional',
+        label: '主人',
+        color: '#FF69B4'
+    },
+    {
+        source: idIs('3890p'),
+        target: idIs('snowykami'),
+        type: 'unidirectional',
+        label: '条件主人',
+        color: '#69dfffff'
+    },
+    {
+        source: isManagement,
+        target: idIs('chengyza'),
+        type: 'unidirectional',
+        label: '效忠',
+        color: '#69dfffff'
+    },
+    // 可继续添加更多关系
 ];

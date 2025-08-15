@@ -67,27 +67,66 @@ const RelationshipGraph: React.FC<RelationshipGraphProps> = ({
         // 节点图片通过 symbol 直接加载
 
 
-        // 准备连接数据
-        const edges = relationships.map(rel => ({
-            source: rel.source,
-            target: rel.target,
-            label: {
-                show: true,
-                formatter: rel.label,
-                fontSize: 12,
-                color: rel.color || '#999',
-                textBorderColor: '#000',
-                textBorderWidth: 2,
-            },
-            lineStyle: {
-                color: '#999',
-                width: 2,
-                type: 'solid' as const,
-                curveness: 0.3,
-            },
-            symbol: rel.type === 'unidirectional' ? ['none', 'arrow'] : ['none', 'none'],
-            symbolSize: [8, 12],
-        }));
+        // 处理关系定义并找出匹配的成员
+        const expandedRelationships = relationships.flatMap(rel => {
+            const sourceMembers = members.filter(m => rel.source(m as Member));
+            const targetMembers = members.filter(m => rel.target(m as Member));
+
+            return sourceMembers.flatMap(sourceMember => 
+                targetMembers
+                    .filter(targetMember => !rel.excludeSelfReference || sourceMember.id !== targetMember.id)
+                    .map(targetMember => ({
+                        source: sourceMember.id,
+                        target: targetMember.id,
+                        type: rel.type,
+                        label: rel.label,
+                        color: rel.color
+                    }))
+            );
+        });
+
+        // 将相同节点对之间的关系分组
+        const edgeGroups = new Map<string, typeof expandedRelationships>();
+        
+        expandedRelationships.forEach(rel => {
+            const key = [rel.source, rel.target].sort().join('-');
+            if (!edgeGroups.has(key)) {
+                edgeGroups.set(key, []);
+            }
+            edgeGroups.get(key)?.push(rel);
+        });
+
+        // 为每组关系设置不同的曲率
+        const edges = Array.from(edgeGroups.values()).flatMap((group, groupIndex) => {
+            return group.map((rel, index) => {
+                // 根据组内关系数量计算曲率
+                const baselineCurveness = 0.2;
+                const curveness = group.length > 1 
+                    ? baselineCurveness * (index - (group.length - 1) / 2) 
+                    : 0;
+
+                return {
+                    source: rel.source,
+                    target: rel.target,
+                    label: {
+                        show: true,
+                        formatter: rel.label,
+                        fontSize: 12,
+                        color: rel.color || '#999',
+                        textBorderColor: '#000',
+                        textBorderWidth: 2,
+                    },
+                    lineStyle: {
+                        color: rel.color || '#999',
+                        width: 2,
+                        type: 'solid' as const,
+                        curveness: curveness,
+                    },
+                    symbol: rel.type === 'unidirectional' ? ['none', 'arrow'] : ['none', 'none'],
+                    symbolSize: [8, 12],
+                };
+            });
+        });
 
         // 配置图表选项
         const options: EChartsOption = {
