@@ -102,6 +102,13 @@ export const relationships: RelationshipData[] = [
         color: '#FF69B4'
     },
     {
+        source: idIs('chenxu233'),
+        target: idIs('snowykami'),
+        type: 'unidirectional',
+        label: '主人',
+        color: '#FF69B4'
+    },
+    {
         source: idIs('synodriver'),
         target: idIs('snowykami'),
         type: 'unidirectional',
