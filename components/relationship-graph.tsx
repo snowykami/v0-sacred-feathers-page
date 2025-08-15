@@ -59,13 +59,41 @@ const RelationshipGraph: React.FC<RelationshipGraphProps> = ({
             resizeObserver.observe(chartRef.current);
         }
 
+        // 计算每个节点的连接数
+        const connectionCounts = new Map<string, number>();
+        relationships.forEach(rel => {
+            members.forEach(sourceMember => {
+                if (rel.source(sourceMember as Member)) {
+                    members.forEach(targetMember => {
+                        if (rel.target(targetMember as Member) && 
+                            (!rel.excludeSelfReference || sourceMember.id !== targetMember.id)) {
+                            // 增加源节点的连接数
+                            connectionCounts.set(sourceMember.id, 
+                                (connectionCounts.get(sourceMember.id) || 0) + 1);
+                            // 增加目标节点的连接数
+                            connectionCounts.set(targetMember.id, 
+                                (connectionCounts.get(targetMember.id) || 0) + 1);
+                        }
+                    });
+                }
+            });
+        });
+
+        // 找出最大连接数
+        const maxConnections = Math.max(...Array.from(connectionCounts.values()));
+
+        // 设置节点大小的范围
+        const minSize = 30;  // 最小节点大小
+        const maxSize = 80;  // 最大节点大小
+
         // 准备节点数据
         const nodes = members.map(member => ({
             id: member.id,
             name: member.name,
             value: member.name,
-            symbol: `image://${member.avatar}`,
-            symbolSize: 50,
+            symbol: `image:///members/${member.id}/circular`,
+            symbolSize: minSize + (maxSize - minSize) * 
+                (connectionCounts.get(member.id) || 0) / maxConnections,
             itemStyle: {
                 borderWidth: 4,
                 borderColor: 'rgba(255,255,255,0.8)',
@@ -94,7 +122,7 @@ const RelationshipGraph: React.FC<RelationshipGraphProps> = ({
             const sourceMembers = members.filter(m => rel.source(m as Member));
             const targetMembers = members.filter(m => rel.target(m as Member));
 
-            return sourceMembers.flatMap(sourceMember => 
+            return sourceMembers.flatMap(sourceMember =>
                 targetMembers
                     .filter(targetMember => !rel.excludeSelfReference || sourceMember.id !== targetMember.id)
                     .map(targetMember => ({
@@ -109,7 +137,7 @@ const RelationshipGraph: React.FC<RelationshipGraphProps> = ({
 
         // 将相同节点对之间的关系分组
         const edgeGroups = new Map<string, typeof expandedRelationships>();
-        
+
         expandedRelationships.forEach(rel => {
             const key = [rel.source, rel.target].sort().join('-');
             if (!edgeGroups.has(key)) {
@@ -123,8 +151,8 @@ const RelationshipGraph: React.FC<RelationshipGraphProps> = ({
             return group.map((rel, index) => {
                 // 根据组内关系数量计算曲率
                 const baselineCurveness = 0.2;
-                const curveness = group.length > 1 
-                    ? baselineCurveness * (index - (group.length - 1) / 2) 
+                const curveness = group.length > 1
+                    ? baselineCurveness * (index - (group.length - 1) / 2)
                     : 0;
 
                 return {
@@ -153,7 +181,7 @@ const RelationshipGraph: React.FC<RelationshipGraphProps> = ({
         // 计算合适的布局参数
         const calculateLayoutParams = () => {
             if (!chartRef.current) return null;
-            
+
             const containerWidth = chartRef.current.clientWidth;
             const containerHeight = chartRef.current.clientHeight;
             const minDimension = Math.min(containerWidth, containerHeight);
@@ -166,7 +194,7 @@ const RelationshipGraph: React.FC<RelationshipGraphProps> = ({
                 minDimension / (Math.sqrt(nodeCount) + 1),
                 Math.sqrt((containerWidth * containerHeight) / (nodeCount * 2))
             );
-            
+
             // 减小斥力范围以获得更紧凑的布局
             const baseRepulsion = idealSpacing * 30;
             const repulsion = [baseRepulsion * 0.6, baseRepulsion * 0.8];
@@ -266,7 +294,7 @@ const RelationshipGraph: React.FC<RelationshipGraphProps> = ({
                 resizeObserver.unobserve(chartRef.current);
             }
             resizeObserver.disconnect();
-            
+
             // 清理图表实例
             if (chartInstance.current) {
                 chartInstance.current.dispose();
