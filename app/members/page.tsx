@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Search, Users, Grid, List } from "lucide-react"
@@ -12,6 +12,7 @@ import { useLanguage } from "@/contexts/language-context"
 import { getEmpireData } from "@/data/empire-data"
 import { MEMBERS_DATA, getActiveMembersCount } from "@/data/members-data"
 import type { Member } from "@/data/members-data"
+import RelationshipGraph from "@/components/relationship-graph"
 
 
 export default function MembersPage() {
@@ -19,7 +20,26 @@ export default function MembersPage() {
   const empireData = getEmpireData(language)
   const [searchTerm, setSearchTerm] = useState("")
   const [selectedRole, setSelectedRole] = useState<Member["role"] | "all">("all")
-  const [viewMode, setViewMode] = useState<"grid" | "list">("grid")
+  const [viewMode, setViewMode] = useState<"grid" | "list" | "relationship">("grid")
+  const [relationshipMode, setRelationshipMode] = useState<"force" | "circle" | "hierarchy">("force")
+
+  // 根据哈希更新视图模式
+  useEffect(() => {
+    const hash = window.location.hash.slice(1);
+    if (hash === "force" || hash === "circle" || hash === "hierarchy") {
+      setViewMode("relationship");
+      setRelationshipMode(hash as "force" | "circle" | "hierarchy");
+    }
+  }, [])
+
+  // 当视图模式改变时更新哈希
+  useEffect(() => {
+    if (viewMode === "relationship") {
+      window.location.hash = relationshipMode;
+    } else {
+      window.location.hash = "";
+    }
+  }, [viewMode, relationshipMode]);
 
   const filteredMembers = MEMBERS_DATA.filter((member) => {
     const matchesSearch =
@@ -75,7 +95,7 @@ export default function MembersPage() {
       label: empireData.content.members.roles.catgirl,
       count: MEMBERS_DATA.filter((m) => m.role === "catgirl" && m.isActive).length,
     },
-      {
+    {
       key: "mascot",
       label: empireData.content.members.roles.mascot,
       count: MEMBERS_DATA.filter((m) => m.role === "mascot" && m.isActive).length,
@@ -176,12 +196,70 @@ export default function MembersPage() {
               >
                 <List className="h-4 w-4" />
               </Button>
+              <Button
+                variant={viewMode === "relationship" ? "default" : "outline"}
+                size="sm"
+                onClick={() => setViewMode("relationship")}
+                className={
+                  viewMode === "relationship"
+                    ? "bg-amber-600 hover:bg-amber-700"
+                    : "border-amber-400/30 text-amber-400 hover:bg-amber-400/10"
+                }
+              >
+                <svg className="h-4 w-4" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm4-8c0 2.21-1.79 4-4 4s-4-1.79-4-4 1.79-4 4-4 4 1.79 4 4z" />
+                </svg>
+              </Button>
             </div>
           </div>
+
+          {/* 关系图布局控制 */}
+          {viewMode === "relationship" && (
+            <div className="flex justify-center mt-4">
+              <div className="flex items-center space-x-2">
+                <Button
+                  variant={relationshipMode === "force" ? "default" : "outline"}
+                  size="sm"
+                  onClick={() => setRelationshipMode("force")}
+                  className={
+                    relationshipMode === "force"
+                      ? "bg-amber-600 hover:bg-amber-700"
+                      : "border-amber-400/30 text-amber-400 hover:bg-amber-400/10"
+                  }
+                >
+                  {language === "zh" ? "力导向" : language === "ja" ? "フォース" : "Force"}
+                </Button>
+                <Button
+                  variant={relationshipMode === "circle" ? "default" : "outline"}
+                  size="sm"
+                  onClick={() => setRelationshipMode("circle")}
+                  className={
+                    relationshipMode === "circle"
+                      ? "bg-amber-600 hover:bg-amber-700"
+                      : "border-amber-400/30 text-amber-400 hover:bg-amber-400/10"
+                  }
+                >
+                  {language === "zh" ? "环形" : language === "ja" ? "サークル" : "Circle"}
+                </Button>
+                <Button
+                  variant={relationshipMode === "hierarchy" ? "default" : "outline"}
+                  size="sm"
+                  onClick={() => setRelationshipMode("hierarchy")}
+                  className={
+                    relationshipMode === "hierarchy"
+                      ? "bg-amber-600 hover:bg-amber-700"
+                      : "border-amber-400/30 text-amber-400 hover:bg-amber-400/10"
+                  }
+                >
+                  {language === "zh" ? "层级" : language === "ja" ? "階層" : "Hierarchy"}
+                </Button>
+              </div>
+            </div>
+          )}
         </div>
       </section>
 
-      {/* Members Grid/List */}
+      {/* Members Grid/List/Relationship */}
       <section className="py-20">
         <div className="container mx-auto px-4">
           {filteredMembers.length === 0 ? (
@@ -202,13 +280,25 @@ export default function MembersPage() {
                     : "Try adjusting your search terms or filters"}
               </p>
             </div>
+          ) : viewMode === "relationship" ? (
+            <div className="w-full h-[900px]">
+              <RelationshipGraph
+                width={window.innerWidth * 0.9}
+                height={900}
+                members={filteredMembers}
+                mode={relationshipMode}
+                onNodeClick={(id) => {
+                  window.location.href = `/members/${id}`;
+                }}
+              />
+            </div>
           ) : (
             <div
               className={viewMode === "grid" ? "grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8" : "space-y-6"}
             >
               {filteredMembers.map((member, index) => (
                 <ScrollReveal key={member.id} delay={index * 100}>
-                  <MemberCard member={member} variant={viewMode} />
+                  <MemberCard member={member} variant={viewMode === "grid" ? "grid" : "list"} />
                 </ScrollReveal>
               ))}
             </div>
