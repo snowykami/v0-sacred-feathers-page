@@ -20,8 +20,8 @@ export function MemberCard({ member, variant = "grid" }: MemberCardProps) {
   const { language } = useLanguage()
   const empireData = getEmpireData(language)
 
-  const roleColor = roleColors[member.role]
-  const roleName = empireData.content.members.roles[member.role]
+  const roleColor = roleColors[member.role as keyof typeof roleColors] ?? "bg-gray-500"
+  const roleName = empireData.content.members.roles[member.role as keyof typeof empireData.content.members.roles]
 
   if (variant === "list") {
     return (
@@ -46,24 +46,24 @@ export function MemberCard({ member, variant = "grid" }: MemberCardProps) {
                 <Badge className={`bg-gradient-to-r ${roleColor} text-white`}>{roleName}</Badge>
               </div>
 
-              <p className="text-gray-400 mb-3 line-clamp-2">{member.bio[language]}</p>
+              <p className="text-gray-400 mb-3 line-clamp-2">{member.bio?.[language]}</p>
 
               <div className="flex items-center space-x-4 text-sm text-gray-500">
                 <div className="flex items-center space-x-1">
                   <Calendar className="h-4 w-4" />
-                  <span>{formatDate(member.joinDate, language)}</span>
+                  <span>{member.joinDate ? formatDate(member.joinDate, language) : "-"}</span>
                 </div>
                 <div className="flex items-center space-x-1">
                   <Trophy className="h-4 w-4" />
                   <span>
-                    {member.stats.projectsLed}{" "}
+                    {member.stats?.projectsLed}{" "}
                     {language === "zh" ? "项目" : language === "ja" ? "プロジェクト" : "Projects"}
                   </span>
                 </div>
                 <div className="flex items-center space-x-1">
                   <Code className="h-4 w-4" />
                   <span>
-                    {member.stats.contributionsCount}{" "}
+                    {member.stats?.contributionsCount}{" "}
                     {language === "zh" ? "贡献" : language === "ja" ? "貢献" : "Contributions"}
                   </span>
                 </div>
@@ -109,23 +109,23 @@ export function MemberCard({ member, variant = "grid" }: MemberCardProps) {
       </CardHeader>
 
       <CardContent className="relative z-10">
-        <p className="text-gray-400 text-sm mb-4 line-clamp-3">{member.bio[language]}</p>
+        <p className="text-gray-400 text-sm mb-4 line-clamp-3">{member.bio?.[language]}</p>
 
         <div className="grid grid-cols-3 gap-2 mb-4 text-center">
           <div>
-            <div className="text-lg font-bold text-amber-400">{member.stats.projectsLed}</div>
+            <div className="text-lg font-bold text-amber-400">{member.stats?.projectsLed}</div>
             <div className="text-xs text-gray-500">
               {language === "zh" ? "项目" : language === "ja" ? "プロジェクト" : "Projects"}
             </div>
           </div>
           <div>
-            <div className="text-lg font-bold text-blue-400">{member.stats.contributionsCount}</div>
+            <div className="text-lg font-bold text-blue-400">{member.stats?.contributionsCount}</div>
             <div className="text-xs text-gray-500">
               {language === "zh" ? "贡献" : language === "ja" ? "貢献" : "Contributions"}
             </div>
           </div>
           <div>
-            <div className="text-lg font-bold text-green-400">{member.stats.yearsActive}</div>
+            <div className="text-lg font-bold text-green-400">{member.stats?.yearsActive}</div>
             <div className="text-xs text-gray-500">{language === "zh" ? "年" : language === "ja" ? "年" : "Years"}</div>
           </div>
         </div>

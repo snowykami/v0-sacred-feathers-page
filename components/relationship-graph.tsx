@@ -28,6 +28,18 @@ const RelationshipGraph: React.FC<RelationshipGraphProps> = ({
     const chartRef = useRef<HTMLDivElement>(null);
     const chartInstance = useRef<echarts.ECharts | null>(null);
 
+    const updateChartSize = () => {
+        if (chartInstance.current && chartRef.current) {
+            const parentElement = chartRef.current?.parentElement;
+            if (parentElement) {
+                chartInstance.current.resize({
+                    width: parentElement.clientWidth,
+                    height: parentElement.clientHeight,
+                });
+            }
+        }
+    };
+
     useEffect(() => {
         // 确保DOM元素存在
         if (!chartRef.current) return;
@@ -35,6 +47,16 @@ const RelationshipGraph: React.FC<RelationshipGraphProps> = ({
         // 初始化或获取图表实例
         if (!chartInstance.current) {
             chartInstance.current = echarts.init(chartRef.current);
+        }
+
+        // 创建 ResizeObserver 来监视容器大小变化
+        const resizeObserver = new ResizeObserver(() => {
+            updateChartSize();
+        });
+
+        // 监视容器大小变化
+        if (chartRef.current) {
+            resizeObserver.observe(chartRef.current);
         }
 
         // 准备节点数据
@@ -128,6 +150,42 @@ const RelationshipGraph: React.FC<RelationshipGraphProps> = ({
             });
         });
 
+        // 计算合适的布局参数
+        const calculateLayoutParams = () => {
+            if (!chartRef.current) return null;
+            
+            const containerWidth = chartRef.current.clientWidth;
+            const containerHeight = chartRef.current.clientHeight;
+            const minDimension = Math.min(containerWidth, containerHeight);
+            const nodeCount = nodes.length;
+            const edgeCount = edges.length;
+            const density = edgeCount / nodeCount;
+
+            // 更保守的节点间距计算
+            const idealSpacing = Math.min(
+                minDimension / (Math.sqrt(nodeCount) + 1),
+                Math.sqrt((containerWidth * containerHeight) / (nodeCount * 2))
+            );
+            
+            // 减小斥力范围以获得更紧凑的布局
+            const baseRepulsion = idealSpacing * 30;
+            const repulsion = [baseRepulsion * 0.6, baseRepulsion * 0.8];
+
+            // 更短的边长，让节点更靠近
+            const edgeLength = [idealSpacing * 0.8, idealSpacing * 1.2];
+
+            // 增加重力以防止节点飞出
+            const gravity = 0.2 + (nodeCount > 15 ? 0.1 : 0);
+
+            return {
+                repulsion,
+                edgeLength,
+                gravity
+            };
+        };
+
+        const layoutParams = calculateLayoutParams();
+
         // 配置图表选项
         const options: EChartsOption = {
             backgroundColor: 'transparent',
@@ -143,22 +201,35 @@ const RelationshipGraph: React.FC<RelationshipGraphProps> = ({
                 draggable: true,
                 legendHoverLink: true,
                 focusNodeAdjacency: true,
-                force: {
-                    repulsion: [100, 1000],
-                    edgeLength: [50, 200],
-                    gravity: 0.1,
+                left: '10%',
+                right: '10%',
+                top: '10%',
+                bottom: '10%',
+                progressive: 50,  // 渐进式渲染
+                progressiveThreshold: 100,
+                force: layoutParams ? {
+                    repulsion: layoutParams.repulsion,
+                    edgeLength: layoutParams.edgeLength,
+                    gravity: layoutParams.gravity,
                     layoutAnimation: true,
-                },
-                circular: {
+                    friction: 0.6  // 减少摩擦，使布局更容易达到稳定
+                } : undefined,
+                circular: mode === 'circle' ? {
                     rotateLabel: true
-                },
+                } : undefined,
                 emphasis: {
                     focus: 'adjacency',
                     scale: true,
                     lineStyle: {
                         width: 4
                     }
-                }
+                },
+                // 设置自适应的节点和边的大小
+                nodeScaleRatio: 0.6,
+                // 启用动画
+                animation: true,
+                animationDuration: 1000,
+                animationEasingUpdate: 'quinticInOut'
             }]
         };
 
@@ -190,9 +261,17 @@ const RelationshipGraph: React.FC<RelationshipGraphProps> = ({
 
         // 清理函数
         return () => {
-            window.removeEventListener('resize', handleResize);
-            chartInstance.current?.dispose();
-            chartInstance.current = null;
+            // 取消 ResizeObserver 监视
+            if (chartRef.current) {
+                resizeObserver.unobserve(chartRef.current);
+            }
+            resizeObserver.disconnect();
+            
+            // 清理图表实例
+            if (chartInstance.current) {
+                chartInstance.current.dispose();
+                chartInstance.current = null;
+            }
         };
     }, [members, mode, width, height]);
 

@@ -8,25 +8,25 @@ export interface Member {
   id: string
   name: string
   avatar: string
-  role: "emperor" | "minister" | "guardian" | "creator" | "explorer" | "prince" | "princess" | "catgirl" | "mascot"
-  labels: string[]
-  joinDate: string
-  specialties: string[]
-  achievements: string[]
+  role: "emperor" | "minister" | "guardian" | "creator" | "explorer" | "prince" | "princess" | "catgirl" | "mascot" | "member"
+  labels?: string[]
+  joinDate?: string
+  specialties?: string[]
+  achievements?: string[]
   contact: {
     email?: string
     github?: string
     website?: string
     twitter?: string
   }
-  bio: Record<Language, string>
-  stats: {
+  bio?: Record<Language, string>
+  stats?: {
     projectsLed: number
     contributionsCount: number
     yearsActive: number
   }
-  isActive: boolean
-  pictures: string[]
+  isActive?: boolean
+  pictures?: string[]
 }
 
 export const roleColors = {

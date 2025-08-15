@@ -44,7 +44,7 @@ export default function MembersPage() {
   const filteredMembers = MEMBERS_DATA.filter((member) => {
     const matchesSearch =
       member.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      member.bio[language].toLowerCase().includes(searchTerm.toLowerCase())
+      member.bio?.[language]?.toLowerCase().includes(searchTerm.toLowerCase())
     const matchesRole = selectedRole === "all" || member.role === selectedRole
     return matchesSearch && matchesRole && member.isActive
   })
@@ -107,7 +107,7 @@ export default function MembersPage() {
       <ParticleBackground />
 
       {/* Hero Section */}
-      <section className="relative py-20 overflow-hidden">
+      {/* <section className="relative py-20 overflow-hidden">
         <div className="container mx-auto px-4 relative z-10">
           <div className="text-center max-w-4xl mx-auto">
             <ScrollReveal>
@@ -132,7 +132,7 @@ export default function MembersPage() {
             </ScrollReveal>
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* Filters and Search */}
       <section className="py-8 bg-slate-800/50 backdrop-blur-sm">

@@ -12,6 +12,14 @@ export type RelationshipData = {
     excludeSelfReference?: boolean;
 };
 
+export const filterAnd = (...predicates: Array<(member: Member) => boolean>) => {
+    return (member: Member) => predicates.every(predicate => predicate(member));
+};
+
+export const filterOr = (...predicates: Array<(member: Member) => boolean>) => {
+    return (member: Member) => predicates.some(predicate => predicate(member));
+};
+
 export const idIs = (id: string) => (member: Member) => member.id === id;
 
 export const roleIs = (role: string) => (member: Member) => member.role === role;
@@ -42,7 +50,7 @@ export const statCompare = (stat: keyof Member['stats'], operator: 'gt' | 'lt' |
 };
 
 export const isManagement = (member: Member) => (
-    ['redish101', 'synodriver', '3890p', 'chengyza', 'xuanrikka'].includes(member.id)
+    member.labels?.includes('management') || member.role === 'emperor' || member.role === 'minister'
 );
 
 const getMembersByField = (
@@ -77,57 +85,21 @@ export const relationships: RelationshipData[] = [
         target: roleIs('catgirl'),
         targetType: 'role',
         type: 'unidirectional',
-        label: '管理',
-        color: '#69ebffff'
-    },
-    {
-        source: idIs('chenxu233'),
-        target: idIs('snowykami'),
-        type: 'bidirectional',
-        label: '小情侣',
-        color: '#FF69B4'
-    },
-    {
-        source: idIs('nanaloveyuki'),
-        target: idIs('snowykami'),
-        type: 'unidirectional',
-        label: '主人',
-        color: '#FF69B4'
-    },
-    {
-        source: idIs('redish101'),
-        target: idIs('snowykami'),
-        type: 'unidirectional',
-        label: '主人',
-        color: '#FF69B4'
-    },
-    {
-        source: idIs('chenxu233'),
-        target: idIs('snowykami'),
-        type: 'unidirectional',
-        label: '主人',
-        color: '#FF69B4'
-    },
-    {
-        source: idIs('synodriver'),
-        target: idIs('snowykami'),
-        type: 'unidirectional',
-        label: '主人',
-        color: '#FF69B4'
-    },
-    {
-        source: idIs('3890p'),
-        target: idIs('snowykami'),
-        type: 'unidirectional',
-        label: '条件主人',
-        color: '#69dfffff'
+        label: '猫协管理',
+        color: '#8ad6ffff'
     },
     {
         source: isManagement,
         target: idIs('chengyza'),
         type: 'unidirectional',
         label: '效忠',
-        color: '#69dfffff'
+        color: '#ff9305ff'
     },
-    // 可继续添加更多关系
+    {
+        source: hasLabels('belongToSnowykami'),
+        target: idIs('snowykami'),
+        type: 'unidirectional',
+        label: '主人',
+        color: '#e89dffff'
+    },
 ];
