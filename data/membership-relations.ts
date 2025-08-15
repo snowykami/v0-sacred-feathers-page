@@ -194,13 +194,6 @@ export const relationships: RelationshipData[] = [
         label: '馒头山部',
         color: colorDepartment
     },
-    {
-        source: idEqualTo('asankilp'),
-        target: idEqualTo('chengyza'),
-        type: 'unidirectional',
-        label: '猫咖馆长',
-        color: colorDepartment
-    },
     // 小型团队
     {
         source: filterAnd(hasLabels('liteyuki')),
@@ -222,12 +215,5 @@ export const relationships: RelationshipData[] = [
         type: 'unidirectional',
         label: '属地管辖',
         color: '#ffc7feff'
-    },
-    {
-        source: filterAnd(hasLabels('nonebot'), filterNot(idEqualTo('synodriver'))),
-        target: idEqualTo('synodriver'),
-        type: 'unidirectional',
-        label: 'NoneBot',
-        color: '#ff4d4dff'
     },
 ];
