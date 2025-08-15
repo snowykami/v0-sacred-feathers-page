@@ -1,11 +1,12 @@
 [
     {
         "id": "chengyza",
-        "name": "金日橙",
+        "name": "金日橙(~羽)",
         "avatar": "https://github.com/chengyza.png",
         "role": "emperor",
         "labels": [
-            "management"
+            "management",
+            "crazy-thursdio"
         ],
         "joinDate": "2024-02-18",
         "specialties": [
@@ -37,11 +38,13 @@
     },
     {
         "id": "snowykami",
-        "name": "远野 千束",
+        "name": "远野千束(羽轻)",
         "avatar": "https://cdn.liteyuki.org/snowykami/avatar.jpg",
         "role": "minister",
         "labels": [
-            "management"
+            "management",
+            "liteyuki",
+            "crazy-thursdio"
         ],
         "joinDate": "2024-02-18",
         "specialties": [
@@ -76,11 +79,12 @@
     },
     {
         "id": "synodriver",
-        "name": "帝国皇家近卫军",
+        "name": "帝国皇家近卫军(圣羽)",
         "avatar": "https://github.com/synodriver.png",
         "role": "guardian",
         "labels": [
-            "management"
+            "management",
+            "liteyuki"
         ],
         "joinDate": "2024-03-15",
         "specialties": [
@@ -112,12 +116,14 @@
     },
     {
         "id": "redish101",
-        "name": "数据库姐姐",
+        "name": "Redish101(~羽)",
         "avatar": "https://github.com/redish101.png",
         "role": "princess",
         "labels": [
             "management",
-            "belongToSnowykami"
+            "belongToSnowykami",
+            "liteyuki",
+            "crazy-thursdio"
         ],
         "joinDate": "2024-04-01",
         "specialties": [
@@ -156,11 +162,12 @@
     },
     {
         "id": "xuanrikka",
-        "name": "轩某",
+        "name": "轩某(羽轩)",
         "avatar": "https://github.com/XuanRikka.png",
         "role": "explorer",
         "labels": [
-            "management"
+            "management",
+            "crazy-thursdio"
         ],
         "joinDate": "2024-05-01",
         "specialties": [
@@ -188,12 +195,13 @@
     },
     {
         "id": "3890p",
-        "name": "3890p",
+        "name": "3890p(猫娘批发羽)",
         "avatar": "https://github.com/3890p.png",
         "role": "minister",
         "labels": [
             "management",
-            "belongToSnowykami"
+            "belongToSnowykami",
+            "crazy-thursdio"
         ],
         "joinDate": "2025-08-01",
         "specialties": [
@@ -231,11 +239,13 @@
     },
     {
         "id": "nanaloveyuki",
-        "name": "若水宁",
+        "name": "若水宁(柠羽)",
         "avatar": "https://github.com/nanaloveyuki.png",
         "role": "catgirl",
         "labels": [
-            "belongToSnowykami"
+            "belongToSnowykami",
+            "liteyuki",
+            "crazy-thursdio"
         ],
         "joinDate": "2024-05-01",
         "specialties": [
@@ -267,11 +277,13 @@
     },
     {
         "id": "chenxu233",
-        "name": "沐浴晨煦",
+        "name": "沐浴晨煦(羽煦)",
         "avatar": "https://github.com/chenxu233.png",
         "role": "catgirl",
         "labels": [
-            "belongToSnowykami"
+            "belongToSnowykami",
+            "liteyuki",
+            "crazy-thursdio"
         ],
         "joinDate": "2024-05-01",
         "specialties": [
@@ -312,11 +324,12 @@
     },
     {
         "id": "Twisuki",
-        "name": "苏阳",
+        "name": "苏阳(苏羽)",
         "avatar": "https://github.com/Twisuki.png",
         "role": "catgirl",
         "labels": [
-            "belongToSnowykami"
+            "belongToSnowykami",
+            "liteyuki"
         ],
         "joinDate": "2024-05-01",
         "specialties": [
@@ -351,7 +364,7 @@
     },
     {
         "id": "ChuranNeko",
-        "name": "初然Neko",
+        "name": "初然Neko(~羽)",
         "avatar": "https://github.com/ChuranNeko.png",
         "role": "catgirl",
         "joinDate": "2024-08-02",
@@ -384,6 +397,7 @@
         "name": "似梦玄",
         "avatar": "https://github.com/GreatFood404.png",
         "role": "mascot",
+        "labels": ["standalone"],
         "joinDate": "2024-08-02",
         "specialties": [
             "Fishing"
@@ -410,7 +424,7 @@
     },
     {
         "id": "starsetnight",
-        "name": "川崎羽(星夕)",
+        "name": "星夕(川崎羽)",
         "labels": [
             "management",
             "belongToSnowykami"
@@ -424,7 +438,8 @@
         "id": "ariasaka",
         "name": "Ariasaka(咏羽)",
         "labels": [
-            "belongToSnowykami"
+            "belongToSnowykami",
+            "liteyuki"
         ],
         "avatar": "https://github.com/LYXOfficial.png",
         "role": "catgirl",
@@ -432,9 +447,118 @@
         "isActive": true
     },
     {
-        "id": "float-point",
-        "name": "游离点",
+        "id": "kaosan4621",
+        "name": "九州(新羽)",
+        "avatar": "https://q.qlogo.cn/headimg_dl?dst_uin=640574232&spec=640",
+        "labels": [
+            "management",
+            "crazy-thursdio",
+            "cat-island"
+        ],
+        "joinDate": "2024-08-02",
+        "isActive": true
+    },
+    {
+        "id": "sakuraiyukina",
+        "name": "桜井雪奈(白羽)",
+        "labels": [
+            "standalone"
+        ],
+        "avatar": "https://q.qlogo.cn/headimg_dl?dst_uin=2691386427&spec=640",
+        "joinDate": "2024-08-02",
+        "isActive": true
+    },
+    {
+        "id": "yuhan2680",
+        "name": "小涵(羽涵)",
+        "labels": [
+            "management",
+            "belongToSnowykami",
+            "liteyuki"
+        ],
+        "avatar": "https://q.qlogo.cn/headimg_dl?dst_uin=2565376223&spec=640",
+        "joinDate": "2024-08-02",
+        "isActive": true
+    },
+    {
+        "id": "yuxindidetudi",
+        "name": "羽新帝の徒弔",
+        "labels": ["management"],
+        "avatar": "https://q.qlogo.cn/headimg_dl?dst_uin=3794062513&spec=640",
+        "joinDate": "2024-08-02",
+        "isActive": true
+    },
+    {
+        "id": "ruoyu",
+        "name": "若羽",
+        "avatar": "https://q.qlogo.cn/headimg_dl?dst_uin=359741528&spec=640",
+        "joinDate": "2024-08-02",
+        "isActive": true
+    },
+    {
+        "id": "daiyu",
+        "name": "呆羽",
+        "avatar": "https://q.qlogo.cn/headimg_dl?dst_uin=3938887981&spec=640",
+        "joinDate": "2024-08-02",
+        "isActive": true
+    },
+    {
+        "id": "2968136830",
+        "name": "猫柠(牛子羽)",
+        "avatar": "https://q.qlogo.cn/headimg_dl?dst_uin=2968136830&spec=640",
+        "joinDate": "2024-08-02",
+        "isActive": true
+    },
+    {
+        "id": "shayu",
+        "name": "千祈(鲨羽)",
+        "labels": ["cat-island"],
+        "avatar": "https://q.qlogo.cn/headimg_dl?dst_uin=2859567196&spec=640",
+        "joinDate": "2024-08-02",
+        "isActive": true
+    },
+    {
+        "id": "yichunyu",
+        "name": "乙醇羽",
+        "avatar": "https://q.qlogo.cn/headimg_dl?dst_uin=3685186029&spec=640",
+        "joinDate": "2024-08-02",
+        "isActive": true
+    },
+    {
+        "id": "yunyu",
+        "name": "云羽",
+        "avatar": "https://q.qlogo.cn/headimg_dl?dst_uin=2585418547&spec=640",
+        "joinDate": "2024-08-02",
+        "isActive": true
+    },
+    {
+        "id": "liteyuki",
+        "name": "轻雪工作室",
+        "avatar": "https://cdn.liteyuki.org/logos/group_avatar.png",
+        "joinDate": "2024-08-02",
+        "isActive": true
+    },
+    {
+        "id": "crazy-thursdio",
+        "name": "疯狂星期室",
+        "avatar": "https://p.qlogo.cn/gh/539280070/539280070/640/",
+        "joinDate": "2024-08-02",
+        "isActive": true
+    },
+    {
+        "id": "cat-island",
+        "name": "猫猫岛自治区",
+        "avatar": "https://p.qlogo.cn/gh/793358016/793358016/640/",
+        "joinDate": "2024-08-02",
+        "isActive": true
+    },
+    {
+        "id": "floating-point",
+        "name": "游离挂载点",
         "avatar": "/placeholder.svg",
+        "labels": [
+            "management"
+        ],
         "joinDate": "2024-08-02",
         "isActive": true
     }

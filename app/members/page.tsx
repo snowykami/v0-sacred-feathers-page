@@ -262,7 +262,7 @@ export default function MembersPage() {
               />
               <div className="mt-4 text-center text-sm text-gray-400">
                 {language === "zh"
-                  ? "提示：在关系图中，单向关系通常是由源指向所属者"
+                  ? "提示：在关系图中，单向关系通常是由源指向所有者"
                   : language === "ja"
                     ? "ヒント：関係図では、単方向の関係は通常、発信元から所有者に向かいます"
                     : "Tip: In the relationship graph, one-way relationships usually point from the source to the owner"}
