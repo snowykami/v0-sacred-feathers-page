@@ -26,9 +26,9 @@ export function MemberCard({ member, variant = "grid" }: MemberCardProps) {
   if (variant === "list") {
     return (
       <Card className="bg-slate-900/50 border-amber-500/20 hover:border-amber-500/40 transition-all duration-500 transform hover:scale-[1.02] hover:shadow-2xl hover:shadow-amber-500/10 group backdrop-blur-sm">
-        <CardContent className="p-6">
-          <div className="flex items-center space-x-6">
-            <Avatar className="h-20 w-20 ring-2 ring-amber-400/30 group-hover:ring-amber-400/60 transition-all duration-300">
+        <CardContent className="p-4 sm:p-6">
+          <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 sm:gap-6">
+            <Avatar className="h-16 w-16 sm:h-20 sm:w-20 ring-2 ring-amber-400/30 group-hover:ring-amber-400/60 transition-all duration-300">
               <AvatarImage src={member.avatar || "/placeholder.svg"} alt={member.name} />
               <AvatarFallback className="bg-gradient-to-br from-amber-400 to-amber-600 text-white text-lg font-bold">
                 {member.name
@@ -38,31 +38,31 @@ export function MemberCard({ member, variant = "grid" }: MemberCardProps) {
               </AvatarFallback>
             </Avatar>
 
-            <div className="flex-1">
-              <div className="flex items-center space-x-3 mb-2">
-                <h3 className="text-xl font-bold text-white group-hover:text-amber-200 transition-colors duration-300">
+            <div className="flex-1 min-w-0">
+              <div className="flex flex-wrap items-center gap-2 mb-2">
+                <h3 className="text-lg sm:text-xl font-bold text-white group-hover:text-amber-200 transition-colors duration-300">
                   {member.name}
                 </h3>
-                <Badge className={`bg-gradient-to-r ${roleColor} text-white`}>{roleName}</Badge>
+                <Badge className={`bg-gradient-to-r ${roleColor} text-white shrink-0`}>{roleName}</Badge>
               </div>
 
-              <p className="text-gray-400 mb-3 line-clamp-2">{member.bio?.[language]}</p>
+              <p className="text-gray-400 mb-3 line-clamp-2 text-sm sm:text-base">{member.bio?.[language]}</p>
 
-              <div className="flex items-center space-x-4 text-sm text-gray-500">
-                <div className="flex items-center space-x-1">
+              <div className="flex flex-wrap items-center gap-3 text-sm text-gray-500">
+                <div className="flex items-center gap-1 shrink-0">
                   <Calendar className="h-4 w-4" />
-                  <span>{member.joinDate ? formatDate(member.joinDate, language) : "-"}</span>
+                  <span className="whitespace-nowrap">{member.joinDate ? formatDate(member.joinDate, language) : "-"}</span>
                 </div>
-                <div className="flex items-center space-x-1">
+                <div className="flex items-center gap-1 shrink-0">
                   <Trophy className="h-4 w-4" />
-                  <span>
+                  <span className="whitespace-nowrap">
                     {member.stats?.projectsLed}{" "}
                     {language === "zh" ? "项目" : language === "ja" ? "プロジェクト" : "Projects"}
                   </span>
                 </div>
-                <div className="flex items-center space-x-1">
+                <div className="flex items-center gap-1 shrink-0">
                   <Code className="h-4 w-4" />
-                  <span>
+                  <span className="whitespace-nowrap">
                     {member.stats?.contributionsCount}{" "}
                     {language === "zh" ? "贡献" : language === "ja" ? "貢献" : "Contributions"}
                   </span>
@@ -70,14 +70,16 @@ export function MemberCard({ member, variant = "grid" }: MemberCardProps) {
               </div>
             </div>
 
-            <Link href={`/members/${member.id}`}>
-              <Button
-                variant="outline"
-                className="border-amber-400 text-amber-400 hover:bg-amber-400 hover:text-slate-900 bg-transparent"
-              >
-                {empireData.content.members.viewProfile}
-              </Button>
-            </Link>
+            <div className="w-full sm:w-auto mt-3 sm:mt-0">
+              <Link href={`/members/${member.id}`} className="block">
+                <Button
+                  variant="outline"
+                  className="w-full sm:w-auto border-amber-400 text-amber-400 hover:bg-amber-400 hover:text-slate-900 bg-transparent"
+                >
+                  {empireData.content.members.viewProfile}
+                </Button>
+              </Link>
+            </div>
           </div>
         </CardContent>
       </Card>

@@ -251,15 +251,50 @@ export default function MembersPage() {
             </div>
           ) : viewMode === "relationship" ? (
             <div className="w-full h-[900px] bg-slate-900/70 border-2 border-amber-400/30 rounded-xl shadow-lg">
-              <RelationshipGraph
-                width={window.innerWidth * 0.9}
-                height={900}
-                members={filteredMembers}
-                mode={relationshipMode}
-                onNodeClick={(id) => {
-                  window.location.href = `/members/${id}`;
-                }}
-              />
+              <div className="relative">
+                <RelationshipGraph
+                  width={window.innerWidth * 0.9}
+                  height={900}
+                  members={filteredMembers}
+                  mode={relationshipMode}
+                  onNodeClick={(id) => {
+                    window.location.href = `/members/${id}`;
+                  }}
+                  onExport={(dataUrl) => {
+                    // 创建下载链接
+                    const link = document.createElement('a');
+                    const now = new Date();
+                    const timestamp = now.toLocaleString('zh-CN', {
+                      year: 'numeric',
+                      month: '2-digit',
+                      day: '2-digit',
+                      hour: '2-digit',
+                      minute: '2-digit',
+                      second: '2-digit',
+                      hour12: false
+                    }).replace(/[\/:]/g, '-');
+                    link.download = `sacred-feathers-network-${relationshipMode}-${timestamp}.png`;
+                    link.href = dataUrl;
+                    document.body.appendChild(link);
+                    link.click();
+                    document.body.removeChild(link);
+                  }}
+                />
+                <button
+                  onClick={() => {
+                    const graphElement = document.querySelector('[data-export-graph]');
+                    if (graphElement && (graphElement as any).exportGraph) {
+                      (graphElement as any).exportGraph();
+                    }
+                  }}
+                  className="absolute top-4 right-4 bg-amber-600 hover:bg-amber-700 text-white px-4 py-2 rounded-lg shadow-lg flex items-center space-x-2 transition-colors duration-200"
+                >
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+                  </svg>
+                  <span>{language === "zh" ? "导出图片" : language === "ja" ? "画像を出力" : "Export Image"}</span>
+                </button>
+              </div>
               <div className="mt-4 text-center text-sm text-gray-400">
                 {language === "zh"
                   ? "提示：在关系图中，单向关系通常是由源指向所有者"
