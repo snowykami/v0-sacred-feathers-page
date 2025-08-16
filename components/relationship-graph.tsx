@@ -86,8 +86,13 @@ const RelationshipGraph: React.FC<RelationshipGraphProps> = ({
         const minSize = 30;  // 最小节点大小
         const maxSize = 80;  // 最大节点大小
 
+        // 随机打乱成员列表的顺序（仅在circular模式下）
+        const shuffledMembers = mode === 'circle' 
+            ? [...members].sort(() => Math.random() - 0.5)
+            : members;
+
         // 准备节点数据
-        const nodes = members.map(member => ({
+        const nodes = shuffledMembers.map(member => ({
             id: member.id,
             name: member.name,
             value: member.name,

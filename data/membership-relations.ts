@@ -146,6 +146,13 @@ export const relationships: RelationshipData[] = [
         color: '#2fff55ff'
     },
     {
+        source: idEqualTo('sakuraiyukina'),
+        target: idEqualTo('ChuranNeko'),
+        type: 'unidirectional',
+        label: '玩具',
+        color: '#2f90ffff'
+    },
+    {
         source: idEqualTo('daiyu'),
         target: idEqualTo('chengyza'),
         type: 'unidirectional',

@@ -427,7 +427,8 @@
         "name": "星夕(川崎羽)",
         "labels": [
             "management",
-            "belongToSnowykami"
+            "belongToSnowykami",
+            "crazy-thursdio"
         ],
         "avatar": "https://github.com/StarsetNight.png",
         "role": "mascot",
@@ -465,6 +466,16 @@
             "standalone"
         ],
         "avatar": "https://q.qlogo.cn/headimg_dl?dst_uin=2691386427&spec=640",
+        "joinDate": "2024-08-02",
+        "isActive": true
+    },
+    {
+        "id": "daoge",
+        "name": "刀哥(咕羽)",
+        "labels": [
+            "standalone"
+        ],
+        "avatar": "https://q.qlogo.cn/headimg_dl?dst_uin=3523206925&spec=640",
         "joinDate": "2024-08-02",
         "isActive": true
     },
