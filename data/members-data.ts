@@ -8,7 +8,7 @@ export interface Member {
   id: string
   name: string
   avatar: string
-  role: "emperor" | "minister" | "guardian" | "creator" | "explorer" | "prince" | "princess" | "catgirl" | "mascot" | "member"
+  role: "emperor" | "minister" | "guardian" | "creator" | "explorer" | "prince" | "princess" | "catgirl" | "mascot" | "member" | "medic"
   labels?: string[]
   joinDate?: string
   specialties?: string[]
@@ -39,7 +39,8 @@ export const roleColors = {
   princess: "from-rose-500 to-rose-600",
   catgirl: "from-teal-500 to-teal-600",
   mascot: "from-rose-300 to-rose-400",
-  member: "from-gray-500 to-gray-600"
+  member: "from-gray-500 to-gray-600",
+  medic: "from-teal-500 to-cyan-400"
 }
 
 
